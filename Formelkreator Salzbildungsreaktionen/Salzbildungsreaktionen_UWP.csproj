@@ -122,12 +122,6 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\Element.cs" />
-    <Compile Include="Models\Salz.cs" />
-    <Compile Include="Models\Verbindung.cs" />
-    <Compile Include="Models\Lauge.cs" />
-    <Compile Include="Models\Säure.cs" />
-    <Compile Include="Models\Wasser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -161,8 +155,15 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Models\" />
     <Folder Include="ViewModels\" />
     <Folder Include="Views\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Salzbildungsraktionen_Core\Salzbildungsreaktionen_Core.csproj">
+      <Project>{281ccb79-ac0a-4804-b7f7-a985e5ce126c}</Project>
+      <Name>Salzbildungsreaktionen_Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

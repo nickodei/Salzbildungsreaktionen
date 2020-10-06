@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Formelkreator_Salzbildungsreaktionen.Models
+namespace Salzbildungsreaktionen_Core.Models.Verbindungen
 {
-    public class Wasser
+    public class Salz
     {
+
     }
 }
