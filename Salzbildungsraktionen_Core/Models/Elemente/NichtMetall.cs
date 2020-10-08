@@ -9,18 +9,18 @@
 
         #endregion
 
-        public NichtMetall(string symbol, string name, int wertigkeit, int anzahl): base(symbol, name, wertigkeit, anzahl)
+        public NichtMetall(string symbol, string name, int wertigkeit): base(symbol, name, wertigkeit)
         {
         }
 
-        public static NichtMetall Create(string symbol, int anzahl)
+        public static NichtMetall Create(string symbol)
         {
             switch (symbol)
             {
                 case Sauerstoff:
-                    return new NichtMetall(symbol: symbol, name: nameof(Sauerstoff), wertigkeit: -2, anzahl: anzahl);
+                    return new NichtMetall(symbol: symbol, name: nameof(Sauerstoff), wertigkeit: -2);
                 case Chlor:
-                    return new NichtMetall(symbol: symbol, name: nameof(Chlor), wertigkeit: -1, anzahl: anzahl);
+                    return new NichtMetall(symbol: symbol, name: nameof(Chlor), wertigkeit: -1);
                 default:
                     return null;
             }

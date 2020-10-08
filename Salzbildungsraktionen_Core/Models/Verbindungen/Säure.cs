@@ -33,32 +33,17 @@ namespace Salzbildungsreaktionen_Core.Models.Verbindungen
             Säurerestion = säurerestion;
         }
 
-        public static Säure Create(string formel)
+        public static new Säure Create(string formel)
         {
             switch (formel)
             {
                 case Salzsäure:
-                    return new Säure(formel: formel, name: nameof(Salzsäure), anzahlWasserstoff: 1, Säurerestion.Create(NichtMetall.Chlor, 1));
+                    return new Säure(formel: formel, name: nameof(Salzsäure), anzahlWasserstoff: 1, Säurerestion.Create(NichtMetall.Chlor));
                 case Schwefelsäure:
-                    return new Säure(formel: formel, name: nameof(Schwefelsäure), anzahlWasserstoff: 2, Säurerestion.Create(Säurerestion.Sulfat, 1));
+                    return new Säure(formel: formel, name: nameof(Schwefelsäure), anzahlWasserstoff: 2, Säurerestion.Create(Säurerestion.Sulfat));
                 default:
                     return null;
             }
-        }
-
-        public (Salz, Element) ReagiertMit(Metall metall)
-        {
-            // Berechne das kleinste gemeinsame Vielfache
-            int kgV = Reaktionshelfer.GetLCM(Math.Abs(metall.Wertigkeit), Math.Abs(Säurerestion.Wertigkeit));
-            
-            // Setze jeweils die Anzahl der Reaktionspartner in Relation zum kgV
-            Säurerestion.Anzahl = kgV / Math.Abs(Säurerestion.Wertigkeit);
-            metall.Anzahl = kgV / Math.Abs(metall.Wertigkeit);
-
-            // Erstelle das Salz
-
-
-            return (null, null);
         }
     }
 }

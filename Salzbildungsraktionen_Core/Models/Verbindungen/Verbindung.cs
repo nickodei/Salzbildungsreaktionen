@@ -8,6 +8,12 @@ namespace Salzbildungsreaktionen_Core.Models.Verbindungen
 {
     public class Verbindung
     {
+        #region
+
+        public const string Wasserstoff = "H2";
+
+        #endregion
+
         private string _Formel;
         public string Formel
         {
@@ -22,18 +28,28 @@ namespace Salzbildungsreaktionen_Core.Models.Verbindungen
             private set { _Name = value; }
         }
 
-        private int _Anzahl;
-        public int Anzahl
+        private double _Anzahl;
+        public double Anzahl
         {
             get { return _Anzahl; }
             set { _Anzahl = value; }
         }
 
-
         public Verbindung(string formel, string name)
         {
             Formel = formel;
             Name = name;
+        }
+
+        public static Verbindung Create(string formel)
+        {
+            switch (formel)
+            {
+                case Wasserstoff:
+                    return new Verbindung(formel: formel, name: nameof(Wasserstoff));
+                default:
+                    return new Verbindung(formel: formel, name: "Unbekannt");
+            }
         }
     }
 }

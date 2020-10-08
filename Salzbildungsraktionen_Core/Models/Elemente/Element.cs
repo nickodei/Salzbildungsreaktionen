@@ -30,10 +30,9 @@
             set { _Anzahl = value; }
         }
 
-        public Element(string symbol, string name, int wertigkeit, int anzahl)
+        public Element(string symbol, string name, int wertigkeit)
         {
             Wertigkeit = wertigkeit;
-            Anzahl = anzahl;
             Symbol = symbol;
             Name = name;
         }

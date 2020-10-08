@@ -22,20 +22,20 @@ namespace Salzbildungsreaktionen_Core.Models.Verbindungen
             Wertigkeit = wertigkeit;
         }
 
-        public static Säurerestion Create(string formel, int anzahl)
+        public static new Säurerestion Create(string formel)
         {
             switch (formel)
             {
                 case Sulfat:
                     return new Säurerestion(formel: formel, name: nameof(Sulfat), wertigkeit: -2);
                 default:
-                    NichtMetall nichtMetall = NichtMetall.Create(formel, anzahl);
+                    NichtMetall nichtMetall = NichtMetall.Create(formel);
                     if(nichtMetall == null)
                     {
                         return null;
                     }
 
-                    return new Säurerestion(formel: nichtMetall.Symbol, name: nichtMetall.Name, wertigkeit: nichtMetall.Anzahl);
+                    return new Säurerestion(formel: nichtMetall.Symbol, name: nichtMetall.Name, wertigkeit: nichtMetall.Wertigkeit);
             }
         }
     }
