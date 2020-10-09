@@ -9,7 +9,8 @@ namespace Salzbildungsreaktionen_Core.Models.Verbindungen
         #region Säureformeln
 
         public const string Salzsäure = "HCl";
-        public const string Schwefelsäure = "H2SO4";
+        public const string Schwefelsäure = "H₂SO₄";
+        public const string PhosphorigeSäure = "";
 
         #endregion
 

@@ -35,6 +35,7 @@
             Wertigkeit = wertigkeit;
             Symbol = symbol;
             Name = name;
+            Anzahl = 1;
         }
     }
 }

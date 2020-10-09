@@ -4,6 +4,7 @@
     {
         #region
 
+        public const string Wasserstoff = "H";
         public const string Chlor = "Cl";
         public const string Sauerstoff = "O";
 
@@ -17,6 +18,8 @@
         {
             switch (symbol)
             {
+                case Wasserstoff:
+                    return new NichtMetall(symbol: symbol, name: nameof(Wasserstoff), wertigkeit: 1);
                 case Sauerstoff:
                     return new NichtMetall(symbol: symbol, name: nameof(Sauerstoff), wertigkeit: -2);
                 case Chlor:

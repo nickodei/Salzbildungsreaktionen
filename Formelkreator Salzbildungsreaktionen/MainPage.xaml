@@ -15,11 +15,8 @@
                 <NavigationViewItem Content="Metalle und Nichtmetalle" x:Name="B" />
             </NavigationView.MenuItems>
             <StackPanel Padding="10">
-                <StackPanel Orientation="Horizontal">
-                   <RichTextBlock Typography.Variants="Subscript" Width="200" >
-                        <Paragraph>test</Paragraph>
-                   </RichTextBlock>
-                </StackPanel>
+                <StackPanel Orientation="Horizontal"/>
+                <RichEditBox Height="100" KeyDown="RichEditBox_KeyDown" TextChanging="RichEditBox_TextChanging"/>
             </StackPanel>
         </NavigationView>
     </Grid>

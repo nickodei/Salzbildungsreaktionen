@@ -10,7 +10,7 @@ namespace Salzbildungsreaktionen_Core.Models.Verbindungen
     {
         #region
 
-        public const string Wasserstoff = "H2";
+        public const string Wasserstoff = "H₂";
 
         #endregion
 
@@ -39,6 +39,7 @@ namespace Salzbildungsreaktionen_Core.Models.Verbindungen
         {
             Formel = formel;
             Name = name;
+            Anzahl = 1;
         }
 
         public static Verbindung Create(string formel)

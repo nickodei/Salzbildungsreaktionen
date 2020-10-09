@@ -13,7 +13,7 @@ namespace Salzbildungsreaktionen_Core.Models.Verbindungen
         #region
 
         public const string Natriumchlorid = "NaCl";
-        public const string Magnesiumchlorid = "MgCl2";
+        public const string Magnesiumchlorid = "MgCl₂";
         public const string Aluminiumsulfat = "Al2(SO4)3";
 
         #endregion
@@ -52,9 +52,30 @@ namespace Salzbildungsreaktionen_Core.Models.Verbindungen
         {
             string formel = "";
 
-            formel += (metall.Anzahl > 1) ? $"{metall.Symbol}{metall.Anzahl}" : $"{metall.Symbol}";
-            formel += (int.TryParse(säurerestion.Formel.Last().ToString(), out int s)) ? $"({säurerestion.Formel})" : $"{säurerestion.Formel}";
-            formel += (säurerestion.Anzahl > 1) ? $"{säurerestion.Anzahl}" : $"";
+            if (metall.Anzahl > 1)
+            {
+                formel += $"{metall.Symbol}{Unicodehelfer.GetSubscriptOfNumber((int)metall.Anzahl)}";
+            }
+            else
+            {
+                formel += $"{metall.Symbol}";
+            }
+
+            if (säurerestion.Anzahl > 1)
+            {
+                if (int.TryParse(säurerestion.Formel.Last().ToString(), out int s))
+                {
+                    formel += $"({säurerestion.Formel}){Unicodehelfer.GetSubscriptOfNumber((int)säurerestion.Anzahl)}";
+                }
+                else
+                {
+                    formel += $"{säurerestion.Formel}{Unicodehelfer.GetSubscriptOfNumber((int)säurerestion.Anzahl)}";
+                }
+            }
+            else
+            {
+                formel += $"{säurerestion.Formel}";
+            }
 
             return formel;
         }
@@ -71,6 +92,21 @@ namespace Salzbildungsreaktionen_Core.Models.Verbindungen
             {
                 default:
                     return new Salz(formel, "Unbekannt", metallFürSäure, säurerestionFürSäure);
+            }
+        }
+
+        public static Salz Create(Metalloxid metalloxid, Säurerestion säurerestion)
+        {
+            Metalloxid metalloxidFürSäure = Metalloxid.Create(metalloxid.m_Metall); // Kann optimiert werden
+            Säurerestion säurerestionFürSäure = Säurerestion.Create(säurerestion.Formel);
+
+            SetzeAnzahlDerIonen(metalloxidFürSäure.m_Metall, säurerestionFürSäure);
+            string formel = SetzeFormel(metalloxidFürSäure.m_Metall, säurerestionFürSäure);
+
+            switch (formel)
+            {
+                default:
+                    return new Salz(formel, "Unbekannt", metalloxidFürSäure.m_Metall, säurerestionFürSäure);
             }
         }
     }

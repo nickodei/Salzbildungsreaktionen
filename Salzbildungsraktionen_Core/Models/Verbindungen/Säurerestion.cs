@@ -6,7 +6,7 @@ namespace Salzbildungsreaktionen_Core.Models.Verbindungen
     {
         #region Namen
 
-        public const string Sulfat = "SO4";
+        public const string Sulfat = "SO₄";
 
         #endregion
 
