@@ -20,7 +20,7 @@ namespace Salzbildungsreaktionen_Core.Models.Verbindungen
             set { _Sauerstoff = value; }
         }
 
-        public Wasser() : base("H₂O", "Wasserstoff")
+        public Wasser() : base("H₂O", "Wasser")
         {
             // Neues Objet muss erstellt werden, da das Salz eine eigene Instanz darstellt
             m_Wasserstoff = NichtMetall.Create(NichtMetall.Wasserstoff);

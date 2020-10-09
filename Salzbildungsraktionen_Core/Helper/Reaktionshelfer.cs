@@ -1,14 +1,13 @@
 ﻿using Salzbildungsreaktionen_Core.Models.Elemente;
 using Salzbildungsreaktionen_Core.Models.Reaktionen;
 using Salzbildungsreaktionen_Core.Models.Verbindungen;
-using System;
 using System.Collections.Generic;
 
 namespace Salzbildungsreaktionen_Core.Helper
 {
     public class Reaktionshelfer
     {
-        public static List<MetallSäureReaktionsresultat> SäureReagiertMirMetall(Säure säure, Metall metall)
+        public static MetallSäureReaktionsresultat SäureReagiertMirMetall(Säure säure, Metall metall)
         {
             // Erstelle das Salz
             Salz salz = Salz.Create(metall, säure.Säurerestion);
@@ -23,10 +22,10 @@ namespace Salzbildungsreaktionen_Core.Helper
             Verbindung wasserstoff = Verbindung.Create(Verbindung.Wasserstoff);
             wasserstoff.Anzahl = (säure.Anzahl * säure.AnzahlWasserstoff) / 2;
 
-            return new List<MetallSäureReaktionsresultat>() { new MetallSäureReaktionsresultat(metall, säure, salz, wasserstoff) };
+            return new MetallSäureReaktionsresultat(metall, säure, salz, wasserstoff);
         }
 
-        public static List<MetalloxidSäureReaktionsresultat> SäureReagiertMirMetalloxid(Säure säure, Metalloxid metalloxid)
+        public static MetalloxidSäureReaktionsresultat SäureReagiertMirMetalloxid(Säure säure, Metalloxid metalloxid)
         {
             // Erstelle das Salz
             Salz salz = Salz.Create(metalloxid, säure.Säurerestion);
@@ -53,7 +52,7 @@ namespace Salzbildungsreaktionen_Core.Helper
             Wasser wasser = new Wasser();
             wasser.Anzahl = (säure.Anzahl * säure.AnzahlWasserstoff) / 2;
 
-            return new List<MetalloxidSäureReaktionsresultat>() { new MetalloxidSäureReaktionsresultat(metalloxid, säure, salz, wasser) };
+            return new MetalloxidSäureReaktionsresultat(metalloxid, säure, salz, wasser);
         }
 
         public static int GetGCD(int num1, int num2)

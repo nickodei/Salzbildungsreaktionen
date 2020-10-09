@@ -14,11 +14,11 @@ namespace Salzbildungsreaktionen_Core.Models.Verbindungen
 
         #endregion
 
-        private string _Formel;
-        public string Formel
+        private string _ChemischeFormel;
+        public string ChemischeFormel
         {
-            get { return _Formel; }
-            private set { _Formel = value; }
+            get { return _ChemischeFormel; }
+            private set { _ChemischeFormel = value; }
         }
 
         private string _Name;
@@ -35,9 +35,9 @@ namespace Salzbildungsreaktionen_Core.Models.Verbindungen
             set { _Anzahl = value; }
         }
 
-        public Verbindung(string formel, string name)
+        public Verbindung(string chemischeFormel, string name)
         {
-            Formel = formel;
+            ChemischeFormel = chemischeFormel;
             Name = name;
             Anzahl = 1;
         }
@@ -47,9 +47,9 @@ namespace Salzbildungsreaktionen_Core.Models.Verbindungen
             switch (formel)
             {
                 case Wasserstoff:
-                    return new Verbindung(formel: formel, name: nameof(Wasserstoff));
+                    return new Verbindung(chemischeFormel: formel, name: nameof(Wasserstoff));
                 default:
-                    return new Verbindung(formel: formel, name: "Unbekannt");
+                    return new Verbindung(chemischeFormel: formel, name: "Unbekannt");
             }
         }
     }

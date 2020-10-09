@@ -33,5 +33,32 @@ namespace Salzbildungsreaktionen_Core.Helper
                     return 'x';
             }
         }
+
+        public static int GetNumberOfSubscript(char character)
+        {
+            switch (character)
+            {
+                case '₁':
+                    return 1;
+                case '₂':
+                    return 2;
+                case '₃':
+                    return 3;
+                case '₄':
+                    return 4;
+                case '₅':
+                    return 5;
+                case '₆':
+                    return 6;
+                case '₇':
+                    return 7;
+                case '₈':
+                    return 8;
+                case '₉':
+                    return 9;
+                default:
+                    return -1;
+            }
+        }
     }
 }

@@ -25,30 +25,30 @@ namespace Salzbildungsreaktionen_Core.Models.Verbindungen
             set { _Metall = value; }
         }
 
-        private Säurerestion _Säurerestion;
-        public Säurerestion m_Säurerestion
+        private SäureRestIon _Säurerestion;
+        public SäureRestIon m_Säurerestion
         {
             get { return _Säurerestion; }
             set { _Säurerestion = value; }
         }
 
-        public Salz(string formel, string name, Metall metall, Säurerestion säurerestion) : base(formel, name)
+        public Salz(string formel, string name, Metall metall, SäureRestIon säurerestion) : base(formel, name)
         {
             // Neues Objet muss erstellt werden, da das Salz eine eigene Instanz darstellt
             m_Metall = metall;
             m_Säurerestion = säurerestion;
         }
 
-        private static void SetzeAnzahlDerIonen(Metall metall, Säurerestion säurerestion)
+        private static void SetzeAnzahlDerIonen(Metall metall, SäureRestIon säurerestion)
         {
-            int kgV = Reaktionshelfer.GetLCM(Math.Abs(metall.Wertigkeit), Math.Abs(säurerestion.Wertigkeit));
+            int kgV = Reaktionshelfer.GetLCM(Math.Abs(metall.Wertigkeit), Math.Abs(säurerestion.Ladung));
 
             // Setze jeweils die Anzahl der Reaktionspartner in Relation zum kgV
             metall.Anzahl = kgV / Math.Abs(metall.Wertigkeit);
-            säurerestion.Anzahl = kgV / Math.Abs(säurerestion.Wertigkeit);
+            säurerestion.Anzahl = kgV / Math.Abs(säurerestion.Ladung);
         }
 
-        private static string SetzeFormel(Metall metall, Säurerestion säurerestion)
+        private static string SetzeFormel(Metall metall, SäureRestIon säurerestion)
         {
             string formel = "";
 
@@ -63,27 +63,27 @@ namespace Salzbildungsreaktionen_Core.Models.Verbindungen
 
             if (säurerestion.Anzahl > 1)
             {
-                if (int.TryParse(säurerestion.Formel.Last().ToString(), out int s))
+                if (int.TryParse(säurerestion.ChemischeFormel.Last().ToString(), out int s))
                 {
-                    formel += $"({säurerestion.Formel}){Unicodehelfer.GetSubscriptOfNumber((int)säurerestion.Anzahl)}";
+                    formel += $"({säurerestion.ChemischeFormel}){Unicodehelfer.GetSubscriptOfNumber((int)säurerestion.Anzahl)}";
                 }
                 else
                 {
-                    formel += $"{säurerestion.Formel}{Unicodehelfer.GetSubscriptOfNumber((int)säurerestion.Anzahl)}";
+                    formel += $"{säurerestion.ChemischeFormel}{Unicodehelfer.GetSubscriptOfNumber((int)säurerestion.Anzahl)}";
                 }
             }
             else
             {
-                formel += $"{säurerestion.Formel}";
+                formel += $"{säurerestion.ChemischeFormel}";
             }
 
             return formel;
         }
 
-        public static Salz Create(Metall metall, Säurerestion säurerestion)
+        public static Salz Create(Metall metall, SäureRestIon säurerestion)
         {
             Metall metallFürSäure = Metall.Create(metall.Symbol);
-            Säurerestion säurerestionFürSäure = Säurerestion.Create(säurerestion.Formel);
+            SäureRestIon säurerestionFürSäure = SäureRestIon.Create(säurerestion.ChemischeFormel, säurerestion.AnzahlWasserstoff, säurerestion.Ladung);
 
             SetzeAnzahlDerIonen(metallFürSäure, säurerestionFürSäure);
             string formel = SetzeFormel(metallFürSäure, säurerestionFürSäure);
@@ -95,10 +95,10 @@ namespace Salzbildungsreaktionen_Core.Models.Verbindungen
             }
         }
 
-        public static Salz Create(Metalloxid metalloxid, Säurerestion säurerestion)
+        public static Salz Create(Metalloxid metalloxid, SäureRestIon säurerestion)
         {
             Metalloxid metalloxidFürSäure = Metalloxid.Create(metalloxid.m_Metall); // Kann optimiert werden
-            Säurerestion säurerestionFürSäure = Säurerestion.Create(säurerestion.Formel);
+            SäureRestIon säurerestionFürSäure = SäureRestIon.Create(säurerestion.ChemischeFormel, säurerestion.AnzahlWasserstoff, säurerestion.Ladung);
 
             SetzeAnzahlDerIonen(metalloxidFürSäure.m_Metall, säurerestionFürSäure);
             string formel = SetzeFormel(metalloxidFürSäure.m_Metall, säurerestionFürSäure);

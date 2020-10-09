@@ -1,7 +1,9 @@
 ﻿using NUnit.Framework;
 using Salzbildungsreaktionen_Core.Helper;
 using Salzbildungsreaktionen_Core.Models.Elemente;
+using Salzbildungsreaktionen_Core.Models.Reaktionen;
 using Salzbildungsreaktionen_Core.Models.Verbindungen;
+using System.Collections.Generic;
 
 namespace Salzbildungsreaktionen_Test
 {
@@ -10,40 +12,48 @@ namespace Salzbildungsreaktionen_Test
         [Test]
         public void NatriumReagiertMitSalzsäure()
         {
-            Säure salzsäure = Säure.Create(formel: Säure.Salzsäure);
-            Metall natrium = Metall.Create(symbol: Metall.Natrium);
-            Metalloxid natriumoxid = Metalloxid.Create(natrium);
+            // Beinhaltet alle Reaktionsresultate, die mit den verschiedenen Säurevariationen gemacht werden können
+            List<MetalloxidSäureReaktionsresultat> reaktionsResultate = new List<MetalloxidSäureReaktionsresultat>();
 
-            var result = Reaktionshelfer.SäureReagiertMirMetalloxid(salzsäure, natriumoxid);
+            List<Säure> salzsäureVarianten = Säure.ErstelleSäure(chemischeFormel: Säure.Salzsäure);
+            for(int cnt = 0; cnt < salzsäureVarianten.Count; cnt++)
+            {
+                Säure salzsäure = salzsäureVarianten[cnt];
+                Metall natrium = Metall.Create(symbol: Metall.Natrium);
+                Metalloxid natriumoxid = Metalloxid.Create(natrium);
 
-            // Anzahl der Reaktionsgleichungen
-            Assert.AreEqual(1, result.Count);
+                MetalloxidSäureReaktionsresultat reaktionsResultat = Reaktionshelfer.SäureReagiertMirMetalloxid(salzsäure, natriumoxid);
+                reaktionsResultate.Add(reaktionsResultat);
+            }
+
+            // Anzahl der erwarteten Reaktionsgleichungen
+            Assert.AreEqual(1, reaktionsResultate.Count);
 
             // Die einzelnen Bestandteile überprüfen
             // 1. Metalloxid
-            Assert.AreEqual("Na₂O", result[0].m_Metalloxid.Formel);
-            Assert.AreEqual(1, result[0].m_Metalloxid.Anzahl);
-            Assert.AreEqual(2, result[0].m_Metalloxid.m_Metall.Anzahl);
-            Assert.AreEqual(1, result[0].m_Metalloxid.m_Sauerstoff.Anzahl);
+            Assert.AreEqual("Na₂O", reaktionsResultate[0].m_Metalloxid.ChemischeFormel);
+            Assert.AreEqual(1, reaktionsResultate[0].m_Metalloxid.Anzahl);
+            Assert.AreEqual(2, reaktionsResultate[0].m_Metalloxid.m_Metall.Anzahl);
+            Assert.AreEqual(1, reaktionsResultate[0].m_Metalloxid.m_Sauerstoff.Anzahl);
 
             // 2. Säure
-            Assert.AreEqual("HCl", result[0].m_Säure.Formel);
-            Assert.AreEqual(2, result[0].m_Säure.Anzahl);
-            Assert.AreEqual(1, result[0].m_Säure.AnzahlWasserstoff);
-            Assert.AreEqual(1, result[0].m_Säure.Säurerestion.Anzahl);
+            Assert.AreEqual("HCl", reaktionsResultate[0].m_Säure.ChemischeFormel);
+            Assert.AreEqual(2, reaktionsResultate[0].m_Säure.Anzahl);
+            Assert.AreEqual(1, reaktionsResultate[0].m_Säure.AnzahlWasserstoff);
+            Assert.AreEqual(1, reaktionsResultate[0].m_Säure.Säurerestion.Anzahl);
 
             // 3.Salz
-            Assert.AreEqual("NaCl", result[0].m_Salz.Formel);
-            Assert.AreEqual(2, result[0].m_Salz.Anzahl);
-            Assert.AreEqual(1, result[0].m_Salz.m_Metall.Anzahl);
-            Assert.AreEqual(1, result[0].m_Salz.m_Säurerestion.Anzahl);
+            Assert.AreEqual("NaCl", reaktionsResultate[0].m_Salz.ChemischeFormel);
+            Assert.AreEqual(2, reaktionsResultate[0].m_Salz.Anzahl);
+            Assert.AreEqual(1, reaktionsResultate[0].m_Salz.m_Metall.Anzahl);
+            Assert.AreEqual(1, reaktionsResultate[0].m_Salz.m_Säurerestion.Anzahl);
 
             // 4.Wasser
-            Assert.AreEqual(1, result[0].m_Wasser.Anzahl);
+            Assert.AreEqual(1, reaktionsResultate[0].m_Wasser.Anzahl);
 
             // Mit Sauerstoff kontrolieren
-            double anzahlSauerstoffMetalloxid = result[0].m_Metalloxid.m_Sauerstoff.Anzahl * result[0].m_Metalloxid.Anzahl;
-            double anzahlSauerstoffWasser = result[0].m_Wasser.m_Sauerstoff.Anzahl * result[0].m_Wasser.Anzahl;
+            double anzahlSauerstoffMetalloxid = reaktionsResultate[0].m_Metalloxid.m_Sauerstoff.Anzahl * reaktionsResultate[0].m_Metalloxid.Anzahl;
+            double anzahlSauerstoffWasser = reaktionsResultate[0].m_Wasser.m_Sauerstoff.Anzahl * reaktionsResultate[0].m_Wasser.Anzahl;
             Assert.AreEqual(anzahlSauerstoffMetalloxid, anzahlSauerstoffWasser);
         }
     }

@@ -1,6 +1,8 @@
 ﻿using Salzbildungsreaktionen_Core.Helper;
 using Salzbildungsreaktionen_Core.Models.Elemente;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Salzbildungsreaktionen_Core.Models.Verbindungen
 {
@@ -21,30 +23,62 @@ namespace Salzbildungsreaktionen_Core.Models.Verbindungen
             private set { _AnzahlWasserstoff = value; }
         }
 
-        private Säurerestion _Säurerestion;
-        public Säurerestion Säurerestion
+        private SäureRestIon _Säurerestion;
+        public SäureRestIon Säurerestion
         {
             get { return _Säurerestion; }
             set { _Säurerestion = value; }
         }
 
-        public Säure(string formel, string name, int anzahlWasserstoff, Säurerestion säurerestion) : base(formel, name)
+        public Säure(string chemischeFormel, string name, int anzahlWasserstoff, SäureRestIon säurerestion) : base(chemischeFormel, name)
         {
             AnzahlWasserstoff = anzahlWasserstoff;
             Säurerestion = säurerestion;
         }
 
-        public static new Säure Create(string formel)
+        public static List<Säure> ErstelleSäure(string chemischeFormel)
         {
-            switch (formel)
+            List<Säure> säureVarianten = new List<Säure>();
+
+            if(chemischeFormel[0].Equals('H'))
             {
-                case Salzsäure:
-                    return new Säure(formel: formel, name: nameof(Salzsäure), anzahlWasserstoff: 1, Säurerestion.Create(NichtMetall.Chlor));
-                case Schwefelsäure:
-                    return new Säure(formel: formel, name: nameof(Schwefelsäure), anzahlWasserstoff: 2, Säurerestion.Create(Säurerestion.Sulfat));
-                default:
-                    return null;
+                string säurerestionFormel = "";
+
+                // Der erste Bestandteil ist ein Wasserstoffmolekühl
+                // => Bereite alle Variationen auf, die diese Säure haben kann              
+                int maximaleAnzahl = Unicodehelfer.GetNumberOfSubscript(chemischeFormel[1]);
+                if(maximaleAnzahl == -1)
+                {
+                    // Nur ein Wasserstoffmolekühl gefunden, somit kann die Anzahl auf 1 gesetzt werden
+                    maximaleAnzahl = 1;
+                    säurerestionFormel = chemischeFormel.Substring(1);
+                }
+                else
+                {
+                    säurerestionFormel = chemischeFormel.Substring(2);
+                }
+
+                // Erstelle für jede Wasserstoffkombination ein Säurerestion, 
+                // das für die verschiedenen Salzbildungen verwendet werden kann
+                for(int aktuelleAnzahl = 1; aktuelleAnzahl <= maximaleAnzahl; aktuelleAnzahl++)
+                {
+                    SäureRestIon säurerestion = SäureRestIon.Create(säurerestionFormel, aktuelleAnzahl, aktuelleAnzahl - maximaleAnzahl - 1);
+                    switch (chemischeFormel)
+                    {
+                        case Salzsäure:
+                            säureVarianten.Add(new Säure(chemischeFormel: chemischeFormel, name: nameof(Salzsäure), anzahlWasserstoff: aktuelleAnzahl, säurerestion: säurerestion));
+                            break;
+                        case Schwefelsäure:
+                            säureVarianten.Add(new Säure(chemischeFormel: chemischeFormel, name: nameof(Schwefelsäure), anzahlWasserstoff: aktuelleAnzahl, säurerestion: säurerestion));
+                            break;
+                        default:
+                            säureVarianten.Add(new Säure(chemischeFormel: chemischeFormel, name: "Unbekannt", anzahlWasserstoff: aktuelleAnzahl, säurerestion: säurerestion));
+                            break;
+                    }
+                }
             }
+
+            return säureVarianten;
         }
     }
 }
