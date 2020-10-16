@@ -20,7 +20,7 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Elemente
             private set { _Hauptgruppe = value; }
         }
 
-        public Element(string symbol, int hauptgruppe)
+        public Element(string name, string symbol, int hauptgruppe) : base(name)
         {
             Symbol = symbol;
             Hauptgruppe = hauptgruppe;

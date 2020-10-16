@@ -1,5 +1,5 @@
-﻿using Salzbildungsreaktionen_Core.Stoffe.Gemisch.Säuren;
-using Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Elemente.Metalle;
+﻿using Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Elemente.Metalle;
+using Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Verbindungen;
 
 namespace Salzbildungsreaktionen_Core.Reaktionen
 {

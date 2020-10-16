@@ -13,7 +13,7 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Verbindungen.Ionen
             private set { _Ladung = value; }
         }
 
-        public IonischeVerbindung(int ladung)
+        public IonischeVerbindung(string name, string formel, int ladung) : base(name, formel)
         {
             Ladung = ladung;
         }

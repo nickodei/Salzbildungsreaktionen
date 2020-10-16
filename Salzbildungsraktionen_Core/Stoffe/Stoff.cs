@@ -13,6 +13,9 @@ namespace Salzbildungsreaktionen_Core.Stoffe
             private set { _Name = value; }
         }
 
-
+        public Stoff(string name)
+        {
+            Name = name;
+        }
     }
 }
