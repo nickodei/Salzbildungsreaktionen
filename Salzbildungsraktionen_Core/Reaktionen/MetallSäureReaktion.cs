@@ -16,11 +16,11 @@ namespace Salzbildungsreaktionen_Core.Reaktionen
             set { _MetallKomponente = value; }
         }
 
-        private Reaktionsstoff<Säure> _SäureKomponente;
-        public Reaktionsstoff<Säure> SäureKomponente
+        private Reaktionsstoff<Saeure> _SaeureKomponente;
+        public Reaktionsstoff<Saeure> SaeureKomponente
         {
-            get { return _SäureKomponente; }
-            set { _SäureKomponente = value; }
+            get { return _SaeureKomponente; }
+            set { _SaeureKomponente = value; }
         }
 
         private Reaktionsstoff<Salz> _SalzKomponente;
@@ -37,10 +37,10 @@ namespace Salzbildungsreaktionen_Core.Reaktionen
             set { _WasserstoffKomponente = value; }
         }
 
-        public MetallSäureReaktion(Metall metall, Säure säure)
+        public MetallSäureReaktion(Metall metall, Saeure säure)
         {
             MetallKomponente = new Reaktionsstoff<Metall>(metall);
-            SäureKomponente = new Reaktionsstoff<Säure>(säure);
+            SaeureKomponente = new Reaktionsstoff<Saeure>(säure);
         }
 
         /// <summary>
@@ -52,7 +52,7 @@ namespace Salzbildungsreaktionen_Core.Reaktionen
             MetallIon metallIon = MetallIon.ErhalteMetallIon(MetallKomponente.Stoff);
 
             // Das SäurerestIon kann von der Säure kopiert werden
-            SäurerestIon säurerestIon = SäureKomponente.Stoff.Säurerest;
+            SäurerestIon säurerestIon = SaeureKomponente.Stoff.Säurerest;
 
             // Erstelle aus dem Metall und der Säure das Salz
             Salz salz = Salz.ErhalteSalz(metallIon, säurerestIon);
@@ -62,7 +62,7 @@ namespace Salzbildungsreaktionen_Core.Reaktionen
             MetallKomponente.Anzahl = salz.MetallIonMolekühle;
 
             // Säure ausgleichen
-            SäureKomponente.Anzahl = salz.SäurerestIonMolekühle;
+            SaeureKomponente.Anzahl = salz.SäurerestIonMolekühle;
 
             // Salz ausgleichen
             // TODO: noch implementieren
@@ -74,7 +74,7 @@ namespace Salzbildungsreaktionen_Core.Reaktionen
             WasserstoffKomponente = new Reaktionsstoff<MolekulareVerbindung>(WasserstoffMolekühl);
 
             // Gleiche den Wasserstoff aus
-            WasserstoffKomponente.Anzahl = (SäureKomponente.Anzahl * SäureKomponente.Stoff.WasserstoffMolekühle) / WasserstoffMolekühl.AnzahlAtome;
+            WasserstoffKomponente.Anzahl = (SaeureKomponente.Anzahl * SaeureKomponente.Stoff.WasserstoffMolekühle) / WasserstoffMolekühl.AnzahlAtome;
         }
     }
 }

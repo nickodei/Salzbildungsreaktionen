@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Verbindungen
 {
-    public class Säure : Verbindung
+    public class Saeure : Verbindung
     {
         public const string Salzsäure = "HCl";
         public const string Schwefelsäure = "H₂SO₄";
@@ -32,16 +32,16 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Verbindungen
             set { _Säurerest = value; }
         }
 
-        private Säure(string name, string formel, NichtmetallIon wasserstoff, int wasserstoffMolekühle, SäurerestIon säurerest) : base(name, formel)
+        private Saeure(string name, string formel, NichtmetallIon wasserstoff, int wasserstoffMolekühle, SäurerestIon säurerest) : base(name, formel)
         {
             Wasserstoff = wasserstoff;
             WasserstoffMolekühle = wasserstoffMolekühle;
             Säurerest = säurerest;
         }
 
-        public static List<Säure> ErhalteAlleSäurevarianten(string formel)
+        public static List<Saeure> ErhalteAlleSäurevarianten(string formel)
         {
-            List<Säure> säureVarianten = new List<Säure>();
+            List<Saeure> säureVarianten = new List<Saeure>();
 
             // Überprüfe ob der erste Buchstabe für ein Wasserstoff steht
             // Wenn nicht, dann gibt es auch keine Säure zum erstellen
@@ -75,13 +75,13 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Verbindungen
                 switch (formel)
                 {
                     case Salzsäure:
-                        säureVarianten.Add(new Säure(nameof(Salzsäure), formel, wasserstoffIon, counter, säurerestIon));
+                        säureVarianten.Add(new Saeure(nameof(Salzsäure), formel, wasserstoffIon, counter, säurerestIon));
                         break;
                     case Schwefelsäure:
-                        säureVarianten.Add(new Säure(nameof(Schwefelsäure), formel, wasserstoffIon, counter, säurerestIon));
+                        säureVarianten.Add(new Saeure(nameof(Schwefelsäure), formel, wasserstoffIon, counter, säurerestIon));
                         break;
                     default:
-                        säureVarianten.Add(new Säure("Unbekannt", formel, wasserstoffIon, counter, säurerestIon));
+                        säureVarianten.Add(new Saeure("Unbekannt", formel, wasserstoffIon, counter, säurerestIon));
                         break;
                 }
             }

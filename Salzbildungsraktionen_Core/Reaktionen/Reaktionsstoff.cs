@@ -1,7 +1,6 @@
 ﻿using Salzbildungsreaktionen_Core.Stoffe;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Elemente;
+using Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Verbindungen;
 
 namespace Salzbildungsreaktionen_Core.Reaktionen
 {
@@ -25,6 +24,23 @@ namespace Salzbildungsreaktionen_Core.Reaktionen
         {
             Stoff = stoff;
             Anzahl = 0;
+        }
+
+        public string GetFormel()
+        {
+            Element element = Stoff as Element;
+            if (element != null)
+            {
+                return (Anzahl != 1) ? $"{Anzahl} {element.Symbol}" : element.Symbol;
+            }
+
+            Verbindung verbindung = Stoff as Verbindung;
+            if (verbindung != null)
+            {
+                return (Anzahl != 1) ? $"{Anzahl} {verbindung.Formel}" : verbindung.Formel;
+            }
+
+            return "-";
         }
     }
 }

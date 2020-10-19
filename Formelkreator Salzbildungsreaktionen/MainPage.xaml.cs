@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Salzbildungsreaktionen_Core.Reaktionen;
+using Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Elemente.Metalle;
+using Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Verbindungen;
+using System;
+using System.Collections.Generic;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
@@ -16,6 +20,8 @@ namespace Formelkreator_Salzbildungsreaktionen
         {
             this.InitializeComponent();
         }
+
+        List<MetallSäureReaktion> metallSäureReaktionen = new List<MetallSäureReaktion>();
 
         private bool isSubscriptEnabled = false;
         private string subscriptText = "";
@@ -81,7 +87,29 @@ namespace Formelkreator_Salzbildungsreaktionen
 
         private void GeneriereGleichungen_Click(object sender, RoutedEventArgs e)
         {
+            MetallTextBox.TextDocument.GetText(Windows.UI.Text.TextGetOptions.UseObjectText, out string metallSymbol);
+            if (String.IsNullOrEmpty(metallSymbol))
+                return;
 
+            SäureTextBox.TextDocument.GetText(Windows.UI.Text.TextGetOptions.UseObjectText, out string säureFormel);
+            if (String.IsNullOrEmpty(säureFormel))
+                return;
+            
+            metallSäureReaktionen.Clear();
+
+            List<Saeure> säureVarianten = Saeure.ErhalteAlleSäurevarianten(säureFormel);
+            foreach (Saeure säure in säureVarianten)
+            {
+                Metall metall = Metall.ErhalteMetall(metallSymbol);
+
+                MetallSäureReaktion reaktion = new MetallSäureReaktion(metall, säure);
+                reaktion.BeginneReaktion();
+
+                metallSäureReaktionen.Add(reaktion);
+            }
+
+            ReaktionsgleichungenControl.ItemsSource = new List<Object>();
+            ReaktionsgleichungenControl.ItemsSource = metallSäureReaktionen;
         }
     }
 }

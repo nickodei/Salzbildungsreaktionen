@@ -1,8 +1,5 @@
 ﻿using Salzbildungsreaktionen_Core.Helper;
-using Salzbildungsreaktionen_Core.Models.Elemente;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Salzbildungsreaktionen_Core.Models.Verbindungen
 {

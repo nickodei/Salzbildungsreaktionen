@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using Salzbildungsreaktionen_Core.Helper;
 using Salzbildungsreaktionen_Core.Reaktionen;
 using Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Elemente.Metalle;
 using Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Verbindungen;
@@ -13,9 +12,9 @@ namespace Salzbildungsreaktionen_Test
         public void NatriumReagiertMitSalzsäure()
         {
             List<MetallSäureReaktion> metallSäureReaktionen = new List<MetallSäureReaktion>();
-            List<Säure> säureVarianten = Säure.ErhalteAlleSäurevarianten(Säure.Salzsäure);
+            List<Saeure> säureVarianten = Saeure.ErhalteAlleSäurevarianten(Saeure.Salzsäure);
 
-            foreach(Säure säure in säureVarianten)
+            foreach(Saeure säure in säureVarianten)
             {
                 Metall metall = Metall.ErhalteMetall(Metall.Natrium);
 
@@ -74,9 +73,9 @@ namespace Salzbildungsreaktionen_Test
         public void MagnesiumReagiertMitSalzsäure()
         {
             List<MetallSäureReaktion> metallSäureReaktionen = new List<MetallSäureReaktion>();
-            List<Säure> säureVarianten = Säure.ErhalteAlleSäurevarianten(Säure.Salzsäure);
+            List<Saeure> säureVarianten = Saeure.ErhalteAlleSäurevarianten(Saeure.Salzsäure);
 
-            foreach (Säure säure in säureVarianten)
+            foreach (Saeure säure in säureVarianten)
             {
                 Metall metall = Metall.ErhalteMetall(Metall.Magnesium);
 
