@@ -10,7 +10,7 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Verbindungen
         public string Formel
         {
             get { return _Formel; }
-            set { _Formel = value; }
+            protected set { _Formel = value; }
         }
 
         public Verbindung(string name, string formel) : base(name)

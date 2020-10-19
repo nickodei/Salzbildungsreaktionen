@@ -2,23 +2,29 @@
 
 namespace Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Verbindungen.Ionisch
 {
-    public class SäureRestIon : IonischeVerbindung
+    public class SäurerestIon : IonischeVerbindung
     {
-        public const string Sulfat = "SO₄";
-
-        private SäureRestIon(string name, string formel, int ladung): base(name, formel, ladung)
+        private Verbindung _Säurerest;
+        public Verbindung Säurerest
         {
+            get { return _Säurerest; }
+            set { _Säurerest = value; }
         }
 
-        public static SäureRestIon ErhalteSäurerest(string formel, int ladung)
+        private SäurerestIon(Verbindung säurerest, int ladung): base(säurerest.Name, säurerest.Formel, ladung)
         {
-            switch(formel)
-            {
-                case Sulfat:
-                    return new SäureRestIon(nameof(Sulfat), formel, ladung);
-                default:
-                    return null;
-            }
+            Säurerest = säurerest;
+        }
+
+        public static SäurerestIon ErhalteSäurerest(Verbindung säurerest, int ladung)
+        {
+            return new SäurerestIon(säurerest, ladung);
+        }
+
+        public static SäurerestIon ErhalteSäurerest(string formel, int ladung)
+        {
+            Verbindung säurerest = new Verbindung("", formel);
+            return new SäurerestIon(säurerest, ladung);
         }
     }
 }

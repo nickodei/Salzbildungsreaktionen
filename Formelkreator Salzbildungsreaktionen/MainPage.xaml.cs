@@ -78,5 +78,10 @@ namespace Formelkreator_Salzbildungsreaktionen
                 subscriptText = "";
             }
         }
+
+        private void GeneriereGleichungen_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

@@ -11,12 +11,15 @@
     <Grid>
         <NavigationView x:Name="NavigationViewControl" PaneDisplayMode="Top">
             <NavigationView.MenuItems>
-                <NavigationViewItem Content="Säuren und Basen" x:Name="A" />
-                <NavigationViewItem Content="Metalle und Nichtmetalle" x:Name="B" />
+                <NavigationViewItem Content="Metall + Säure" x:Name="MetallSäureReaktion" />
             </NavigationView.MenuItems>
             <StackPanel Padding="10">
-                <StackPanel Orientation="Horizontal"/>
-                <RichEditBox Height="100" KeyDown="RichEditBox_KeyDown" TextChanging="RichEditBox_TextChanging"/>
+                <TextBlock Text="Reaktion von Metall und Säure" Style="{StaticResource TitleTextBlockStyle}"/>
+                <StackPanel Orientation="Horizontal">
+                    <RichEditBox x:Name="MetallTextBox" Header="Metall" Margin="0,24,0,0" MaxLength="32" Width="300" HorizontalAlignment="Left" KeyDown="RichEditBox_KeyDown" TextChanging="RichEditBox_TextChanging"></RichEditBox>
+                    <RichEditBox x:Name="SäureTextBox" Header="Säure" Margin="24,24,0,0" MaxLength="32" Width="300" HorizontalAlignment="Left" KeyDown="RichEditBox_KeyDown" TextChanging="RichEditBox_TextChanging"></RichEditBox>
+                </StackPanel>
+                <Button Content="Generiere Gleichungen" Margin="0,24" Click="GeneriereGleichungen_Click"/>
             </StackPanel>
         </NavigationView>
     </Grid>

@@ -14,8 +14,8 @@ namespace Salzbildungsreaktionen_Core.Reaktionen
             set { _Stoff = value; }
         }
 
-        private int _Anzahl;
-        public int Anzahl
+        private double _Anzahl;
+        public double Anzahl
         {
             get { return _Anzahl; }
             set { _Anzahl = value; }
