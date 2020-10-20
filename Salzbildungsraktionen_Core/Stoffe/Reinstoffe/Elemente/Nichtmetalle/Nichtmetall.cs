@@ -1,4 +1,6 @@
-﻿namespace Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Elemente.Nichtmetalle
+﻿using Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Verbindungen.Ionen;
+
+namespace Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Elemente.Nichtmetalle
 {
     public class Nichtmetall : Element
     {
@@ -8,8 +10,18 @@
         public const string Phosphor = "P";
         public const string Sauerstoff = "S";
 
-        public Nichtmetall(string name, string symbol, int hauptgruppe) : base(name, symbol, hauptgruppe)
+        public Nichtmetall(string symbol, string name, int valenzelektronen) : base(name, symbol, valenzelektronen)
         {
+        }
+
+        public Anion<Nichtmetall> ErhalteIon()
+        {
+            return new Anion<Nichtmetall>(this, Valenzelektronen);
+        }
+
+        public int ErhalteLadung()
+        {
+            return -(8 - Valenzelektronen);
         }
 
         public static Nichtmetall ErhalteNichtmetall(string symbol)
@@ -17,15 +29,15 @@
             switch (symbol)
             {
                 case Wasserstoff:
-                    return new Nichtmetall(nameof(Wasserstoff), symbol, 1);
+                    return new Nichtmetall(symbol, nameof(Wasserstoff), 1);
                 case Kohlenstoff:
-                    return new Nichtmetall(nameof(Kohlenstoff), symbol, 4);
+                    return new Nichtmetall(symbol, nameof(Kohlenstoff), 4);
                 case Stickstoff:
-                    return new Nichtmetall(nameof(Stickstoff), symbol, 5);
+                    return new Nichtmetall(symbol, nameof(Stickstoff), 5);
                 case Phosphor:
-                    return new Nichtmetall(nameof(Phosphor), symbol, 5);
+                    return new Nichtmetall(symbol, nameof(Phosphor), 5);
                 case Sauerstoff:
-                    return new Nichtmetall(nameof(Sauerstoff), symbol, 6);
+                    return new Nichtmetall(symbol, nameof(Sauerstoff), 6);
                 default:
                     return null;
             }

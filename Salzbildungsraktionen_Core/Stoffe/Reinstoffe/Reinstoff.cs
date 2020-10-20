@@ -8,7 +8,10 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Reinstoffe
     {
         public Reinstoff(string name) : base(name)
         {
+        }
 
+        public Reinstoff(string name, string formel) : base(name, formel)
+        {
         }
     }
 }

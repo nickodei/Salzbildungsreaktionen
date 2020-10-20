@@ -2,24 +2,10 @@
 
 namespace Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Verbindungen.Ionen
 {
-    public class NichtmetallIon : IonischeVerbindung
+    public class NichtmetallIon : Anion<Nichtmetall>
     {
-        private Nichtmetall _Element;
-        public Nichtmetall Element
+        public NichtmetallIon(Nichtmetall nichtmetall) : base(nichtmetall, (nichtmetall.Symbol != "H") ? -(8 - nichtmetall.Valenzelektronen): 1)
         {
-            get { return _Element; }
-            set { _Element = value; }
-        }
-
-        private NichtmetallIon(Nichtmetall nichtmetall, int ladung) : base(nichtmetall.Name, nichtmetall.Symbol, ladung)
-        {
-            Element = nichtmetall;
-        }
-
-        public static NichtmetallIon ErhalteNichtmetallIon(Nichtmetall nichtmetall)
-        {
-            int ladung = nichtmetall.ErhalteLadung();
-            return new NichtmetallIon(nichtmetall, ladung);
         }
     }
 }

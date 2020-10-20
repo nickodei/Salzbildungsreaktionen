@@ -1,4 +1,6 @@
-﻿namespace Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Elemente.Metalle
+﻿using Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Verbindungen.Ionen;
+
+namespace Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Elemente.Metalle
 {
     public class Metall : Element
     {
@@ -7,8 +9,13 @@
         public const string Kalium = "K";
         public const string Magnesium = "Mg";
 
-        private Metall(string name, string symbol, int hauptgruppe) : base(name, symbol, hauptgruppe)
+        public Metall(string symbol, string name, int valenzelektronen) : base(name, symbol, valenzelektronen)
         {
+        }
+
+        public Kation<Metall> ErhalteIon()
+        {
+            return new Kation<Metall>(this, Valenzelektronen);
         }
 
         public static Metall ErhalteMetall(string symbol)
@@ -16,13 +23,13 @@
             switch(symbol)
             {
                 case Lithium:
-                    return new Metall(nameof(Lithium), symbol, 1);
+                    return new Metall(symbol, nameof(Lithium), 1);
                 case Natrium:
-                    return new Metall(nameof(Natrium), symbol, 1);
+                    return new Metall(symbol, nameof(Natrium), 1);
                 case Kalium:
-                    return new Metall(nameof(Kalium), symbol, 1);
+                    return new Metall(symbol, nameof(Kalium), 1);
                 case Magnesium:
-                    return new Metall(nameof(Magnesium), symbol, 2);
+                    return new Metall(symbol, nameof(Magnesium), 2);
                 default:
                     return null;
             }

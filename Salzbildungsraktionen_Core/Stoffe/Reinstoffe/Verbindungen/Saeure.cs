@@ -1,42 +1,45 @@
 ﻿using Salzbildungsreaktionen_Core.Helper;
 using Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Elemente.Nichtmetalle;
-using Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Verbindungen.Ionen;
-using Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Verbindungen.Ionisch;
+using Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Verbindungen.Molekular;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Verbindungen
 {
     public class Saeure : Verbindung
     {
-        public const string Salzsäure = "HCl";
-        public const string Schwefelsäure = "H₂SO₄";
-
-        private NichtmetallIon _Wasserstoff;
-        public NichtmetallIon Wasserstoff
+        private Kation<MolekulareVerbindung> _WasserstoffIon;
+        public Kation<MolekulareVerbindung> WasserstoffIon
         {
-            get { return _Wasserstoff; }
-            set { _Wasserstoff = value; }
+            get { return _WasserstoffIon; }
+            set { _WasserstoffIon = value; }
         }
 
-        private int _WasserstoffMolekühle;
-        public int WasserstoffMolekühle
+        private Anion<Verbindung> _SaeurerestIon;
+        public Anion<Verbindung> SaeurerestIon
         {
-            get { return _WasserstoffMolekühle; }
-            set { _WasserstoffMolekühle = value; }
+            get { return _SaeurerestIon; }
+            set { _SaeurerestIon = value; }
         }
 
-        private SäurerestIon _Säurerest;
-        public SäurerestIon Säurerest
+        public Saeure(Kation<MolekulareVerbindung> wasserstoff, Anion<Verbindung> saeurerest) : base("")
         {
-            get { return _Säurerest; }
-            set { _Säurerest = value; }
+            WasserstoffIon = wasserstoff;
+            SaeurerestIon = saeurerest;
+
+            GeneriereDenName();
+            GeneriereDieFormel();
         }
 
-        private Saeure(string name, string formel, NichtmetallIon wasserstoff, int wasserstoffMolekühle, SäurerestIon säurerest) : base(name, formel)
+        private void GeneriereDenName()
         {
-            Wasserstoff = wasserstoff;
-            WasserstoffMolekühle = wasserstoffMolekühle;
-            Säurerest = säurerest;
+            Name = $"{WasserstoffIon.GetName()}{SaeurerestIon.GetName().ToLower()}";
+        }
+
+        private void GeneriereDieFormel()
+        {
+            Formel = $"{WasserstoffIon.GetFormel()}{SaeurerestIon.GetFormel()}";
         }
 
         public static List<Saeure> ErhalteAlleSäurevarianten(string formel)
@@ -69,20 +72,15 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Verbindungen
 
             for (int counter = 1; counter <= anzahlWasserstoff; counter++)
             {
-                SäurerestIon säurerestIon = SäurerestIon.ErhalteSäurerest(säureRestIonFormel, counter - anzahlWasserstoff - 1);
-                NichtmetallIon wasserstoffIon = NichtmetallIon.ErhalteNichtmetallIon(Nichtmetall.ErhalteNichtmetall(Nichtmetall.Wasserstoff));
-
-                switch (formel)
+                if(Periodensystem.Instance.Nichtmetalle.TryGetValue("H", out Nichtmetall wasserstoff))
                 {
-                    case Salzsäure:
-                        säureVarianten.Add(new Saeure(nameof(Salzsäure), formel, wasserstoffIon, counter, säurerestIon));
-                        break;
-                    case Schwefelsäure:
-                        säureVarianten.Add(new Saeure(nameof(Schwefelsäure), formel, wasserstoffIon, counter, säurerestIon));
-                        break;
-                    default:
-                        säureVarianten.Add(new Saeure("Unbekannt", formel, wasserstoffIon, counter, säurerestIon));
-                        break;
+                    MolekulareVerbindung wasserstoffMolekuehl = new MolekulareVerbindung(wasserstoff, counter);
+                    Kation<MolekulareVerbindung> wasserstoffIon = new Kation<MolekulareVerbindung>(wasserstoffMolekuehl, wasserstoff.ErhalteLadung());
+
+                    Verbindung saererest = new Verbindung(säureRestIonFormel);
+                    Anion<Verbindung> säurerestIon = new Anion<Verbindung>(saererest, counter - anzahlWasserstoff - 1);
+
+                    säureVarianten.Add(new Saeure(wasserstoffIon, säurerestIon));
                 }
             }
 

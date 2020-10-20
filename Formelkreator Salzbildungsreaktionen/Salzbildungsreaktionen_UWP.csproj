@@ -7,8 +7,8 @@
     <ProjectGuid>{3637F178-A3DC-4FAD-9CAA-3EDE7E13B38E}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Formelkreator_Salzbildungsreaktionen</RootNamespace>
-    <AssemblyName>Formelkreator Salzbildungsreaktionen</AssemblyName>
+    <RootNamespace>Salzbildungsreaktionen_UWP</RootNamespace>
+    <AssemblyName>Salzbildungsreaktionen_UWP</AssemblyName>
     <DefaultLanguage>de-DE</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.18362.0</TargetPlatformVersion>

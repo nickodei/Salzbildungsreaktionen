@@ -4,18 +4,18 @@ using System.Text;
 
 namespace Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Verbindungen.Ionen
 {
-    public abstract class IonischeVerbindung : Verbindung
+    public abstract class IonischeVerbindung : Ion
     {
-        private int _Ladung;
-        public int Ladung
+        private Verbindung _Verbindung;
+        public Verbindung Verbindung
         {
-            get { return _Ladung; }
-            private set { _Ladung = value; }
+            get { return _Verbindung; }
+            set { _Verbindung = value; }
         }
 
-        public IonischeVerbindung(string name, string formel, int ladung) : base(name, formel)
+        public IonischeVerbindung(Verbindung verbindung, int ladung) : base(ladung)
         {
-            Ladung = ladung;
+            Verbindung = verbindung;
         }
     }
 }

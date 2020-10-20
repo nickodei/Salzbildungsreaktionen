@@ -10,12 +10,25 @@ namespace Salzbildungsreaktionen_Core.Stoffe
         public string Name
         {
             get { return _Name; }
-            private set { _Name = value; }
+            protected set { _Name = value; }
+        }
+
+        private string _Formel;
+        public string Formel
+        {
+            get { return _Formel; }
+            set { _Formel = value; }
         }
 
         public Stoff(string name)
         {
             Name = name;
+        }
+
+        public Stoff(string name, string formel)
+        {
+            Name = name;
+            Formel = formel;
         }
     }
 }

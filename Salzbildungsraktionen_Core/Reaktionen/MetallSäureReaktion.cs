@@ -1,8 +1,8 @@
-﻿using Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Elemente.Metalle;
+﻿using Salzbildungsreaktionen_Core.Stoffe;
+using Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Elemente.Metalle;
 using Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Elemente.Nichtmetalle;
 using Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Verbindungen;
 using Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Verbindungen.Ionen;
-using Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Verbindungen.Ionisch;
 using Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Verbindungen.Molekular;
 
 namespace Salzbildungsreaktionen_Core.Reaktionen
@@ -23,8 +23,8 @@ namespace Salzbildungsreaktionen_Core.Reaktionen
             set { _SaeureKomponente = value; }
         }
 
-        private Reaktionsstoff<Salz> _SalzKomponente;
-        public Reaktionsstoff<Salz> SalzKomponente
+        private Reaktionsstoff<Salz<Metall, Verbindung>> _SalzKomponente;
+        public Reaktionsstoff<Salz<Metall, Verbindung>> SalzKomponente
         {
             get { return _SalzKomponente; }
             set { _SalzKomponente = value; }
@@ -37,10 +37,10 @@ namespace Salzbildungsreaktionen_Core.Reaktionen
             set { _WasserstoffKomponente = value; }
         }
 
-        public MetallSäureReaktion(Metall metall, Saeure säure)
+        public MetallSäureReaktion(Metall metall, Saeure saeure)
         {
             MetallKomponente = new Reaktionsstoff<Metall>(metall);
-            SaeureKomponente = new Reaktionsstoff<Saeure>(säure);
+            SaeureKomponente = new Reaktionsstoff<Saeure>(saeure);
         }
 
         /// <summary>
@@ -49,20 +49,20 @@ namespace Salzbildungsreaktionen_Core.Reaktionen
         public override void BeginneReaktion()
         {
             // Ionisiere das Metall
-            MetallIon metallIon = MetallIon.ErhalteMetallIon(MetallKomponente.Stoff);
+            MetallIon metallIon = new MetallIon(MetallKomponente.Stoff);
 
-            // Das SäurerestIon kann von der Säure kopiert werden
-            SäurerestIon säurerestIon = SaeureKomponente.Stoff.Säurerest;
+            // Erhalte das Säurerest-Ion der Säure
+            Anion<Verbindung> saeurerestIon = SaeureKomponente.Stoff.SaeurerestIon;
 
-            // Erstelle aus dem Metall und der Säure das Salz
-            Salz salz = Salz.ErhalteSalz(metallIon, säurerestIon);
-            SalzKomponente = new Reaktionsstoff<Salz>(salz);
+            // Generie das Salz aus den Ionen
+            Salz<Metall, Verbindung> salz = new Salz<Metall, Verbindung>(metallIon, saeurerestIon);
+            SalzKomponente = new Reaktionsstoff<Salz<Metall, Verbindung>>(salz);
 
             // Metall ausgleichen
-            MetallKomponente.Anzahl = salz.MetallIonMolekühle;
+            MetallKomponente.Anzahl = salz.AnzahlKatione;
 
             // Säure ausgleichen
-            SaeureKomponente.Anzahl = salz.SäurerestIonMolekühle;
+            SaeureKomponente.Anzahl = salz.AnzahlAnione;
 
             // Salz ausgleichen
             // TODO: noch implementieren
@@ -70,11 +70,11 @@ namespace Salzbildungsreaktionen_Core.Reaktionen
 
             // Erstelle das Wasserstoff
             Nichtmetall wasserstoff = Nichtmetall.ErhalteNichtmetall(Nichtmetall.Wasserstoff);
-            MolekulareVerbindung WasserstoffMolekühl = MolekulareVerbindung.ErhalteVerbindung(wasserstoff, 2);
-            WasserstoffKomponente = new Reaktionsstoff<MolekulareVerbindung>(WasserstoffMolekühl);
+            MolekulareVerbindung wasserstoffMolekuehl = new MolekulareVerbindung(wasserstoff, 2);
+            WasserstoffKomponente = new Reaktionsstoff<MolekulareVerbindung>(wasserstoffMolekuehl);
 
             // Gleiche den Wasserstoff aus
-            WasserstoffKomponente.Anzahl = (SaeureKomponente.Anzahl * SaeureKomponente.Stoff.WasserstoffMolekühle) / WasserstoffMolekühl.AnzahlAtome;
+            WasserstoffKomponente.Anzahl = (SaeureKomponente.Anzahl * SaeureKomponente.Stoff.WasserstoffIon.Stoff.AnzahlAtome) / wasserstoffMolekuehl.AnzahlAtome;
         }
     }
 }

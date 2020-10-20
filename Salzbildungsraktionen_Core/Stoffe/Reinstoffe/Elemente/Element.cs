@@ -13,32 +13,18 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Elemente
             private set { _Symbol = value; }
         }
 
-        private int _Hauptgruppe;
-        public int Hauptgruppe
+        private int _Valenzelektronen;
+        public int Valenzelektronen
         {
-            get { return _Hauptgruppe; }
-            private set { _Hauptgruppe = value; }
+            get { return _Valenzelektronen; }
+            private set { _Valenzelektronen = value; }
         }
 
-        public Element(string name, string symbol, int hauptgruppe) : base(name)
+        public Element(string name, string symbol, int valenzelektronen) : base(name)
         {
             Symbol = symbol;
-            Hauptgruppe = hauptgruppe;
-        }
-
-        public int ErhalteLadung()
-        {
-            // Hauptgruppe entspricht den Außenelektronen
-            if (Hauptgruppe <= 3)
-            {
-                // Gibt Elektronen ab
-                return Hauptgruppe;
-            }
-            else
-            {
-                // Nimmt Elektronen auf
-                return 8 - Hauptgruppe;
-            }
+            Formel = symbol;
+            Valenzelektronen = valenzelektronen;
         }
     }
 }

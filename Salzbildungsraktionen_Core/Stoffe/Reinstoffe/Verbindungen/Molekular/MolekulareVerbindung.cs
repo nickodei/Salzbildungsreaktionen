@@ -1,8 +1,5 @@
 ﻿using Salzbildungsreaktionen_Core.Helper;
 using Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Elemente;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Verbindungen.Molekular
 {
@@ -22,32 +19,46 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Verbindungen.Molekular
             private set { _AnzahlAtome = value; }
         }
 
-        private MolekulareVerbindung(string name, string formel, Element element, int anzahlAtome) : base(name, formel)
+        public MolekulareVerbindung(Element element, int anzahlAtome) : base("")
         {
             BasisElement = element;
             AnzahlAtome = anzahlAtome;
+
+            GeneriereDenName();
+            GeneriereDieFormel();
         }
 
-        public static MolekulareVerbindung ErhalteVerbindung(Element element, int anzahlAtome)
+        private void GeneriereDenName()
         {
-            string formel;
-            if(anzahlAtome > 1)
+            switch (AnzahlAtome)
             {
-                formel = element.Symbol + Unicodehelfer.GetSubscriptOfNumber(anzahlAtome);
+                case 1:
+                    Name = BasisElement.Name;
+                    break;
+                case 2:
+                    Name = "Di" + BasisElement.Name;
+                    break;
+                case 3:
+                    Name = "Tri" + BasisElement.Name;
+                    break;
+                case 4:
+                    Name = "Tetra" + BasisElement.Name;
+                    break;
+                default:
+                    Name = "Unbekannt";
+                    break;
+            }
+        }
+
+        private void GeneriereDieFormel()
+        {
+            if (AnzahlAtome > 1)
+            {
+                Formel = BasisElement.Symbol + Unicodehelfer.GetSubscriptOfNumber(AnzahlAtome);
             }
             else
             {
-                formel = element.Symbol;
-            }
-
-            switch(anzahlAtome)
-            {
-                case 1:
-                    return new MolekulareVerbindung(element.Name, formel, element, anzahlAtome);
-                case 2:
-                    return new MolekulareVerbindung("Di" + element.Name, formel, element, anzahlAtome);
-                default:
-                    return null;
+                Formel = BasisElement.Symbol;
             }
         }
     }
