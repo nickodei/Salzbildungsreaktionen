@@ -4,6 +4,7 @@ using Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Verbindungen.Molekular;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 namespace Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Verbindungen
 {
@@ -63,8 +64,8 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Verbindungen
                 SaeurerestIon = new Anion<Verbindung>(saererest, -anzahlWasserstoff);
             }
 
-            Name = $"{WasserstoffIon.GetName()}{SaeurerestIon.GetName().ToLower()}";
-            Formel = $"{WasserstoffIon.GetFormel()}{SaeurerestIon.GetFormel()}";
+            GeneriereFormel();
+            GeneriereName();
         }
 
         public Saeure(Kation<MolekulareVerbindung> wasserstoff, Anion<Verbindung> saeurerest) : base("")
@@ -72,16 +73,36 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Verbindungen
             WasserstoffIon = wasserstoff;
             SaeurerestIon = saeurerest;
 
-            Name = $"{WasserstoffIon.GetName()}{SaeurerestIon.GetName().ToLower()}";
+            GeneriereFormel();
+            GeneriereName();
+        }
 
-            if(Unicodehelfer.GetNumberOfSubscript(SaeurerestIon.GetFormel().Last()) != -1)
+        private void GeneriereFormel()
+        {
+            //if (Unicodehelfer.GetNumberOfSubscript(SaeurerestIon.GetFormel().Last()) != -1)
+            //{
+            //    //TODO: Stimmt noch nicht
+            //    Formel = $"{WasserstoffIon.GetFormel()}({SaeurerestIon.GetFormel()})";
+            //}
+            //else
+            //{
+                
+            //}
+
+            Formel = $"{WasserstoffIon.GetFormel()}{SaeurerestIon.GetFormel()}";
+        }
+
+        private void GeneriereName()
+        {
+            // Überprüfe, ob ein Sauerstoff vorhanden ist
+            if (Formel.Contains("O") == true)
             {
-                //TODO: Stimmt noch nicht
-                Formel = $"{WasserstoffIon.GetFormel()}({SaeurerestIon.GetFormel()})";
+                //TODO Oxidationsstufe beachten
+                Name = $"{WasserstoffIon.Stoff.Name}{SaeurerestIon.GetName().ToLower()}";
             }
             else
             {
-                Formel = $"{WasserstoffIon.GetFormel()}{SaeurerestIon.GetFormel()}";
+                Name = $"{SaeurerestIon.Stoff.Name}wasserstoffsäure";
             }
         }
 
@@ -119,81 +140,6 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Verbindungen
                 resultat.Add((abgegebenesWasserstoff, säurerestIon));
             }
             return resultat;
-        }
-
-
-        public static List<Saeure> ErhalteAlleSäurevarianten(string formel)
-        {
-            List<Saeure> säureVarianten = new List<Saeure>();
-
-            // Überprüfe ob der erste Buchstabe für ein Wasserstoff steht
-            // Wenn nicht, dann gibt es auch keine Säure zum erstellen
-            if (!formel[0].Equals('H'))
-            {
-                return null;
-            }
-
-            bool enthaeltWasserstoffMolekuel = false;
-
-            // Hole dir die nächste Stelle nach dem Wasserstoff
-            // Ist es eine untergestellte Zahl, so gibt es die Anzahl der Wasserstoffatome an
-            // Ist es keine Zahl, so wird -1 zurückgegeben und wir gehen von einem Wasserstoffatom aus
-            int anzahlWasserstoff = Unicodehelfer.GetNumberOfSubscript(formel[1]);
-            if (anzahlWasserstoff == -1)
-            {
-                // Setze die Anzahlt der Wasserstoffatome auf 1
-                enthaeltWasserstoffMolekuel = true;
-                anzahlWasserstoff = 1;
-            }
-
-            // Überprüfe, ob es Wasserstoff in der Datenbank gibt
-            if (Periodensystem.Instance.Nichtmetalle.TryGetValue("H", out Nichtmetall wasserstoff))
-            {
-                for (int counter = anzahlWasserstoff; counter >= 1; counter--)
-                {
-                    // Erstelle das Wasserstoffmolekühl für die Säure
-                    MolekulareVerbindung wasserstoffMolekuehl = new MolekulareVerbindung(wasserstoff, counter);
-                    Kation<MolekulareVerbindung> wasserstoffIon = new Kation<MolekulareVerbindung>(wasserstoffMolekuehl, wasserstoff.ErhalteLadung());
-
-                    string saereRestFormel = "";
-
-                    // Vorhandener Wasserstoff für das Säurerestion
-                    int wasserstoffInSaererest = anzahlWasserstoff - counter;
-                    if(wasserstoffInSaererest == 0)
-                    {
-                        // Kein Wasserstoff für das Säurerest vorhanden
-                        if(enthaeltWasserstoffMolekuel)
-                        {
-                            saereRestFormel = formel.Substring(1);
-                        }
-                        else
-                        {
-                            saereRestFormel = formel.Substring(2);
-                        }
-                    }
-                    else
-                    {
-                        // Wasserstoff wird für das Säurerest verwendet
-                        if(wasserstoffInSaererest == 1)
-                        {
-                            // Bei der abgabe des Wasserstoffes gibt es genau ein Wasserstoff für das Säurerestion
-                            saereRestFormel = "H" + formel.Substring(2);
-                        }
-                        else
-                        {
-                            // Bei der abgabe des Wasserstoffes gibt es mehrere Wasserstoffatome für das Säurerestion
-                            saereRestFormel = "H" + Unicodehelfer.GetSubscriptOfNumber(counter) + formel.Substring(2);
-                        }
-                    }
-
-                    Verbindung saererest = new Verbindung(saereRestFormel);
-                    Anion<Verbindung> säurerestIon = new Anion<Verbindung>(saererest, -anzahlWasserstoff + wasserstoffInSaererest);
-
-                    säureVarianten.Add(new Saeure(wasserstoffIon, säurerestIon));                    
-                }
-            }
-
-            return säureVarianten;
         }
     }
 }

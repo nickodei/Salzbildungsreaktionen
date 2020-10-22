@@ -2,6 +2,7 @@
 using Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Elemente.Nichtmetalle;
 using Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Verbindungen;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Salzbildungsreaktionen_Core
 {
@@ -67,6 +68,26 @@ namespace Salzbildungsreaktionen_Core
             set { _Saeure = value; }
         }
 
+        private Dictionary<string, Metalloxid> _Metalloxide;
+        public Dictionary<string, Metalloxid> Metalloxide
+        {
+            get
+            {
+                if (_Metalle == null)
+                {
+                    StelleMetalleBereit();
+                }
+
+                if(_Metalloxide == null)
+                {
+                    StelleMetalloxideBereit();
+                }
+
+                return _Metalloxide;
+            }
+            set { _Metalloxide = value; }
+        }
+
         public void StelleMetalleBereit()
         {
             Metalle = new Dictionary<string, Metall>();
@@ -111,6 +132,16 @@ namespace Salzbildungsreaktionen_Core
             Saeure.Add("HCN", new Saeure("HCN"));
             Saeure.Add("H₂CO₃", new Saeure("H₂CO₃"));
             Saeure.Add("HF", new Saeure("HF"));
+        }
+
+        public void StelleMetalloxideBereit()
+        {
+            Metalloxide = new Dictionary<string, Metalloxid>();
+            foreach(Metall metall in Metalle.Values)
+            {
+                Metalloxid metalloxid = new Metalloxid(metall);
+                Metalloxide.Add(metalloxid.Formel, metalloxid);
+            }
         }
     }
 }

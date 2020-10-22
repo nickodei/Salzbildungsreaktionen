@@ -1,0 +1,44 @@
+﻿<Page xmlns:my="using:Formelkreator_Salzbildungsreaktionen.Ansichten.Componenten" 
+    x:Class="Salzbildungsreaktionen_UWP.Ansichten.Seiten.MetallSaeurePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Salzbildungsreaktionen_UWP.Ansichten.Seiten"
+    xmlns:reaktionen="using:Salzbildungsreaktionen_Core.Reaktionen"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <StackPanel Padding="12">
+            <TextBlock Margin="0,12" Text="Reaktion von Metall und Säure" Style="{StaticResource TitleTextBlockStyle}"/>
+            <TextBlock Margin="0,12" Text="Metall"  Style="{StaticResource SubtitleTextBlockStyle}"/>
+            <StackPanel Orientation="Horizontal">
+                <RichEditBox x:Name="MetallEingabeTextBox" Header="Metall eingeben" Margin="0,0,0,0" MaxLength="32" Width="300" HorizontalAlignment="Left" KeyDown="RichEditBox_KeyDown" TextChanging="RichEditBox_TextChanging"></RichEditBox>
+                <TextBlock Text="oder" VerticalAlignment="Center" Margin="24, 0, 24, 0" />
+                <ComboBox x:Name="MetallAuswahlComboBox" Header="Metall auswählen" Width="300"></ComboBox>
+            </StackPanel>
+            <TextBlock Margin="0,12" Text="Säure"  Style="{StaticResource SubtitleTextBlockStyle}"/>
+            <StackPanel Orientation="Horizontal">
+                <RichEditBox x:Name="SaeureEingabeTextBox" Header="Säure eingeben" Margin="0,0,0,0" MaxLength="32" Width="300" HorizontalAlignment="Left" KeyDown="RichEditBox_KeyDown" TextChanging="RichEditBox_TextChanging"></RichEditBox>
+                <TextBlock Text="oder" VerticalAlignment="Center" Margin="24, 0, 24, 0" />
+                <ComboBox x:Name="SaeureAuswahlComboBox" Header="Säure auswählen" Width="300"></ComboBox>
+            </StackPanel>
+            <Button Content="Generiere Gleichungen" Margin="0,12" Click="GeneriereGleichungen_Click"/>
+            <TextBlock Margin="0,12" Text="Reaktionsgleichungen" Style="{StaticResource SubtitleTextBlockStyle}"/>
+            <Grid Margin="10" HorizontalAlignment="Stretch" RowSpacing="20">
+                <ItemsControl x:Name="ReaktionsgleichungenControl">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate x:DataType="reaktionen:MetallSaeureReaktionsResultat">
+                            <my:MetallSaeureReaktionsComponente MetallKomponente="{x:Bind Metall}" 
+                                                            SaeureKomponente="{x:Bind Saeure}" 
+                                                            SalzKomponente="{x:Bind Salz}" 
+                                                            WasserstoffKomponente="{x:Bind Wasserstoff}"
+                                                            Margin="0,20,0,0"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Page>

@@ -52,5 +52,7 @@ namespace Salzbildungsreaktionen_Core.Models.Verbindungen
                     return new Verbindung(chemischeFormel: formel, name: "Unbekannt");
             }
         }
+
+
     }
 }

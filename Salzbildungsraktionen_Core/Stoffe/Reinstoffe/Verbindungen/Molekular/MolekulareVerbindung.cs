@@ -33,16 +33,16 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Verbindungen.Molekular
             switch (AnzahlAtome)
             {
                 case 1:
-                    Name = BasisElement.Name;
+                    Name = BasisElement.Name.ToLower();
                     break;
                 case 2:
-                    Name = "Di" + BasisElement.Name;
+                    Name = "Di" + BasisElement.Name.ToLower();
                     break;
                 case 3:
-                    Name = "Tri" + BasisElement.Name;
+                    Name = "Tri" + BasisElement.Name.ToLower();
                     break;
                 case 4:
-                    Name = "Tetra" + BasisElement.Name;
+                    Name = "Tetra" + BasisElement.Name.ToLower();
                     break;
                 default:
                     Name = "Unbekannt";

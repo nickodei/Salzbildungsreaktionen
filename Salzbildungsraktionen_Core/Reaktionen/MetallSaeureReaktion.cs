@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace Salzbildungsreaktionen_Core.Reaktionen
 {
-    public class MetallSäureReaktion : Reaktion
+    public class MetallSaeureReaktion : Reaktion
     {
         private Metall _ReaktionsstoffMetall;
         public Metall ReaktionsstoffMetall
@@ -32,7 +32,7 @@ namespace Salzbildungsreaktionen_Core.Reaktionen
         }
 
 
-        public MetallSäureReaktion(Metall metall, Saeure saeure)
+        public MetallSaeureReaktion(Metall metall, Saeure saeure)
         {
             ReaktionsstoffMetall = metall;
             ReaktionsstoffSaeure = saeure;

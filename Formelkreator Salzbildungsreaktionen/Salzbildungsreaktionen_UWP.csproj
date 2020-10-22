@@ -123,8 +123,20 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Ansichten\Componenten\ReaktionsComponente.xaml.cs">
-      <DependentUpon>ReaktionsComponente.xaml</DependentUpon>
+    <Compile Include="Ansichten\Componenten\MetalloxidSaeureReaktionsComponente.xaml.cs">
+      <DependentUpon>MetalloxidSaeureReaktionsComponente.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ansichten\Componenten\MetallSaeureReaktionsComponente.xaml.cs">
+      <DependentUpon>MetallSaeureReaktionsComponente.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ansichten\Seiten\MetalloxidSaeurePage.xaml.cs">
+      <DependentUpon>MetalloxidSaeurePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ansichten\Seiten\MetallSaeurePage.xaml.cs">
+      <DependentUpon>MetallSaeurePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ansichten\Seiten\SaeureLaugePage.xaml.cs">
+      <DependentUpon>SaeureLaugePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -154,7 +166,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Ansichten\Componenten\ReaktionsComponente.xaml">
+    <Page Include="Ansichten\Componenten\MetalloxidSaeureReaktionsComponente.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ansichten\Componenten\MetallSaeureReaktionsComponente.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ansichten\Seiten\MetalloxidSaeurePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ansichten\Seiten\MetallSaeurePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ansichten\Seiten\SaeureLaugePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -168,9 +196,7 @@
       <Version>6.2.10</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Ansichten\Seiten\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Salzbildungsraktionen_Core\Salzbildungsreaktionen_Core.csproj">
       <Project>{281ccb79-ac0a-4804-b7f7-a985e5ce126c}</Project>

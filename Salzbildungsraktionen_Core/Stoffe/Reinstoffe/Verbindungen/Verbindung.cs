@@ -130,5 +130,16 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Verbindungen
         {
             return Unicodehelfer.GetNumberOfSubscript(nextSymbol) != -1;
         }
+
+
+        protected (int, int) BerechneAnzahlDerMolekuehle(Ion element1, Ion element2)
+        {
+            // Berechne die Anzahl der benötigten Ionen
+            int kgV = Reaktionshelfer.GetLCM(Math.Abs(element1.Ladung), Math.Abs(element2.Ladung));
+            int anzahlElement1 = kgV / Math.Abs(element1.Ladung);
+            int anzahlElement2 = kgV / Math.Abs(element2.Ladung);
+
+            return (anzahlElement1, anzahlElement2);
+        }
     }
 }

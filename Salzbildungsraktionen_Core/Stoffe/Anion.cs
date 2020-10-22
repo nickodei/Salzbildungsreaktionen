@@ -16,6 +16,12 @@
 
         public override string GetName()
         {
+            switch(Stoff.Formel)
+            {
+                case "S":
+                    return "Sulfid";
+            }
+
             return $"{Stoff.Name}id";
         }
 
