@@ -15,20 +15,29 @@
                 <NavigationViewItem Content="Metall + Säure" x:Name="MetallSäureReaktion" />
             </NavigationView.MenuItems>
             <StackPanel Padding="10">
-                <TextBlock Text="Reaktion von Metall und Säure" Style="{StaticResource TitleTextBlockStyle}"/>
+                <TextBlock Margin="0,12" Text="Reaktion von Metall und Säure" Style="{StaticResource TitleTextBlockStyle}"/>
+                <TextBlock Margin="0,12" Text="Metall"  Style="{StaticResource SubtitleTextBlockStyle}"/>
                 <StackPanel Orientation="Horizontal">
-                    <RichEditBox x:Name="MetallTextBox" Header="Metall" Margin="0,24,0,0" MaxLength="32" Width="300" HorizontalAlignment="Left" KeyDown="RichEditBox_KeyDown" TextChanging="RichEditBox_TextChanging"></RichEditBox>
-                    <RichEditBox x:Name="SäureTextBox" Header="Säure" Margin="24,24,0,0" MaxLength="32" Width="300" HorizontalAlignment="Left" KeyDown="RichEditBox_KeyDown" TextChanging="RichEditBox_TextChanging"></RichEditBox>
+                    <RichEditBox x:Name="MetallEingabeTextBox" Header="Metall eingeben" Margin="0,0,0,0" MaxLength="32" Width="300" HorizontalAlignment="Left" KeyDown="RichEditBox_KeyDown" TextChanging="RichEditBox_TextChanging"></RichEditBox>
+                    <TextBlock Text="oder" VerticalAlignment="Center" Margin="24, 0, 24, 0" />
+                    <ComboBox x:Name="MetallAuswahlComboBox" Header="Metall auswählen" Width="300"></ComboBox>
                 </StackPanel>
-                <Button Content="Generiere Gleichungen" Margin="0,24" Click="GeneriereGleichungen_Click"/>
+                <TextBlock Margin="0,12" Text="Säure"  Style="{StaticResource SubtitleTextBlockStyle}"/>
+                <StackPanel Orientation="Horizontal">
+                    <RichEditBox x:Name="SaeureEingabeTextBox" Header="Säure eingeben" Margin="0,0,0,0" MaxLength="32" Width="300" HorizontalAlignment="Left" KeyDown="RichEditBox_KeyDown" TextChanging="RichEditBox_TextChanging"></RichEditBox>
+                    <TextBlock Text="oder" VerticalAlignment="Center" Margin="24, 0, 24, 0" />
+                    <ComboBox x:Name="SaeureAuswahlComboBox" Header="Säure auswählen" Width="300"></ComboBox>
+                </StackPanel>
+                <Button Content="Generiere Gleichungen" Margin="0,12" Click="GeneriereGleichungen_Click"/>
+                <TextBlock Margin="0,12" Text="Reaktionsgleichungen" Style="{StaticResource SubtitleTextBlockStyle}"/>
                 <Grid Margin="10" HorizontalAlignment="Stretch" RowSpacing="20">
                     <ItemsControl x:Name="ReaktionsgleichungenControl">
                         <ItemsControl.ItemTemplate>
-                            <DataTemplate x:DataType="reaktionen:MetallSäureReaktion">
-                                <my:ReaktionsComponente MetallKomponente="{x:Bind MetallKomponente}" 
-                                                        SaeureKomponente="{x:Bind SaeureKomponente}" 
-                                                        SalzKomponente="{x:Bind SalzKomponente}" 
-                                                        WasserstoffKomponente="{x:Bind WasserstoffKomponente}"
+                            <DataTemplate x:DataType="reaktionen:MetallSaeureReaktionsResultat">
+                                <my:ReaktionsComponente MetallKomponente="{x:Bind Metall}" 
+                                                        SaeureKomponente="{x:Bind Saeure}" 
+                                                        SalzKomponente="{x:Bind Salz}" 
+                                                        WasserstoffKomponente="{x:Bind Wasserstoff}"
                                                         Margin="0,20,0,0"/>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>

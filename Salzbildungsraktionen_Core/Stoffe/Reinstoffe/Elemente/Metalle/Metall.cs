@@ -1,4 +1,5 @@
 ﻿using Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Verbindungen.Ionen;
+using System.Linq;
 
 namespace Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Elemente.Metalle
 {
@@ -20,19 +21,7 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Elemente.Metalle
 
         public static Metall ErhalteMetall(string symbol)
         {
-            switch(symbol)
-            {
-                case Lithium:
-                    return new Metall(symbol, nameof(Lithium), 1);
-                case Natrium:
-                    return new Metall(symbol, nameof(Natrium), 1);
-                case Kalium:
-                    return new Metall(symbol, nameof(Kalium), 1);
-                case Magnesium:
-                    return new Metall(symbol, nameof(Magnesium), 2);
-                default:
-                    return null;
-            }
+            return Periodensystem.Instance.Metalle.Values.Where(x => x.Symbol.Equals(symbol)).FirstOrDefault();
         }
     }
 }

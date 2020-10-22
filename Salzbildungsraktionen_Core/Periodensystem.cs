@@ -1,5 +1,6 @@
 ﻿using Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Elemente.Metalle;
 using Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Elemente.Nichtmetalle;
+using Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Verbindungen;
 using System.Collections.Generic;
 
 namespace Salzbildungsreaktionen_Core
@@ -10,8 +11,6 @@ namespace Salzbildungsreaktionen_Core
 
         private Periodensystem()
         {
-            StelleMetalleBereit();
-            StelleNichtmetalleBereit();
         }
 
         public static Periodensystem Instance
@@ -29,15 +28,43 @@ namespace Salzbildungsreaktionen_Core
         private Dictionary<string, Metall> _Metalle;
         public Dictionary<string, Metall> Metalle
         {
-            get { return _Metalle; }
+            get 
+            { 
+                if(_Metalle == null)
+                {
+                    StelleMetalleBereit();
+                }
+                return _Metalle; 
+            }
             set { _Metalle = value; }
         }
 
         private Dictionary<string, Nichtmetall> _Nichtmetall;
         public Dictionary<string, Nichtmetall> Nichtmetalle
         {
-            get { return _Nichtmetall; }
+            get
+            {
+                if (_Nichtmetall == null)
+                {
+                    StelleNichtmetalleBereit();
+                }
+                return _Nichtmetall;
+            }
             set { _Nichtmetall = value; }
+        }
+
+        private Dictionary<string, Saeure> _Saeure;
+        public Dictionary<string, Saeure> Saeure
+        {
+            get
+            {
+                if (_Saeure == null)
+                {
+                    StelleSaeurenBereit();
+                }
+                return _Saeure;
+            }
+            set { _Saeure = value; }
         }
 
         public void StelleMetalleBereit()
@@ -68,6 +95,22 @@ namespace Salzbildungsreaktionen_Core
             Nichtmetalle.Add("F", new Nichtmetall("F", "Fluor", 7));
             Nichtmetalle.Add("Cl", new Nichtmetall("Cl", "Chlor", 7));
             Nichtmetalle.Add("Br", new Nichtmetall("Br", "Brom", 7));
+        }
+
+        public void StelleSaeurenBereit()
+        {
+            Saeure = new Dictionary<string, Saeure>();
+            Saeure.Add("HCl", new Saeure("HCl"));
+            Saeure.Add("H₂SO₄", new Saeure("H₂SO₄"));
+            Saeure.Add("H₂SO₃", new Saeure("H₂SO₃"));
+            Saeure.Add("H₃PO₄", new Saeure("H₃PO₄"));
+            Saeure.Add("H₃PO₃", new Saeure("H₃PO₃"));
+            Saeure.Add("H₂S", new Saeure("H₂S"));
+            Saeure.Add("HNO₃", new Saeure("HNO₃"));
+            Saeure.Add("HNO₂", new Saeure("HNO₂"));
+            Saeure.Add("HCN", new Saeure("HCN"));
+            Saeure.Add("H₂CO₃", new Saeure("H₂CO₃"));
+            Saeure.Add("HF", new Saeure("HF"));
         }
     }
 }

@@ -72,7 +72,7 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Verbindungen
 
             if (AnzahlAnione > 1)
             {
-                if (int.TryParse(Anione.GetFormel().Last().ToString(), out int s))
+                if (Unicodehelfer.GetNumberOfSubscript(Anione.GetFormel().Last()) != -1)
                 {
                     Formel += $"({Anione.GetFormel()}){Unicodehelfer.GetSubscriptOfNumber(AnzahlAnione)}";
                 }
