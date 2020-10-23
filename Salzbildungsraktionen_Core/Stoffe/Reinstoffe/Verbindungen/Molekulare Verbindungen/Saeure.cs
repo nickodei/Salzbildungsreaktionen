@@ -1,30 +1,39 @@
 ﻿using Salzbildungsreaktionen_Core.Helper;
 using Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Elemente.Nichtmetalle;
-using Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Verbindungen.Molekular;
-using System;
+using Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Verbindungen.Molekulare_Verbindungen;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
 
 namespace Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Verbindungen
 {
     public class Saeure : Verbindung
     {
-        private Kation<MolekulareVerbindung> _WasserstoffIon;
-        public Kation<MolekulareVerbindung> WasserstoffIon
+        private string _Name;
+        public override string Name
+        {
+            get { return _Name; }
+        }
+
+        private string _Formel;
+        public override string Formel
+        {
+            get { return _Formel; }
+        }
+
+        private Kation<ElementMolekuehl> _WasserstoffIon;
+        public Kation<ElementMolekuehl> WasserstoffIon
         {
             get { return _WasserstoffIon; }
             set { _WasserstoffIon = value; }
         }
 
-        private Anion<Verbindung> _SaeurerestIon;
-        public Anion<Verbindung> SaeurerestIon
+        private Anion<MultiElementMolekuehl> _SaeurerestIon;
+        public Anion<MultiElementMolekuehl> SaeurerestIon
         {
             get { return _SaeurerestIon; }
             set { _SaeurerestIon = value; }
         }
 
-        public Saeure(string formel) : base("")
+        public Saeure(string formel) : base()
         {
             // Überprüfe ob der erste Buchstabe für ein Wasserstoff steht
             // Wenn nicht, dann gibt es auch keine Säure zum erstellen
@@ -35,7 +44,7 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Verbindungen
                 // Hole dir die nächste Stelle nach dem Wasserstoff
                 // Ist es eine untergestellte Zahl, so gibt es die Anzahl der Wasserstoffatome an
                 // Ist es keine Zahl, so wird -1 zurückgegeben und wir gehen von einem Wasserstoffatom aus
-                int anzahlWasserstoff = Unicodehelfer.GetNumberOfSubscript(formel[1]);
+                int anzahlWasserstoff = UnicodeHelfer.GetNumberOfSubscript(formel[1]);
                 if (anzahlWasserstoff == -1)
                 {
                     // Setze die Anzahlt der Wasserstoffatome auf 1
@@ -46,8 +55,8 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Verbindungen
                 // Überprüfe, ob es Wasserstoff in der Datenbank gibt
                 if (Periodensystem.Instance.Nichtmetalle.TryGetValue("H", out Nichtmetall wasserstoff))
                 {
-                    MolekulareVerbindung wasserstoffMolekuehl = new MolekulareVerbindung(wasserstoff, anzahlWasserstoff);
-                    WasserstoffIon = new Kation<MolekulareVerbindung>(wasserstoffMolekuehl, wasserstoff.ErhalteLadung());
+                    ElementMolekuehl wasserstoffMolekuehl = new ElementMolekuehl(wasserstoff, anzahlWasserstoff);
+                    WasserstoffIon = new Kation<ElementMolekuehl>(wasserstoffMolekuehl, wasserstoff.BerechenLadungszahl());
                 }
 
                 string saereRestFormel = "";
@@ -60,15 +69,15 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Verbindungen
                     saereRestFormel = formel.Substring(2);
                 }
 
-                Verbindung saererest = new Verbindung(saereRestFormel);
-                SaeurerestIon = new Anion<Verbindung>(saererest, -anzahlWasserstoff);
+                MultiElementMolekuehl saererest = new MultiElementMolekuehl(saereRestFormel);
+                SaeurerestIon = new Anion<MultiElementMolekuehl>(saererest, -anzahlWasserstoff);
             }
 
             GeneriereFormel();
             GeneriereName();
         }
 
-        public Saeure(Kation<MolekulareVerbindung> wasserstoff, Anion<Verbindung> saeurerest) : base("")
+        public Saeure(Kation<ElementMolekuehl> wasserstoff, Anion<MultiElementMolekuehl> saeurerest) : base()
         {
             WasserstoffIon = wasserstoff;
             SaeurerestIon = saeurerest;
@@ -79,17 +88,7 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Verbindungen
 
         private void GeneriereFormel()
         {
-            //if (Unicodehelfer.GetNumberOfSubscript(SaeurerestIon.GetFormel().Last()) != -1)
-            //{
-            //    //TODO: Stimmt noch nicht
-            //    Formel = $"{WasserstoffIon.GetFormel()}({SaeurerestIon.GetFormel()})";
-            //}
-            //else
-            //{
-                
-            //}
-
-            Formel = $"{WasserstoffIon.GetFormel()}{SaeurerestIon.GetFormel()}";
+            _Formel = $"{WasserstoffIon.GetFormel()}{SaeurerestIon.GetFormel()}";
         }
 
         private void GeneriereName()
@@ -98,44 +97,44 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Verbindungen
             if (Formel.Contains("O") == true)
             {
                 //TODO Oxidationsstufe beachten
-                Name = $"{WasserstoffIon.Stoff.Name}{SaeurerestIon.GetName().ToLower()}";
+                _Name = $"{WasserstoffIon.Stoff.Name}{SaeurerestIon.GetName().ToLower()}";
             }
             else
             {
-                Name = $"{SaeurerestIon.Stoff.Name}wasserstoffsäure";
+                _Name = $"{SaeurerestIon.Stoff.Name}wasserstoffsäure";
             }
         }
 
-        public List<(Kation<MolekulareVerbindung>, Anion<Verbindung>)> ErhalteVariantenDerSaerebestandteile()
+        public List<(Kation<ElementMolekuehl>, Anion<MultiElementMolekuehl>)> ErhalteVariantenDerSaerebestandteile()
         {
-            List<(Kation<MolekulareVerbindung>, Anion<Verbindung>)> resultat = new List<(Kation<MolekulareVerbindung>, Anion<Verbindung>)>();
+            List<(Kation<ElementMolekuehl>, Anion<MultiElementMolekuehl>)> resultat = new List<(Kation<ElementMolekuehl>, Anion<MultiElementMolekuehl>)>();
             for (int wasserstoffAtome = 1; wasserstoffAtome <= WasserstoffIon.Stoff.AnzahlAtome; wasserstoffAtome++)
             {
                 // Bestimme das abgegebene Wasserrstoffion
-                MolekulareVerbindung abgegebenesWasserstoffMolekuel = new MolekulareVerbindung(WasserstoffIon.Stoff.BasisElement, wasserstoffAtome);
-                Kation<MolekulareVerbindung> abgegebenesWasserstoff = new Kation<MolekulareVerbindung>(abgegebenesWasserstoffMolekuel, wasserstoffAtome);
+                ElementMolekuehl abgegebenesWasserstoffMolekuel = new ElementMolekuehl(WasserstoffIon.Stoff.Element, wasserstoffAtome);
+                Kation<ElementMolekuehl> abgegebenesWasserstoff = new Kation<ElementMolekuehl>(abgegebenesWasserstoffMolekuel, wasserstoffAtome);
 
                 // Bestimme das Säurerest
-                Anion<Verbindung> säurerestIon = null;
+                Anion<MultiElementMolekuehl> säurerestIon = null;
                 int wasserstoffInSaererest = WasserstoffIon.Stoff.AnzahlAtome - wasserstoffAtome;
                 if (wasserstoffInSaererest == 0)
                 {
-                    Verbindung saererest = new Verbindung(SaeurerestIon.Stoff.Formel);
-                    säurerestIon = new Anion<Verbindung>(saererest, SaeurerestIon.Ladung);
+                    MultiElementMolekuehl saererest = new MultiElementMolekuehl(SaeurerestIon.Stoff.Formel);
+                    säurerestIon = new Anion<MultiElementMolekuehl>(saererest, SaeurerestIon.Ladung);
                 }
                 else
                 {
                     // Wasserstoff wird für das Säurerest verwendet
-                    Verbindung saererest = null;
+                    MultiElementMolekuehl saererest = null;
                     if (wasserstoffInSaererest == 1)
                     {
-                        saererest = new Verbindung("H" + SaeurerestIon.Stoff.Formel);
+                        saererest = new MultiElementMolekuehl("H" + SaeurerestIon.Stoff.Formel);
                     }
                     else
                     {
-                        saererest = new Verbindung("H" + Unicodehelfer.GetSubscriptOfNumber(wasserstoffInSaererest) + SaeurerestIon.Stoff.Formel);
+                        saererest = new MultiElementMolekuehl("H" + UnicodeHelfer.GetSubscriptOfNumber(wasserstoffInSaererest) + SaeurerestIon.Stoff.Formel);
                     }
-                    säurerestIon = new Anion<Verbindung>(saererest, SaeurerestIon.Ladung + wasserstoffInSaererest);
+                    säurerestIon = new Anion<MultiElementMolekuehl>(saererest, SaeurerestIon.Ladung + wasserstoffInSaererest);
                 }
                 resultat.Add((abgegebenesWasserstoff, säurerestIon));
             }

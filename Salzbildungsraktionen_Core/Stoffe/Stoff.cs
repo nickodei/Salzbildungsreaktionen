@@ -1,34 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Salzbildungsreaktionen_Core.Stoffe
+﻿namespace Salzbildungsreaktionen_Core.Stoffe
 {
-    public class Stoff
+    public abstract class Stoff
     {
-        private string _Name;
-        public string Name
-        {
-            get { return _Name; }
-            protected set { _Name = value; }
-        }
+        /// <summary>
+        /// Der Name des Stoffes
+        /// Muss implementiert werden, aber nicht im Konstruktor
+        /// </summary>
+        public abstract string Name { get; }
 
-        private string _Formel;
-        public string Formel
-        {
-            get { return _Formel; }
-            set { _Formel = value; }
-        }
+        /// <summary>
+        /// Die Formel des Stoffes
+        /// Muss implementiert werden, aber nicht im Konstruktor
+        /// </summary>
+        public abstract string Formel { get; }
 
-        public Stoff(string name)
+        public Stoff()
         {
-            Name = name;
-        }
-
-        public Stoff(string name, string formel)
-        {
-            Name = name;
-            Formel = formel;
         }
     }
 }

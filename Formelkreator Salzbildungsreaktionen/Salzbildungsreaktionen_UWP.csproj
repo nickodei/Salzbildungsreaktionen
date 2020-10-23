@@ -129,6 +129,9 @@
     <Compile Include="Ansichten\Componenten\MetallSaeureReaktionsComponente.xaml.cs">
       <DependentUpon>MetallSaeureReaktionsComponente.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Ansichten\Componenten\SaeureLaugeReaktionsComponente.xaml.cs">
+      <DependentUpon>SaeureLaugeReaktionsComponente.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Ansichten\Seiten\MetalloxidSaeurePage.xaml.cs">
       <DependentUpon>MetalloxidSaeurePage.xaml</DependentUpon>
     </Compile>
@@ -171,6 +174,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Ansichten\Componenten\MetallSaeureReaktionsComponente.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ansichten\Componenten\SaeureLaugeReaktionsComponente.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -6,6 +6,18 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Verbindungen
 {
     public class Salz<K, A>: Verbindung where K: Stoff where A: Stoff 
     {
+        private string _Name;
+        public override string Name
+        {
+            get { return _Name; }
+        }
+
+        private string _Formel;
+        public override string Formel
+        {
+            get { return _Formel; }
+        }
+
         private Kation<K> _Katione;
         public Kation<K> Katione
         {
@@ -34,7 +46,7 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Verbindungen
             set { _AnzahlAnione = value; }
         }
 
-        public Salz(Kation<K> katione, Anion<A> anione) : base("")
+        public Salz(Kation<K> katione, Anion<A> anione) : base()
         {
             // Setze die Ionen
             Katione = katione;
@@ -49,41 +61,41 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Verbindungen
         private void SetzeBenötigteIonen()
         {
             // Berechne die Anzahl der benötigten Ionen
-            int kgV = Reaktionshelfer.GetLCM(Math.Abs(Katione.Ladung), Math.Abs(Anione.Ladung));
+            int kgV = Verbindung.GetLCM(Math.Abs(Katione.Ladung), Math.Abs(Anione.Ladung));
             AnzahlKatione = kgV / Math.Abs(Katione.Ladung);
             AnzahlAnione = kgV / Math.Abs(Anione.Ladung);
         }
 
         private void GeneriereDenName()
         {
-            Name = $"{Katione.GetName()}{Anione.GetName().ToLower()}";
+            _Name = $"{Katione.GetName()}{Anione.GetName().ToLower()}";
         }
 
         private void GeneriereDieFormel()
         {
             if (AnzahlKatione > 1)
             {
-                Formel += $"{Katione.GetFormel()}{Unicodehelfer.GetSubscriptOfNumber(AnzahlKatione)}";
+                _Formel += $"{Katione.GetFormel()}{UnicodeHelfer.GetSubscriptOfNumber(AnzahlKatione)}";
             }
             else
             {
-                Formel += $"{Katione.GetFormel()}";
+                _Formel += $"{Katione.GetFormel()}";
             }
 
             if (AnzahlAnione > 1)
             {
-                if (Unicodehelfer.GetNumberOfSubscript(Anione.GetFormel().Last()) != -1)
+                if (UnicodeHelfer.GetNumberOfSubscript(Anione.GetFormel().Last()) != -1)
                 {
-                    Formel += $"({Anione.GetFormel()}){Unicodehelfer.GetSubscriptOfNumber(AnzahlAnione)}";
+                    _Formel += $"({Anione.GetFormel()}){UnicodeHelfer.GetSubscriptOfNumber(AnzahlAnione)}";
                 }
                 else
                 {
-                    Formel += $"{Anione.GetFormel()}{Unicodehelfer.GetSubscriptOfNumber(AnzahlAnione)}";
+                    _Formel += $"{Anione.GetFormel()}{UnicodeHelfer.GetSubscriptOfNumber(AnzahlAnione)}";
                 }
             }
             else
             {
-                Formel += $"{Anione.GetFormel()}";
+                _Formel += $"{Anione.GetFormel()}";
             }
         }
     }

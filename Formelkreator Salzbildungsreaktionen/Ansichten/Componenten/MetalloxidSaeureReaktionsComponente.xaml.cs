@@ -1,8 +1,7 @@
 ﻿using Salzbildungsreaktionen_Core.Reaktionen;
-using Salzbildungsreaktionen_Core.Stoffe;
 using Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Elemente.Metalle;
 using Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Verbindungen;
-using Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Verbindungen.Molekular;
+using Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Verbindungen.Molekulare_Verbindungen;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -19,7 +18,7 @@ namespace Formelkreator_Salzbildungsreaktionen.Ansichten.Componenten
 
         // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty MetalloxidKomponenteProperty =
-            DependencyProperty.Register("Metalloxid", typeof(Reaktionsstoff<Metall>), typeof(MetalloxidSaeureReaktionsComponente), null);
+            DependencyProperty.Register("Metalloxid", typeof(Reaktionsstoff<Metalloxid>), typeof(MetalloxidSaeureReaktionsComponente), null);
 
         public Reaktionsstoff<Saeure> SaeureKomponente
         {
@@ -31,25 +30,25 @@ namespace Formelkreator_Salzbildungsreaktionen.Ansichten.Componenten
         public static readonly DependencyProperty SaeureKomponenteProperty =
             DependencyProperty.Register("Saeure", typeof(Reaktionsstoff<Saeure>), typeof(MetalloxidSaeureReaktionsComponente), null);
 
-        public Reaktionsstoff<Salz<Metall, Verbindung>> SalzKomponente
+        public Reaktionsstoff<Salz<Metall, MultiElementMolekuehl>> SalzKomponente
         {
-            get { return (Reaktionsstoff<Salz<Metall, Verbindung>>)GetValue(SalzKomponenteProperty); }
+            get { return (Reaktionsstoff<Salz<Metall, MultiElementMolekuehl>>)GetValue(SalzKomponenteProperty); }
             set { SetValue(SalzKomponenteProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty SalzKomponenteProperty =
-            DependencyProperty.Register("Salz", typeof(Reaktionsstoff<Salz<Metall, Verbindung>>), typeof(MetalloxidSaeureReaktionsComponente), null);
+            DependencyProperty.Register("Salz", typeof(Reaktionsstoff<Salz<Metall, MultiElementMolekuehl>>), typeof(MetalloxidSaeureReaktionsComponente), null);
 
-        public Reaktionsstoff<Verbindung> WasserKomponente
+        public Reaktionsstoff<MultiElementMolekuehl> WasserKomponente
         {
-            get { return (Reaktionsstoff<Verbindung>)GetValue(WasserKomponenteProperty); }
+            get { return (Reaktionsstoff<MultiElementMolekuehl>)GetValue(WasserKomponenteProperty); }
             set { SetValue(WasserKomponenteProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty WasserKomponenteProperty =
-            DependencyProperty.Register("Wasser", typeof(Reaktionsstoff<Verbindung>), typeof(MetalloxidSaeureReaktionsComponente), null);
+            DependencyProperty.Register("Wasser", typeof(Reaktionsstoff<MultiElementMolekuehl>), typeof(MetalloxidSaeureReaktionsComponente), null);
 
         public MetalloxidSaeureReaktionsComponente()
         {

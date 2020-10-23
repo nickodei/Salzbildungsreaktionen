@@ -2,7 +2,6 @@
 using Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Elemente.Nichtmetalle;
 using Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Verbindungen;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Salzbildungsreaktionen_Core
 {
@@ -88,20 +87,46 @@ namespace Salzbildungsreaktionen_Core
             set { _Metalloxide = value; }
         }
 
+        private Dictionary<string, Lauge> _Laugen;
+        public Dictionary<string, Lauge> Laugen
+        {
+            get
+            {
+                if (_Metalle == null)
+                {
+                    StelleMetalleBereit();
+                }
+
+                if (_Laugen == null)
+                {
+                    StelleLaugenBereit();
+                }
+
+                return _Laugen;
+            }
+            set { _Laugen = value; }
+        }
+
         public void StelleMetalleBereit()
         {
             Metalle = new Dictionary<string, Metall>();
             Metalle.Add("Li", new Metall("Li", "Lithium", 1));
             Metalle.Add("Na", new Metall("Na", "Natrium", 1));
+            Metalle.Add("K", new Metall("K", "Kalium", 1));
             Metalle.Add("Rb", new Metall("Rb", "Rubidium", 1));
             Metalle.Add("Cs", new Metall("Cs", "Caesium", 1));
             Metalle.Add("Fr", new Metall("Fr", "Francium", 1));
             Metalle.Add("Be", new Metall("Be", "Beryllium", 2));
+            Metalle.Add("Mg", new Metall("Mg", "Magnesium", 2));
             Metalle.Add("Ca", new Metall("Ca", "Calcium", 2));
             Metalle.Add("Sr", new Metall("Sr", "Strontium", 2));
             Metalle.Add("Ba", new Metall("Ba", "Barium", 2));
             Metalle.Add("Ra", new Metall("Ra", "Radium", 2));
+            Metalle.Add("B", new Metall("B", "Bor", 3));
             Metalle.Add("Al", new Metall("Al", "Aluminium", 3));
+            Metalle.Add("Ga", new Metall("Ga", "Galium", 3));
+            Metalle.Add("In", new Metall("In", "Indium", 3));
+            Metalle.Add("Tl", new Metall("Tl", "Thalium", 3));
         }
 
         public void StelleNichtmetalleBereit()
@@ -141,6 +166,16 @@ namespace Salzbildungsreaktionen_Core
             {
                 Metalloxid metalloxid = new Metalloxid(metall);
                 Metalloxide.Add(metalloxid.Formel, metalloxid);
+            }
+        }
+
+        public void StelleLaugenBereit()
+        {
+            Laugen = new Dictionary<string, Lauge>();
+            foreach (Metall metall in Metalle.Values)
+            {
+                Lauge lauge = new Lauge(metall);
+                Laugen.Add(lauge.Formel, lauge);
             }
         }
     }

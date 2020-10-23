@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Salzbildungsreaktionen_Core.Helper
+﻿namespace Salzbildungsreaktionen_Core.Helper
 {
-    public class Unicodehelfer
+    public class UnicodeHelfer
     {       
         public static char GetSubscriptOfNumber(int number)
         {

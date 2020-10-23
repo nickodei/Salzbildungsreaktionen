@@ -12,7 +12,7 @@
             <NavigationView.MenuItems>
                 <NavigationViewItem Content="Metall + Säure" x:Name="metallSaeureNavigation" />
                 <NavigationViewItem Content="Metalloxid + Säure" x:Name="metalloxdiSaeureNavigation" />
-                <NavigationViewItem Content="Säure + Lauge" x:Name="SaeureLaugePage" />
+                <NavigationViewItem Content="Säure + Lauge" x:Name="saeureLaugeNavigation" />
             </NavigationView.MenuItems>
             <Frame x:Name="contentFrame"/>
         </NavigationView>

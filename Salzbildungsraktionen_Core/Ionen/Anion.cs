@@ -1,15 +1,12 @@
 ﻿namespace Salzbildungsreaktionen_Core.Stoffe
 {
-    public class Anion<T> : Ion where T : Stoff
+    /// <summary>
+    /// Beschreibt Stoffe, die eine negative Ladung haben
+    /// </summary>
+    /// <typeparam name="T">Stoff</typeparam>
+    public class Anion<T> : Ion<T> where T : Stoff
     {
-        private T _Stoff;
-        public T Stoff
-        {
-            get { return _Stoff; }
-            set { _Stoff = value; }
-        }
-
-        public Anion(T stoff, int positiveLadung) : base(positiveLadung)
+        public Anion(T stoff, int positiveLadung) : base(stoff, positiveLadung)
         {
             Stoff = stoff;
         }

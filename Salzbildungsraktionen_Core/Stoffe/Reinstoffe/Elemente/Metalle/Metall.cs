@@ -1,27 +1,42 @@
-﻿using Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Verbindungen.Ionen;
-using System.Linq;
+﻿using System.Linq;
 
 namespace Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Elemente.Metalle
 {
     public class Metall : Element
     {
-        public const string Lithium = "Li";
-        public const string Natrium = "Na";
-        public const string Kalium = "K";
-        public const string Magnesium = "Mg";
-
-        public Metall(string symbol, string name, int valenzelektronen) : base(name, symbol, valenzelektronen)
+        private string _Name;
+        public override string Name
         {
+            get { return _Name; }
         }
 
-        public Kation<Metall> ErhalteIon()
+        private string _Formel;
+        public override string Formel
         {
-            return new Kation<Metall>(this, Valenzelektronen);
+            get { return _Formel; }
+        }
+
+        private int _Valenzelektronen;
+        public override int Valenzelektronen 
+        { 
+            get { return _Valenzelektronen; } 
+        }
+
+        public Metall(string symbol, string name, int valenzelektronen) : base()
+        {
+            _Name = name;
+            _Formel = symbol;
+            _Valenzelektronen = valenzelektronen;
         }
 
         public static Metall ErhalteMetall(string symbol)
         {
-            return Periodensystem.Instance.Metalle.Values.Where(x => x.Symbol.Equals(symbol)).FirstOrDefault();
+            return Periodensystem.Instance.Metalle.Values.Where(x => x.Formel.Equals(symbol)).FirstOrDefault();
+        }
+
+        public override int BerechenLadungszahl()
+        {
+            return Valenzelektronen;
         }
     }
 }

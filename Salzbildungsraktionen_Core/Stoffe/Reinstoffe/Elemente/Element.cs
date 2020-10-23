@@ -4,27 +4,18 @@ using System.Text;
 
 namespace Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Elemente
 {
-    public class Element : Reinstoff
+    public abstract class Element : Reinstoff
     {
-        private string _Symbol;
-        public string Symbol
-        {
-            get { return _Symbol; }
-            private set { _Symbol = value; }
-        }
+        /// <summary>
+        /// Gibt die Anzahl der Valenzelektronen des Elementes an
+        /// Muss implementiert werden, aber nicht im Konstruktor
+        /// </summary>
+        public abstract int Valenzelektronen { get; }
 
-        private int _Valenzelektronen;
-        public int Valenzelektronen
-        {
-            get { return _Valenzelektronen; }
-            private set { _Valenzelektronen = value; }
-        }
+        public abstract int BerechenLadungszahl();
 
-        public Element(string name, string symbol, int valenzelektronen) : base(name)
+        public Element() : base()
         {
-            Symbol = symbol;
-            Formel = symbol;
-            Valenzelektronen = valenzelektronen;
         }
     }
 }
