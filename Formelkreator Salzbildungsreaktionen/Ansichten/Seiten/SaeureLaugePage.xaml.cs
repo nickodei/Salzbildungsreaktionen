@@ -27,8 +27,8 @@ namespace Salzbildungsreaktionen_UWP.Ansichten.Seiten
         {
             this.InitializeComponent();
 
-            LaugeAuswahlComboBox.ItemsSource = Periodensystem.Instance.Laugen.Values.OrderBy(x => x.MetallMolekuehlIon.Stoff.Valenzelektronen).Select(x => new ComboBoxItem() { Content = $"{x.Formel} - {x.Name}", Tag = x.Formel });
-            SaeureAuswahlComboBox.ItemsSource = Periodensystem.Instance.Saeure.Values.Select(x => new ComboBoxItem() { Content = $"{x.Formel} - {x.Name}", Tag = x.Formel });
+            //LaugeAuswahlComboBox.ItemsSource = Periodensystem.Instance.Laugen.Values.OrderBy(x => x.MetallMolekuehlIon.Stoff.Valenzelektronen).Select(x => new ComboBoxItem() { Content = $"{x.Formel} - {x.Name}", Tag = x.Formel });
+            //SaeureAuswahlComboBox.ItemsSource = Periodensystem.Instance.Saeure.Values.Select(x => new ComboBoxItem() { Content = $"{x.Formel} - {x.Name}", Tag = x.Formel });
         }
 
         private bool isSubscriptEnabled = false;

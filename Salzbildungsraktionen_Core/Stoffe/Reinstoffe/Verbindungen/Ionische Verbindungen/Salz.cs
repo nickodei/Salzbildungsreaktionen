@@ -7,13 +7,13 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Verbindungen
     public class Salz<K, A>: Verbindung where K: Stoff where A: Stoff 
     {
         private string _Name;
-        public override string Name
+        public string Name
         {
             get { return _Name; }
         }
 
         private string _Formel;
-        public override string Formel
+        public string Formel
         {
             get { return _Formel; }
         }
@@ -61,42 +61,42 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Verbindungen
         private void SetzeBenötigteIonen()
         {
             // Berechne die Anzahl der benötigten Ionen
-            int kgV = Verbindung.GetLCM(Math.Abs(Katione.Ladung), Math.Abs(Anione.Ladung));
-            AnzahlKatione = kgV / Math.Abs(Katione.Ladung);
-            AnzahlAnione = kgV / Math.Abs(Anione.Ladung);
+            //int kgV = Verbindung.GetLCM(Math.Abs(Katione.Ladung), Math.Abs(Anione.Ladung));
+            //AnzahlKatione = kgV / Math.Abs(Katione.Ladung);
+            //AnzahlAnione = kgV / Math.Abs(Anione.Ladung);
         }
 
         private void GeneriereDenName()
         {
-            _Name = $"{Katione.GetName()}{Anione.GetName().ToLower()}";
+            //_Name = $"{Katione.GetName()}{Anione.GetName().ToLower()}";
         }
 
         private void GeneriereDieFormel()
         {
-            if (AnzahlKatione > 1)
-            {
-                _Formel += $"{Katione.GetFormel()}{UnicodeHelfer.GetSubscriptOfNumber(AnzahlKatione)}";
-            }
-            else
-            {
-                _Formel += $"{Katione.GetFormel()}";
-            }
+            //if (AnzahlKatione > 1)
+            //{
+            //    _Formel += $"{Katione.GetFormel()}{UnicodeHelfer.GetSubscriptOfNumber(AnzahlKatione)}";
+            //}
+            //else
+            //{
+            //    _Formel += $"{Katione.GetFormel()}";
+            //}
 
-            if (AnzahlAnione > 1)
-            {
-                if (UnicodeHelfer.GetNumberOfSubscript(Anione.GetFormel().Last()) != -1)
-                {
-                    _Formel += $"({Anione.GetFormel()}){UnicodeHelfer.GetSubscriptOfNumber(AnzahlAnione)}";
-                }
-                else
-                {
-                    _Formel += $"{Anione.GetFormel()}{UnicodeHelfer.GetSubscriptOfNumber(AnzahlAnione)}";
-                }
-            }
-            else
-            {
-                _Formel += $"{Anione.GetFormel()}";
-            }
+            //if (AnzahlAnione > 1)
+            //{
+            //    if (UnicodeHelfer.GetNumberOfSubscript(Anione.GetFormel().Last()) != -1)
+            //    {
+            //        _Formel += $"({Anione.GetFormel()}){UnicodeHelfer.GetSubscriptOfNumber(AnzahlAnione)}";
+            //    }
+            //    else
+            //    {
+            //        _Formel += $"{Anione.GetFormel()}{UnicodeHelfer.GetSubscriptOfNumber(AnzahlAnione)}";
+            //    }
+            //}
+            //else
+            //{
+            //    _Formel += $"{Anione.GetFormel()}";
+            //}
         }
     }
 }

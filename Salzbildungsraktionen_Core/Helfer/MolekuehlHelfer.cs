@@ -1,31 +1,22 @@
-﻿using Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Elemente.Nichtmetalle;
-using Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Verbindungen.Molekulare_Verbindungen;
-using System.Linq;
-
-namespace Salzbildungsreaktionen_Core.Helfer
+﻿namespace Salzbildungsreaktionen_Core.Helfer
 {
     public static class MolekuehlHelfer
     {
-        /// <summary>
-        /// Generiert ein Wasser Molekühl
-        /// </summary>
-        /// <returns></returns>
-        public static MultiElementMolekuehl GeneriereWasser()
+        public static string ErhaltePraefix(int teilchenAnzahl)
         {
-            Nichtmetall wasserstoff = Periodensystem.Instance.Nichtmetalle.Values.Where(x => x.Formel.Equals("H")).FirstOrDefault();
-            if(wasserstoff != null)
+            switch (teilchenAnzahl)
             {
-                ElementMolekuehl wasserstoffMolekuehl = new ElementMolekuehl(wasserstoff, 2);
-
-                Nichtmetall sauerstoff = Periodensystem.Instance.Nichtmetalle.Values.Where(x => x.Formel.Equals("O")).FirstOrDefault();
-                if(sauerstoff != null)
-                {
-                    MultiElementMolekuehl wasser = new MultiElementMolekuehl(wasserstoff, sauerstoff);
-                    return wasser;
-                }
+                case 1:
+                    return "Mono";
+                case 2:
+                    return "Di";
+                case 3:
+                    return "Tri";
+                case 4:
+                    return "Tetra";
+                default:
+                    return "Unbekannt";
             }
-
-            return null;
         }
     }
 }

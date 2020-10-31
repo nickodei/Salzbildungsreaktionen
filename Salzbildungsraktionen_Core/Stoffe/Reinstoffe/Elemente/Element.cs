@@ -1,21 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Elemente
+﻿namespace Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Elemente
 {
     public abstract class Element : Reinstoff
     {
-        /// <summary>
-        /// Gibt die Anzahl der Valenzelektronen des Elementes an
-        /// Muss implementiert werden, aber nicht im Konstruktor
-        /// </summary>
-        public abstract int Valenzelektronen { get; }
-
-        public abstract int BerechenLadungszahl();
+        public string Name { get; set; }
+        public string Symbol { get; set; }
+        public string Wurzel { get; set; }
+        public int Hauptgruppe { get; set; }
+        public double Elektronegativitaet { get; set; }
 
         public Element() : base()
         {
+        }
+
+        public override string ErhalteName()
+        {
+            return Name;
+        }
+
+        public override string ErhalteFormel()
+        {
+            return Symbol;
         }
     }
 }

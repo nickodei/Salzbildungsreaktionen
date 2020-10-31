@@ -9,13 +9,13 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Verbindungen
     public class Metalloxid : Molekuehl
     {
         private string _Name;
-        public override string Name
+        public string Name
         {
             get { return _Name; }
         }
 
         private string _Formel;
-        public override string Formel
+        public string Formel
         {
             get { return _Formel; }
         }
@@ -50,53 +50,53 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Verbindungen
 
         public Metalloxid(Metall metall) : base()
         {
-            // Hole dir das Element: Sauerstoff
-            Nichtmetall sauerstoff = Periodensystem.Instance.Nichtmetalle.Values.Where(x => x.Formel == "O").FirstOrDefault();
+            //// Hole dir das Element: Sauerstoff
+            //Nichtmetall sauerstoff = Periodensystem.Instance.Nichtmetalle.Values.Where(x => x.Formel == "O").FirstOrDefault();
 
-            // Erstelle die Ionen
-            MetallIon = new Kation<Metall>(metall, metall.BerechenLadungszahl());
-            SauerstoffIon = new Anion<Nichtmetall>(sauerstoff, sauerstoff.BerechenLadungszahl());
+            //// Erstelle die Ionen
+            //MetallIon = new Kation<Metall>(metall, metall.BerechenLadungszahl());
+            //SauerstoffIon = new Anion<Nichtmetall>(sauerstoff, sauerstoff.BerechenLadungszahl());
 
-            // Berechne die Anzahl der Molekühle
-            (int, int) anzahlMolekuehle = base.BerechneAnzahlDerMolekuehle(MetallIon, SauerstoffIon);
-            AnzahlMetall = anzahlMolekuehle.Item1;
-            AnzahlSauerstoff = anzahlMolekuehle.Item2;
+            //// Berechne die Anzahl der Molekühle
+            //(int, int) anzahlMolekuehle = base.BerechneAnzahlDerMolekuehle(MetallIon, SauerstoffIon);
+            //AnzahlMetall = anzahlMolekuehle.Item1;
+            //AnzahlSauerstoff = anzahlMolekuehle.Item2;
 
-            GeneriereDieFormel();
-            GeneriereName();
+            //GeneriereDieFormel();
+            //GeneriereName();
         }
 
         private void GeneriereName()
         {
-            _Name = MetallIon.Stoff.Name + "oxid";
+            //_Name = MetallIon.Stoff.Name + "oxid";
         }
 
         private void GeneriereDieFormel()
         {
-            if (AnzahlMetall > 1)
-            {
-                _Formel += $"{MetallIon.GetFormel()}{UnicodeHelfer.GetSubscriptOfNumber(AnzahlMetall)}";
-            }
-            else
-            {
-                _Formel += $"{MetallIon.GetFormel()}";
-            }
+        //    if (AnzahlMetall > 1)
+        //    {
+        //        _Formel += $"{MetallIon.GetFormel()}{UnicodeHelfer.GetSubscriptOfNumber(AnzahlMetall)}";
+        //    }
+        //    else
+        //    {
+        //        _Formel += $"{MetallIon.GetFormel()}";
+        //    }
 
-            if (AnzahlSauerstoff > 1)
-            {
-                if (UnicodeHelfer.GetNumberOfSubscript(SauerstoffIon.GetFormel().Last()) != -1)
-                {
-                    _Formel += $"({SauerstoffIon.GetFormel()}){UnicodeHelfer.GetSubscriptOfNumber(AnzahlSauerstoff)}";
-                }
-                else
-                {
-                    _Formel += $"{SauerstoffIon.GetFormel()}{UnicodeHelfer.GetSubscriptOfNumber(AnzahlSauerstoff)}";
-                }
-            }
-            else
-            {
-                _Formel += $"{SauerstoffIon.GetFormel()}";
-            }
+        //    if (AnzahlSauerstoff > 1)
+        //    {
+        //        if (UnicodeHelfer.GetNumberOfSubscript(SauerstoffIon.GetFormel().Last()) != -1)
+        //        {
+        //            _Formel += $"({SauerstoffIon.GetFormel()}){UnicodeHelfer.GetSubscriptOfNumber(AnzahlSauerstoff)}";
+        //        }
+        //        else
+        //        {
+        //            _Formel += $"{SauerstoffIon.GetFormel()}{UnicodeHelfer.GetSubscriptOfNumber(AnzahlSauerstoff)}";
+        //        }
+        //    }
+        //    else
+        //    {
+        //        _Formel += $"{SauerstoffIon.GetFormel()}";
+        //    }
         }
 
     }

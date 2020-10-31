@@ -26,7 +26,8 @@ namespace Salzbildungsreaktionen_Core.Reaktionen
 
         public string GetFormel()
         {
-            return (Anzahl != 1) ? $"{Anzahl} {Stoff.Formel}" : Stoff.Formel;
+            return "";
+            //return (Anzahl != 1) ? $"{Anzahl} {Stoff.Formel}" : Stoff.Formel;
         }
     }
 }

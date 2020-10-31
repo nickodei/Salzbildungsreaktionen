@@ -1,9 +1,5 @@
 ﻿using Salzbildungsreaktionen_Core.Helper;
-using Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Elemente.Metalle;
-using Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Elemente.Nichtmetalle;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Salzbildungsreaktionen_Core.Stoffe.Reinstoffe
 {
@@ -21,12 +17,13 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Reinstoffe
 
         protected (int, int) BerechneAnzahlDerMolekuehle<K, A>(Kation<K> kation, Anion<A> anion) where K: Stoff where A: Stoff
         {
-            // Berechne die Anzahl der benötigten Ionen
-            int kgV = GetLCM(Math.Abs(kation.Ladung), Math.Abs(anion.Ladung));
-            int anzahlElement1 = kgV / Math.Abs(kation.Ladung);
-            int anzahlElement2 = kgV / Math.Abs(anion.Ladung);
+            //// Berechne die Anzahl der benötigten Ionen
+            //int kgV = GetLCM(Math.Abs(kation.Ladung), Math.Abs(anion.Ladung));
+            //int anzahlElement1 = kgV / Math.Abs(kation.Ladung);
+            //int anzahlElement2 = kgV / Math.Abs(anion.Ladung);
 
-            return (anzahlElement1, anzahlElement2);
+            //return (anzahlElement1, anzahlElement2);
+            return (9, 0);
         }
 
         public static int GetGCD(int num1, int num2)

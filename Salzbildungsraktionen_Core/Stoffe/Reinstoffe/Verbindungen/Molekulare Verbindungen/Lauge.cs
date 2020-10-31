@@ -8,13 +8,13 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Verbindungen
     public class Lauge : Verbindung
     {
         private string _Name;
-        public override string Name
+        public string Name
         {
             get { return _Name; }
         }
 
         private string _Formel;
-        public override string Formel
+        public string Formel
         {
             get { return _Formel; }
         }
@@ -53,7 +53,7 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Verbindungen
 
         public Lauge(Metall metall) : base()
         {
-            MetallMolekuehlIon = new Kation<Metall>(metall, metall.BerechenLadungszahl());
+            //MetallMolekuehlIon = new Kation<Metall>(metall, metall.BerechenLadungszahl());
 
             MultiElementMolekuehl OHMolekuehl = new MultiElementMolekuehl("OH");
             OHMolekuehlIon = new Anion<MultiElementMolekuehl>(OHMolekuehl, -1);
@@ -68,30 +68,30 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Verbindungen
 
         private void GeneriereDieFormel()
         {
-            if (AnzahlMetallIonMolekuehle > 1)
-            {
-                _Formel += $"{MetallMolekuehlIon.GetFormel()}{UnicodeHelfer.GetSubscriptOfNumber(AnzahlMetallIonMolekuehle)}";
-            }
-            else
-            {
-                _Formel += $"{MetallMolekuehlIon.GetFormel()}";
-            }
+            //if (AnzahlMetallIonMolekuehle > 1)
+            //{
+            //    _Formel += $"{MetallMolekuehlIon.GetFormel()}{UnicodeHelfer.GetSubscriptOfNumber(AnzahlMetallIonMolekuehle)}";
+            //}
+            //else
+            //{
+            //    _Formel += $"{MetallMolekuehlIon.GetFormel()}";
+            //}
 
-            if (AnzahlOHMolekuehle > 1)
-            {
-                if (UnicodeHelfer.GetNumberOfSubscript(OHMolekuehlIon.GetFormel().Last()) != -1)
-                {
-                    _Formel += $"({OHMolekuehlIon.GetFormel()}){UnicodeHelfer.GetSubscriptOfNumber(AnzahlOHMolekuehle)}";
-                }
-                else
-                {
-                    _Formel += $"{OHMolekuehlIon.GetFormel()}{UnicodeHelfer.GetSubscriptOfNumber(AnzahlOHMolekuehle)}";
-                }
-            }
-            else
-            {
-                _Formel += $"{OHMolekuehlIon.GetFormel()}";
-            }
+            //if (AnzahlOHMolekuehle > 1)
+            //{
+            //    if (UnicodeHelfer.GetNumberOfSubscript(OHMolekuehlIon.GetFormel().Last()) != -1)
+            //    {
+            //        _Formel += $"({OHMolekuehlIon.GetFormel()}){UnicodeHelfer.GetSubscriptOfNumber(AnzahlOHMolekuehle)}";
+            //    }
+            //    else
+            //    {
+            //        _Formel += $"{OHMolekuehlIon.GetFormel()}{UnicodeHelfer.GetSubscriptOfNumber(AnzahlOHMolekuehle)}";
+            //    }
+            //}
+            //else
+            //{
+            //    _Formel += $"{OHMolekuehlIon.GetFormel()}";
+            //}
         }
     }
 }

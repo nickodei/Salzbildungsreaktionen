@@ -6,13 +6,13 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Verbindungen.Molekulare_
     public class ElementMolekuehl : Molekuehl
     {
         private string _Name;
-        public override string Name
+        public  string Name
         {
             get { return _Name; }
         }
 
         private string _Formel;
-        public override string Formel
+        public  string Formel
         {
             get { return _Formel; }
         }
@@ -66,11 +66,11 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Verbindungen.Molekulare_
         {
             if (AnzahlAtome > 1)
             {
-                _Formel = Element.Formel + UnicodeHelfer.GetSubscriptOfNumber(AnzahlAtome);
+                _Formel = Element.Symbol + UnicodeHelfer.GetSubscriptOfNumber(AnzahlAtome);
             }
             else
             {
-                _Formel = Element.Formel;
+                _Formel = Element.Symbol;
             }
         }
     }
