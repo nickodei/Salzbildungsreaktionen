@@ -1,4 +1,6 @@
-﻿using Salzbildungsreaktionen_Core;
+﻿using Salzbildungsreaktionen_Core.Reaktionen.Salzreaktionen.SaeureLauge;
+using Salzbildungsreaktionen_Core.Stoffe.Homogene_Stoffe.Reine_Stoffe.Verbindungen.Lauge;
+using Salzbildungsreaktionen_Core.Stoffe.Homogene_Stoffe.Reine_Stoffe.Verbindungen.Saeure;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -26,10 +28,9 @@ namespace Salzbildungsreaktionen_UWP.Ansichten.Seiten
         public SaeureLaugePage()
         {
             this.InitializeComponent();
-
-            //LaugeAuswahlComboBox.ItemsSource = Periodensystem.Instance.Laugen.Values.OrderBy(x => x.MetallMolekuehlIon.Stoff.Valenzelektronen).Select(x => new ComboBoxItem() { Content = $"{x.Formel} - {x.Name}", Tag = x.Formel });
-            //SaeureAuswahlComboBox.ItemsSource = Periodensystem.Instance.Saeure.Values.Select(x => new ComboBoxItem() { Content = $"{x.Formel} - {x.Name}", Tag = x.Formel });
         }
+
+        List<SaeureLaugeReaktionsResultat> saeureLaugeReaktionsResultat = new List<SaeureLaugeReaktionsResultat>();
 
         private bool isSubscriptEnabled = false;
         private string subscriptText = "";
@@ -95,6 +96,36 @@ namespace Salzbildungsreaktionen_UWP.Ansichten.Seiten
 
         private void GeneriereGleichungen_Click(object sender, RoutedEventArgs e)
         {
+            SaeureEingabeTextBox.TextDocument.GetText(Windows.UI.Text.TextGetOptions.UseObjectText, out string saeureFormel);
+            if (String.IsNullOrEmpty(saeureFormel))
+            {
+                // Suche nun in der DropDown
+                if (SaeureAuswahlComboBox.SelectedIndex == -1)
+                    return;
+
+                saeureFormel = (string)((ComboBoxItem)SaeureAuswahlComboBox.SelectedValue).Tag;
+            }
+
+            LaugeEingabeTextBox.TextDocument.GetText(Windows.UI.Text.TextGetOptions.UseObjectText, out string laugeFormel);
+            if (String.IsNullOrEmpty(laugeFormel))
+            {
+                // Suche nun in der DropDown
+                if (LaugeAuswahlComboBox.SelectedIndex == -1)
+                    return;
+
+                laugeFormel = (string)((ComboBoxItem)LaugeAuswahlComboBox.SelectedValue).Tag;
+            }
+
+            saeureLaugeReaktionsResultat.Clear();
+
+            Saeure saeure = new Saeure(saeureFormel);
+            Lauge lauge = new Lauge(laugeFormel);
+
+            SaeureLaugeReaktion reaktion = new SaeureLaugeReaktion(saeure, lauge);
+            reaktion.BeginneReaktion();
+
+            ReaktionsgleichungenControl.ItemsSource = new List<Object>();
+            ReaktionsgleichungenControl.ItemsSource = reaktion.ReaktionsResultate;
         }
     }
 }

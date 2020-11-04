@@ -1,8 +1,4 @@
 ﻿using NUnit.Framework;
-using Salzbildungsreaktionen_Core.Reaktionen;
-using Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Elemente.Metalle;
-using Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Verbindungen;
-using System.Collections.Generic;
 
 namespace Salzbildungsreaktionen_Test
 {

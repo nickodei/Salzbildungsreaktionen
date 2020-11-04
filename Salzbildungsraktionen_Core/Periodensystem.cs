@@ -1,5 +1,6 @@
-﻿using Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Elemente.Metalle;
-using Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Elemente.Nichtmetalle;
+﻿using Salzbildungsreaktionen_Core.Stoffe.Homogene_Stoffe.Reine_Stoffe.Elemente;
+using Salzbildungsreaktionen_Core.Stoffe.Homogene_Stoffe.Reine_Stoffe.Verbindungen.Saeure;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -7,72 +8,117 @@ namespace Salzbildungsreaktionen_Core
 {
     public sealed class Periodensystem
     {
-        private static Periodensystem instance = null;
-        public static Periodensystem Instance
+        public static Periodensystem Instance = new Periodensystem();
+
+        private List<Metall> _Metall;
+        public List<Metall> Metalle 
+        { 
+            get
+            {
+                if(_Metall == null)
+                {
+                    ErstelleMetalle();
+                }
+
+                return _Metall;
+            } 
+        }
+
+        private List<Nichtmetall> _Nichtmetalle;
+        public List<Nichtmetall> Nichtmetalle
         {
             get
             {
-                if (instance == null)
+                if (_Nichtmetalle == null)
                 {
-                    instance = new Periodensystem();
+                    ErstelleNichtmetalle();
                 }
-                return instance;
+
+                return _Nichtmetalle;
             }
         }
 
-        public List<Metall> Metalle { get; set; }
-        public List<Nichtmetall> Nichtmetalle { get; set; }
+        private List<Saeure> _Saeuren;
+        public List<Saeure> Saeuren
+        {
+            get
+            {
+                if (_Saeuren == null)
+                {
+                    ErstelleSaeuren();
+                }
+
+                return _Saeuren;
+            }
+        }
 
         private Periodensystem()
         {
-            ErstelleMetalle();
-            ErstelleNichtmetalle();
         }
 
         private void ErstelleMetalle()
         {
-            Metalle = new List<Metall>()
+            _Metall = new List<Metall>()
             {
-                new Metall() { Symbol = "Li", Name = "Lithium", Wurzel="lith", Hauptgruppe = 1, Elektronegativitaet = 1.0 },
-                new Metall() { Symbol = "Na", Name = "Natrium", Wurzel="natr", Hauptgruppe = 1, Elektronegativitaet = 0.9 },
-                new Metall() { Symbol = "K", Name = "Kalium", Wurzel="kal", Hauptgruppe = 1, Elektronegativitaet = 0.8 },
-                new Metall() { Symbol = "Rb", Name = "Rubidium", Wurzel="rubid",  Hauptgruppe = 1, Elektronegativitaet = 0.8 },
-                new Metall() { Symbol = "Cs", Name = "Caesium", Wurzel="caes", Hauptgruppe = 1, Elektronegativitaet = 0.7 },
-                new Metall() { Symbol = "Fr", Name = "Francium", Wurzel="franc", Hauptgruppe = 1, Elektronegativitaet = 0.7 },
-                new Metall() { Symbol = "Be", Name = "Beryllium", Hauptgruppe = 2, Elektronegativitaet = 1.5 },
-                new Metall() { Symbol = "Mg", Name = "Magnesium", Hauptgruppe = 2, Elektronegativitaet = 1.2 },
-                new Metall() { Symbol = "Ca", Name = "Calcium", Hauptgruppe = 2, Elektronegativitaet = 1.0 },
-                new Metall() { Symbol = "Sr", Name = "Strontium", Hauptgruppe = 2, Elektronegativitaet = 1.0 },
-                new Metall() { Symbol = "Ba", Name = "Barium", Hauptgruppe = 2, Elektronegativitaet = 0.9 },
-                new Metall() { Symbol = "Ra", Name = "Radium", Hauptgruppe = 2, Elektronegativitaet = 0.9 }
-            };
+                new Metall(symbol:"Li", elementname:"Lithium",   wurzel:"lith",  hauptgruppe:1, elektronegativitaet:1.0),
+                new Metall(symbol:"Na", elementname:"Natrium",   wurzel:"natr",  hauptgruppe:1, elektronegativitaet:0.9),
+                new Metall(symbol:"K",  elementname:"Kalium",    wurzel:"kal",   hauptgruppe:1, elektronegativitaet:0.8),
+                new Metall(symbol:"Rb", elementname:"Rubidium",  wurzel:"rubid", hauptgruppe:1, elektronegativitaet:0.8),
+                new Metall(symbol:"Cs", elementname:"Caesium",   wurzel:"caes",  hauptgruppe:1, elektronegativitaet:0.7),
+                new Metall(symbol:"Fr", elementname:"Francium",  wurzel:"franc", hauptgruppe:1, elektronegativitaet:0.7),
+                new Metall(symbol:"Be", elementname:"Beryllium", wurzel:"",      hauptgruppe:2, elektronegativitaet:1.5),
+                new Metall(symbol:"Mg", elementname:"Magnesium", wurzel:"",      hauptgruppe:2, elektronegativitaet:1.2),
+                new Metall(symbol:"Ca", elementname:"Calcium",   wurzel:"",      hauptgruppe:2, elektronegativitaet:1.0),
+                new Metall(symbol:"Sr", elementname:"Strontium", wurzel:"",      hauptgruppe:2, elektronegativitaet:1.0),
+                new Metall(symbol:"Ba", elementname:"Barium",    wurzel:"",      hauptgruppe:2, elektronegativitaet:0.9),
+                new Metall(symbol:"Ra", elementname:"Radium",    wurzel:"",      hauptgruppe:2, elektronegativitaet:0.9),
+                new Metall(symbol:"Al", elementname:"Aluminium", wurzel:"",      hauptgruppe:3, elektronegativitaet:1.61)
+            };                                                                       
         }
 
         public Metall FindeMetallNachAtomsymbol(string atomsymbol)
         {
-            return Metalle.Where(x => x.Symbol.Equals(atomsymbol)).FirstOrDefault();
+            return Metalle.Where(x => x.Formel.Equals(atomsymbol)).FirstOrDefault();
         }
 
         private void ErstelleNichtmetalle()
         {
-            Nichtmetalle = new List<Nichtmetall>()
+            _Nichtmetalle = new List<Nichtmetall>()
             {
-                new Nichtmetall() { Symbol = "H", Name = "Wasserstoff", Wurzel="hydr", Hauptgruppe = 1, Elektronegativitaet = 2.1 },
-                new Nichtmetall() { Symbol = "C", Name = "Kohlenstoff", Wurzel="carb", Hauptgruppe = 4, Elektronegativitaet = 2.5 },
-                new Nichtmetall() { Symbol = "N", Name = "Stickstoff", Wurzel="nitr", Hauptgruppe = 5, Elektronegativitaet = 3.5 },
-                new Nichtmetall() { Symbol = "P", Name = "Phosphor", Wurzel="phosph", Hauptgruppe = 5, Elektronegativitaet = 2.1 },
-                new Nichtmetall() { Symbol = "O", Name = "Sauerstoff", Wurzel="ox", Hauptgruppe = 6, Elektronegativitaet = 3.5 },
-                new Nichtmetall() { Symbol = "S", Name = "Schwefel", Wurzel="sulf", Hauptgruppe = 6, Elektronegativitaet = 2.5 },
-                new Nichtmetall() { Symbol = "F", Name = "Flour", Wurzel="fluor", Hauptgruppe = 7, Elektronegativitaet = 4.0 },
-                new Nichtmetall() { Symbol = "Cl", Name = "Chlor", Wurzel="chlor", Hauptgruppe = 7, Elektronegativitaet = 3.0 },
-                new Nichtmetall() { Symbol = "Br", Name = "Brom", Wurzel="brom", Hauptgruppe = 7, Elektronegativitaet = 2.8 },
-                new Nichtmetall() { Symbol = "I", Name = "Iod", Wurzel="iod", Hauptgruppe = 7, Elektronegativitaet = 2.5 },
+                new Nichtmetall(symbol:"H",  elementname:"Wasserstoff", wurzel:"hydr",   hauptgruppe:1, elektronegativitaet:2.1),
+                new Nichtmetall(symbol:"C",  elementname:"Kohlenstoff", wurzel:"carb",   hauptgruppe:4, elektronegativitaet:2.5),
+                new Nichtmetall(symbol:"N",  elementname:"Stickstoff",  wurzel:"nitr",   hauptgruppe:5, elektronegativitaet:3.5),
+                new Nichtmetall(symbol:"P",  elementname:"Phosphor",    wurzel:"phosph", hauptgruppe:5, elektronegativitaet:2.1),
+                new Nichtmetall(symbol:"O",  elementname:"Sauerstoff",  wurzel:"ox",     hauptgruppe:6, elektronegativitaet:3.5),
+                new Nichtmetall(symbol:"S",  elementname:"Schwefel",    wurzel:"sulf",   hauptgruppe:6, elektronegativitaet:2.5),
+                new Nichtmetall(symbol:"F",  elementname:"Flour",       wurzel:"fluor",  hauptgruppe:7, elektronegativitaet:4.0),
+                new Nichtmetall(symbol:"Cl", elementname:"Chlor",       wurzel:"chlor",  hauptgruppe:7, elektronegativitaet:3.0),
+                new Nichtmetall(symbol:"Br", elementname:"Brom",        wurzel:"brom",   hauptgruppe:7, elektronegativitaet:2.8),
+                new Nichtmetall(symbol:"I",  elementname:"Iod",         wurzel:"iod",    hauptgruppe:7, elektronegativitaet:2.5),
             };
         }
 
         public Nichtmetall FindeNichtmetallNachAtomsymbol(string atomsymbol)
         {
-            return Nichtmetalle.Where(x => x.Symbol.Equals(atomsymbol)).FirstOrDefault();
+            return Nichtmetalle.Where(x => x.Formel.Equals(atomsymbol)).FirstOrDefault();
+        }
+
+        public void ErstelleSaeuren()
+        {
+            _Saeuren = new List<Saeure>()
+            {
+                new Saeure("HCl"),
+                new Saeure("H₂SO₄"),
+                new Saeure("H₂SO₃"),
+                new Saeure("H₃PO₄"),
+                new Saeure("H₃PO₃"),
+                new Saeure("H₂S"),
+                new Saeure("HNO₃"),
+                new Saeure("HNO₂"),
+                new Saeure("HCN"),
+                new Saeure("H₂CO₃"),
+                new Saeure("HF"),
+            };
         }
     }
 }

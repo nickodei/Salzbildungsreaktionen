@@ -1,7 +1,7 @@
-﻿namespace Salzbildungsreaktionen_Core.Helper
+﻿namespace Salzbildungsreaktionen_Core.Helfer
 {
-    public class UnicodeHelfer
-    {       
+    public static class UnicodeHelfer
+    {
         public static char GetSubscriptOfNumber(int number)
         {
             // "₁₂₃₄₅₆₇₈₉"

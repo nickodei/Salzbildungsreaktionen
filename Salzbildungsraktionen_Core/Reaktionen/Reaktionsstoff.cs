@@ -1,33 +1,23 @@
 ﻿using Salzbildungsreaktionen_Core.Stoffe;
+using Salzbildungsreaktionen_Core.Stoffe.Homogene_Stoffe.Reine_Stoffe;
+using Salzbildungsreaktionen_Core.Teilchen.Molekuel;
 
 namespace Salzbildungsreaktionen_Core.Reaktionen
 {
-    public class Reaktionsstoff<T> where T : Stoff
+    public class Reaktionsstoff
     {
-        private T _Stoff;
-        public T Stoff
-        {
-            get { return _Stoff; }
-            set { _Stoff = value; }
-        }
+        public double Anzahl { get; set; }
+        public IMolekuel Molekuel { get; set; }
 
-        private double _Anzahl;
-        public double Anzahl
+        public Reaktionsstoff(IMolekuel molekuel)
         {
-            get { return _Anzahl; }
-            set { _Anzahl = value; }
-        }
-
-        public Reaktionsstoff(T stoff)
-        {
-            Stoff = stoff;
+            Molekuel = molekuel;
             Anzahl = 0;
         }
 
         public string GetFormel()
         {
-            return "";
-            //return (Anzahl != 1) ? $"{Anzahl} {Stoff.Formel}" : Stoff.Formel;
+            return (Anzahl != 1) ? $"{Anzahl} {Molekuel.Formel}" : Molekuel.Formel;
         }
     }
 }

@@ -31,11 +31,9 @@ namespace Formelkreator_Salzbildungsreaktionen
                     case "metallSaeureNavigation":
                         contentFrame.Navigate(typeof(MetallSaeurePage));
                         break;
-
                     case "metalloxdiSaeureNavigation":
                         contentFrame.Navigate(typeof(MetalloxidSaeurePage));
                         break;
-
                     case "saeureLaugeNavigation":
                         contentFrame.Navigate(typeof(SaeureLaugePage));
                         break;

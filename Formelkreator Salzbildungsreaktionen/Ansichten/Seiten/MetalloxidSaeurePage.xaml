@@ -1,9 +1,9 @@
-﻿<Page xmlns:my="using:Formelkreator_Salzbildungsreaktionen.Ansichten.Componenten" 
+﻿<Page xmlns:my="using:Salzbildungsreaktionen_UWP.Ansichten.Komponenten" 
     x:Class="Salzbildungsreaktionen_UWP.Ansichten.Seiten.MetalloxidSaeurePage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Salzbildungsreaktionen_UWP.Ansichten.Seiten"
-    xmlns:reaktionen="using:Salzbildungsreaktionen_Core.Reaktionen"
+    xmlns:reaktionen="using:Salzbildungsreaktionen_Core.Reaktionen.Salzreaktionen.MetalloxidSaeure"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
@@ -30,11 +30,11 @@
                 <ItemsControl x:Name="ReaktionsgleichungenControl">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate x:DataType="reaktionen:MetalloxidSaeureReaktionsResultat">
-                            <my:MetalloxidSaeureReaktionsComponente MetalloxidKomponente="{x:Bind Metalloxid}" 
-                                                            SaeureKomponente="{x:Bind Saeure}" 
-                                                            SalzKomponente="{x:Bind Salz}" 
-                                                            WasserKomponente="{x:Bind Wasser}"
-                                                            Margin="0,20,0,0"/>
+                            <my:Reaktionskomponente Komponente1="{x:Bind Metalloxid}" 
+                                                    Komponente2="{x:Bind Saeure}" 
+                                                    Resultat1="{x:Bind Salz}" 
+                                                    Resultat2="{x:Bind Wasserstoff}"
+                                                    Margin="0,20,0,0"/>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>

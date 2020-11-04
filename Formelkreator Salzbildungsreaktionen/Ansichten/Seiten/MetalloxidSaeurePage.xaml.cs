@@ -1,12 +1,22 @@
 ﻿using Salzbildungsreaktionen_Core;
-using Salzbildungsreaktionen_Core.Reaktionen;
-using Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Elemente.Metalle;
-using Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Verbindungen;
+using Salzbildungsreaktionen_Core.Reaktionen.Salzreaktionen.MetalloxidSaeure;
+using Salzbildungsreaktionen_Core.Stoffe.Homogene_Stoffe.Reine_Stoffe.Elemente;
+using Salzbildungsreaktionen_Core.Stoffe.Homogene_Stoffe.Reine_Stoffe.Verbindungen.Saeure;
+using Salzbildungsreaktionen_Core.Stoffe.Verbindungen;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.Foundation;
+using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
+using Windows.UI.Xaml.Data;
+using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Navigation;
 
 // Die Elementvorlage "Leere Seite" wird unter https://go.microsoft.com/fwlink/?LinkId=234238 dokumentiert.
 
@@ -21,8 +31,8 @@ namespace Salzbildungsreaktionen_UWP.Ansichten.Seiten
         {
             this.InitializeComponent();
 
-            //MetallAuswahlComboBox.ItemsSource = Periodensystem.Instance.Metalle.Values.OrderBy(x => x.Valenzelektronen).Select(x => new ComboBoxItem() { Content = $"{x.Formel} - {x.Name}", Tag = x.Formel });
-            //SaeureAuswahlComboBox.ItemsSource = Periodensystem.Instance.Saeure.Values.Select(x => new ComboBoxItem() { Content = $"{x.Formel} - {x.Name}", Tag = x.Formel });
+            MetallAuswahlComboBox.ItemsSource = Periodensystem.Instance.Metalle.Select(x => new ComboBoxItem() { Content = $"{x.Formel} - {x.Name}", Tag = x.Formel });
+            SaeureAuswahlComboBox.ItemsSource = Periodensystem.Instance.Saeuren.Select(x => new ComboBoxItem() { Content = $"{x.Formel} - {x.Name}", Tag = x.Formel });
         }
 
         private bool isSubscriptEnabled = false;
@@ -89,36 +99,36 @@ namespace Salzbildungsreaktionen_UWP.Ansichten.Seiten
 
         private void GeneriereGleichungen_Click(object sender, RoutedEventArgs e)
         {
-            //MetallEingabeTextBox.TextDocument.GetText(Windows.UI.Text.TextGetOptions.UseObjectText, out string metallSymbol);
-            //if (String.IsNullOrEmpty(metallSymbol))
-            //{
-            //    // Suche nun in der DropDown
-            //    if (MetallAuswahlComboBox.SelectedIndex == -1)
-            //        return;
+            MetallEingabeTextBox.TextDocument.GetText(Windows.UI.Text.TextGetOptions.UseObjectText, out string metallSymbol);
+            if (String.IsNullOrEmpty(metallSymbol))
+            {
+                // Suche nun in der DropDown
+                if (MetallAuswahlComboBox.SelectedIndex == -1)
+                    return;
 
-            //    metallSymbol = (string)((ComboBoxItem)MetallAuswahlComboBox.SelectedValue).Tag;
-            //}
+                metallSymbol = (string)((ComboBoxItem)MetallAuswahlComboBox.SelectedValue).Tag;
+            }
 
-            //SaeureEingabeTextBox.TextDocument.GetText(Windows.UI.Text.TextGetOptions.UseObjectText, out string saeureFormel);
-            //if (String.IsNullOrEmpty(saeureFormel))
-            //{
-            //    // Suche nun in der DropDown
-            //    if (SaeureAuswahlComboBox.SelectedIndex == -1)
-            //        return;
+            SaeureEingabeTextBox.TextDocument.GetText(Windows.UI.Text.TextGetOptions.UseObjectText, out string saeureFormel);
+            if (String.IsNullOrEmpty(saeureFormel))
+            {
+                // Suche nun in der DropDown
+                if (SaeureAuswahlComboBox.SelectedIndex == -1)
+                    return;
 
-            //    saeureFormel = (string)((ComboBoxItem)SaeureAuswahlComboBox.SelectedValue).Tag;
-            //}
+                saeureFormel = (string)((ComboBoxItem)SaeureAuswahlComboBox.SelectedValue).Tag;
+            }
 
-            //Saeure säure = new Saeure(saeureFormel);
+            Saeure säure = new Saeure(saeureFormel);
 
-            //Metall metall = Metall.ErhalteMetall(metallSymbol);
-            //Metalloxid metalloxid = new Metalloxid(metall);
+            Metall metall = Periodensystem.Instance.FindeMetallNachAtomsymbol(metallSymbol);
+            Metalloxid metalloxid = new Metalloxid(metall);
 
-            //MetalloxidSaeureReaktion reaktion = new MetalloxidSaeureReaktion(metalloxid, säure);
-            //reaktion.BeginneReaktion();
+            MetalloxidSaeureReaktion reaktion = new MetalloxidSaeureReaktion(metalloxid, säure);
+            reaktion.BeginneReaktion();
 
-            //ReaktionsgleichungenControl.ItemsSource = new List<Object>();
-            //ReaktionsgleichungenControl.ItemsSource = reaktion.ReaktionsResultate;
+            ReaktionsgleichungenControl.ItemsSource = new List<Object>();
+            ReaktionsgleichungenControl.ItemsSource = reaktion.ReaktionsResultate;
         }
     }
 }

@@ -1,15 +1,13 @@
-﻿using Salzbildungsreaktionen_Core.Stoffe.Reinstoffe.Elemente;
+﻿using Salzbildungsreaktionen_Core.Stoffe.Homogene_Stoffe.Reine_Stoffe.Elemente;
 
 namespace Salzbildungsreaktionen_Core.Teilchen
 {
-    public class Atom : Teilchen
+    /// <summary>
+    /// Kleinstes, chemisch nicht weiter zerlegbares Teilchen
+    /// </summary>
+    public class Atom
     {
-        public Element Element { get; set; }
-
-        public override string Name => Element.Name;
-        public override string ChemischeFormel => Element.Symbol;
-        public override double Elektronegativitaet => Element.Elektronegativitaet;
-
+        public Element Element { get; private set; }
 
         public Atom(Element element)
         {
