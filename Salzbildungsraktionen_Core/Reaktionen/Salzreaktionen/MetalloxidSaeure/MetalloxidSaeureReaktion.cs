@@ -33,9 +33,9 @@ namespace Salzbildungsreaktionen_Core.Reaktionen.Salzreaktionen.MetalloxidSaeure
                 Salz salz = new Salz(metallIon, saeureVariation.saeurerestIon);
 
                 // Erstelle die Reaktionsstoffe
-                Reaktionsstoff metalloxidKomponente = new Reaktionsstoff(new MolekulareVerbindung(ReagierendesMetalloxid.ChemischeFormel));
-                Reaktionsstoff saeureKomponente = new Reaktionsstoff(new MolekulareVerbindung(ReagierendeSaeure.ChemischeFormel));
-                Reaktionsstoff salzKomponente = new Reaktionsstoff(new MolekulareVerbindung(salz.ChemischeFormel));
+                Reaktionsstoff metalloxidKomponente = new Reaktionsstoff(ReagierendesMetalloxid);
+                Reaktionsstoff saeureKomponente = new Reaktionsstoff(ReagierendeSaeure);
+                Reaktionsstoff salzKomponente = new Reaktionsstoff(salz);
 
                 // Wenn das Metalloxid mehr Metall Atome besitze als das Salz
                 if (ReagierendesMetalloxid.ErhalteBindungselementMolekuel().Anzahl > salz.AnzahlKationen)

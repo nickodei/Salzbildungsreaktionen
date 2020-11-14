@@ -22,16 +22,12 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Homogene_Stoffe.Reine_Stoffe.Verbin
 
             // Erstelle die chemische Formel
             ChemischeFormel = (Metall.Hauptgruppe == 1) ? Metall.Symol + Hydroxid.ChemischeFormel : $"{Metall.Symol}({Hydroxid.ChemischeFormel}){UnicodeHelfer.GetSubscriptOfNumber(Metall.Hauptgruppe)}";
-
-            // Genriere den Namen
-            Name = ErhalteName();
         }
 
         public Lauge(string chemischeFormel)
         {
             ChemischeFormel = chemischeFormel;
 
-            int metallSymbolLenght = 0;
             // Erhalte das Metall aus der Formel
             Metall = Periodensystem.Instance.FindeMetallNachAtomsymbol(chemischeFormel[0].ToString());
             if(Metall == null)
@@ -41,28 +37,9 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Homogene_Stoffe.Reine_Stoffe.Verbin
                 {
                     throw new Exception("Metall konnte in der Lauge nicht ermittelt werden");
                 }
-                else
-                {
-                    metallSymbolLenght = 2;
-                }
-            }
-            else
-            {
-                metallSymbolLenght = 1;
             }
 
-            if (UnicodeHelfer.GetNumberOfSubscript(chemischeFormel[metallSymbolLenght]) != -1)
-            {
-                int anzahlMetallatome = UnicodeHelfer.GetNumberOfSubscript(chemischeFormel[metallSymbolLenght]);
-                Hydroxid = new Oxid(chemischeFormel.Substring(metallSymbolLenght + 1, 2));
-            }
-            else
-            {
-                Hydroxid = new Oxid(chemischeFormel.Substring(metallSymbolLenght, 2));
-            }
-
-            // Genriere den Namen
-            Name = ErhalteName();
+            Hydroxid = new Oxid("OH");
         }
 
         public Molekuel ErhalteMetallMolekuel()

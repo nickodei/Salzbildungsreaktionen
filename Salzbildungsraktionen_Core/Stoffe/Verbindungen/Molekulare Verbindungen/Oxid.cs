@@ -32,8 +32,6 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Verbindungen
             // Setze die Eigenschaften des Oxids
             Sauerstoff = sauerstoff;
             Bindungselement = metall;
-
-            Name = ErhalteName();
         }
 
         /// <summary>
@@ -65,8 +63,6 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Verbindungen
                     Bindungselement = molekuele.Bindung as Element;
                 }
             }
-
-            Name = ErhalteName();
         }
 
         public Molekuel ErhalteSauerstoffMolekuel()
@@ -81,44 +77,45 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Verbindungen
 
         public override string ErhalteName()
         {
-            Molekuel sauerstoffMolekuel = ErhalteSauerstoffMolekuel();
-            Molekuel bindungselementMolekuel = ErhalteBindungselementMolekuel();
-
-            string name = "";
-
-            if (bindungselementMolekuel.Anzahl > 1)
+            if(String.IsNullOrEmpty(Name))
             {
-                if(bindungselementMolekuel.Bindung.ErhalteFormel().Equals("H"))
+                Molekuel sauerstoffMolekuel = ErhalteSauerstoffMolekuel();
+                Molekuel bindungselementMolekuel = ErhalteBindungselementMolekuel();
+
+                if (bindungselementMolekuel.Anzahl > 1)
                 {
-                    name += NomenklaturHelfer.Praefix(bindungselementMolekuel.Anzahl) + Bindungselement.Wurzel.ToLower();
+                    if (bindungselementMolekuel.Bindung.ErhalteFormel().Equals("H"))
+                    {
+                        Name += NomenklaturHelfer.Praefix(bindungselementMolekuel.Anzahl) + Bindungselement.Wurzel.ToLower();
+                    }
+                    else
+                    {
+                        Name += NomenklaturHelfer.Praefix(bindungselementMolekuel.Anzahl) + Bindungselement.Name.ToLower();
+                    }
                 }
                 else
                 {
-                    name += NomenklaturHelfer.Praefix(bindungselementMolekuel.Anzahl) + Bindungselement.Name.ToLower();
+                    if (bindungselementMolekuel.Bindung.ErhalteFormel().Equals("H"))
+                    {
+                        Name += Bindungselement.Wurzel;
+                    }
+                    else
+                    {
+                        Name += Bindungselement.Name;
+                    }
                 }
-            }
-            else
-            {
-                if (bindungselementMolekuel.Bindung.ErhalteFormel().Equals("H"))
+
+                if (sauerstoffMolekuel.Anzahl > 1)
                 {
-                    name += Bindungselement.Wurzel;
+                    Name += NomenklaturHelfer.Praefix(sauerstoffMolekuel.Anzahl).ToLower() + "oxid";
                 }
                 else
                 {
-                    name += Bindungselement.Name;
-                }             
+                    Name += "oxid";
+                }
             }
 
-            if (sauerstoffMolekuel.Anzahl > 1)
-            {
-                name += NomenklaturHelfer.Praefix(sauerstoffMolekuel.Anzahl).ToLower() + "oxid";
-            }
-            else
-            {
-                name += "oxid";
-            }
-
-            return name;
+            return Name;
         }
 
         public int ErhalteRestOxidationsstufe(int molekuelLadung)

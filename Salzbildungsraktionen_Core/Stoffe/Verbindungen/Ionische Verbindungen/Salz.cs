@@ -22,46 +22,57 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Homogene_Stoffe.Reine_Stoffe.Verbin
             (int anzahlKation, int anzahlAnionen) benoetigeMolekuehle = Ion.BerechneAnzahlDerMolekuehle(kation, anion);
             AnzahlKationen = benoetigeMolekuehle.anzahlKation;
             AnzahlAnionen = benoetigeMolekuehle.anzahlAnionen;
-
-            GeneriereFormel();
-
-            if(Anion.Molekuel.Bindung is Oxid)
-            {
-                Oxid oxid = Anion.Molekuel.Bindung as Oxid;
-                Name = Kation.Molekuel.Bindung.ErhalteName() + oxid.ErhalteAnionenName(Anion.Ladung).ToLower();
-            }
-            else
-            {
-                Name = Kation.Molekuel.Bindung.ErhalteName() + Anion.Molekuel.Bindung.ErhalteName().ToLower();
-            }
         }
 
-        private void GeneriereFormel()
+        public override string ErhalteName()
         {
-            if (AnzahlKationen > 1)
+            if(String.IsNullOrEmpty(Name))
             {
-                ChemischeFormel += $"{Kation.Molekuel.Bindung.ErhalteFormel()}{UnicodeHelfer.GetSubscriptOfNumber(AnzahlKationen)}";
-            }
-            else
-            {
-                ChemischeFormel += $"{Kation.Molekuel.Bindung.ErhalteFormel()}";
-            }
-
-            if (AnzahlAnionen > 1)
-            {
-                if (UnicodeHelfer.GetNumberOfSubscript(Anion.Molekuel.Bindung.ErhalteFormel().Last()) != -1)
+                if (Anion.Molekuel.Bindung is Oxid)
                 {
-                    ChemischeFormel += $"({Anion.Molekuel.Bindung.ErhalteFormel()}){UnicodeHelfer.GetSubscriptOfNumber(AnzahlAnionen)}";
+                    Oxid oxid = Anion.Molekuel.Bindung as Oxid;
+                    Name = Kation.Molekuel.Bindung.ErhalteName() + oxid.ErhalteAnionenName(Anion.Ladung).ToLower();
                 }
                 else
                 {
-                    ChemischeFormel += $"{Anion.Molekuel.Bindung.ErhalteFormel()}{UnicodeHelfer.GetSubscriptOfNumber(AnzahlAnionen)}";
+                    Name = Kation.Molekuel.Bindung.ErhalteName() + Anion.Molekuel.Bindung.ErhalteName().ToLower();
                 }
             }
-            else
+
+            return Name;
+        }
+
+        public override string ErhalteFormel()
+        {
+            if(String.IsNullOrEmpty(ChemischeFormel))
             {
-                ChemischeFormel += $"{Anion.Molekuel.Bindung.ErhalteFormel()}";
+                if (AnzahlKationen > 1)
+                {
+                    ChemischeFormel += $"{Kation.Molekuel.Bindung.ErhalteFormel()}{UnicodeHelfer.GetSubscriptOfNumber(AnzahlKationen)}";
+                }
+                else
+                {
+                    ChemischeFormel += $"{Kation.Molekuel.Bindung.ErhalteFormel()}";
+                }
+
+                if (AnzahlAnionen > 1)
+                {
+                    if (UnicodeHelfer.GetNumberOfSubscript(Anion.Molekuel.Bindung.ErhalteFormel().Last()) != -1)
+                    {
+                        ChemischeFormel += $"({Anion.Molekuel.Bindung.ErhalteFormel()}){UnicodeHelfer.GetSubscriptOfNumber(AnzahlAnionen)}";
+                    }
+                    else
+                    {
+                        ChemischeFormel += $"{Anion.Molekuel.Bindung.ErhalteFormel()}{UnicodeHelfer.GetSubscriptOfNumber(AnzahlAnionen)}";
+                    }
+                }
+                else
+                {
+                    ChemischeFormel += $"{Anion.Molekuel.Bindung.ErhalteFormel()}";
+                }
             }
+
+            return ChemischeFormel;
         }
     }
 }

@@ -15,13 +15,13 @@
             <TextBlock Margin="0,12" Text="Metall"  Style="{StaticResource SubtitleTextBlockStyle}"/>
             <StackPanel Orientation="Horizontal">
                 <RichEditBox x:Name="MetallEingabeTextBox" Header="Metall eingeben" Margin="0,0,0,0" MaxLength="32" Width="300" HorizontalAlignment="Left" KeyDown="RichEditBox_KeyDown" TextChanging="RichEditBox_TextChanging"></RichEditBox>
-                <TextBlock Text="oder" VerticalAlignment="Center" Margin="24, 0, 24, 0" />
+                <TextBlock Text="oder" VerticalAlignment="Center" Margin="24, 16, 24, 0" />
                 <ComboBox x:Name="MetallAuswahlComboBox" Header="Metall auswählen" Width="300"></ComboBox>
             </StackPanel>
             <TextBlock Margin="0,12" Text="Säure"  Style="{StaticResource SubtitleTextBlockStyle}"/>
             <StackPanel Orientation="Horizontal">
                 <RichEditBox x:Name="SaeureEingabeTextBox" Header="Säure eingeben" Margin="0,0,0,0" MaxLength="32" Width="300" HorizontalAlignment="Left" KeyDown="RichEditBox_KeyDown" TextChanging="RichEditBox_TextChanging"></RichEditBox>
-                <TextBlock Text="oder" VerticalAlignment="Center" Margin="24, 0, 24, 0" />
+                <TextBlock Text="oder" VerticalAlignment="Center" Margin="24, 16, 24, 0" />
                 <ComboBox x:Name="SaeureAuswahlComboBox" Header="Säure auswählen" Width="300"></ComboBox>
             </StackPanel>
             <Button Content="Generiere Gleichungen" Margin="0,12" Click="GeneriereGleichungen_Click"/>
