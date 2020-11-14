@@ -1,5 +1,4 @@
 ﻿using Salzbildungsreaktionen_Core.Stoffe;
-using Salzbildungsreaktionen_Core.Stoffe.Verbindungen;
 
 namespace Salzbildungsreaktionen_Core.Reaktionen
 {
@@ -14,9 +13,14 @@ namespace Salzbildungsreaktionen_Core.Reaktionen
             Anzahl = 0;
         }
 
-        public string GetFormel()
+        public string ErhalteAnzeigeformel()
         {
-            return (Anzahl != 1) ? $"{Anzahl} {Molekuel.ChemischeFormel}" : Molekuel.ChemischeFormel;
+            return (Anzahl != 1) ? $"{Anzahl} {Molekuel.ErhalteFormel()}" : Molekuel.ErhalteFormel();
+        }
+
+        public string ErhalteAnzeigename()
+        {
+            return Molekuel.ErhalteName();
         }
     }
 }

@@ -214,14 +214,14 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Verbindungen.Molekulare_Verbindunge
 
         #endregion
 
-        public string ErhalteFormel()
+        public bool IstElementMolekuel()
         {
-            return ChemischeFormel;
+            return true;
         }
 
-        public virtual string ErhalteName()
+        public override string ErhalteName()
         {
-            if(!String.IsNullOrEmpty(Name))
+            if (!String.IsNullOrEmpty(Name))
             {
                 return Name;
             }
@@ -244,7 +244,7 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Verbindungen.Molekulare_Verbindunge
                 }
                 else
                 {
-                    if(molekuel.Bindung.IstElementMolekuel())
+                    if (molekuel.Bindung.IstElementMolekuel())
                     {
                         Element element = molekuel.Bindung as Element;
                         if (molekuel.Anzahl == 1)
@@ -269,9 +269,9 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Verbindungen.Molekulare_Verbindunge
             return Name;
         }
 
-        public bool IstElementMolekuel()
+        public override string ErhalteFormel()
         {
-            return true;
+            return ChemischeFormel;
         }
     }
 }

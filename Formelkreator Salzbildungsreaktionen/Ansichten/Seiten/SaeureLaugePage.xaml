@@ -12,16 +12,16 @@
     <Grid>
         <StackPanel Padding="12">
             <TextBlock Margin="0,12" Text="Reaktion von Säure und Lauge" Style="{StaticResource TitleTextBlockStyle}"/>
-            <TextBlock Margin="0,12" Text="Säure"  Style="{StaticResource SubtitleTextBlockStyle}"/>
+            <TextBlock Margin="0,12" Text="Säure" Style="{StaticResource SubtitleTextBlockStyle}"/>
             <StackPanel Orientation="Horizontal">
                 <RichEditBox x:Name="SaeureEingabeTextBox" Header="Säure eingeben" Margin="0,0,0,0" MaxLength="32" Width="300" HorizontalAlignment="Left" KeyDown="RichEditBox_KeyDown" TextChanging="RichEditBox_TextChanging"></RichEditBox>
-                <TextBlock Text="oder" VerticalAlignment="Center" Margin="24, 0, 24, 0" />
+                <TextBlock Text="oder" VerticalAlignment="Center" Margin="24, 16, 24, 0" />
                 <ComboBox x:Name="SaeureAuswahlComboBox" Header="Säure auswählen" Width="300"></ComboBox>
             </StackPanel>
-            <TextBlock Margin="0,12" Text="Lauge"  Style="{StaticResource SubtitleTextBlockStyle}"/>
+            <TextBlock Margin="0,12" Text="Lauge" Style="{StaticResource SubtitleTextBlockStyle}"/>
             <StackPanel Orientation="Horizontal">
                 <RichEditBox x:Name="LaugeEingabeTextBox" Header="Lauge eingeben" Margin="0,0,0,0" MaxLength="32" Width="300" HorizontalAlignment="Left" KeyDown="RichEditBox_KeyDown" TextChanging="RichEditBox_TextChanging"></RichEditBox>
-                <TextBlock Text="oder" VerticalAlignment="Center" Margin="24, 0, 24, 0" />
+                <TextBlock Text="oder" VerticalAlignment="Center" Margin="24, 16, 24, 0" />
                 <ComboBox x:Name="LaugeAuswahlComboBox" Header="Lauge auswählen" Width="300"></ComboBox>
             </StackPanel>
             <Button Content="Generiere Gleichungen" Margin="0,12" Click="GeneriereGleichungen_Click"/>

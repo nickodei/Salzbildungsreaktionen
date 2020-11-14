@@ -144,8 +144,8 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Homogene_Stoffe.Reine_Stoffe.Verbin
                 }
                 else
                 {
-                    Molekuel wasserstoffInSaeurerest = new Molekuel(wasserstoff, wasserstoffAtomeInEster);
-                    string saeurerestFormel = wasserstoffInSaeurerest.Bindung.ErhalteFormel() + Saeurerest.ErhalteFormel();
+                    string wasserstoffFormel = (wasserstoffAtomeInEster == 1) ? wasserstoff.Symol : wasserstoff.Symol + UnicodeHelfer.GetSubscriptOfNumber(wasserstoffAtomeInEster);
+                    string saeurerestFormel = wasserstoffFormel + Saeurerest.ErhalteFormel();
 
                     MolekulareVerbindung verbindung = null;
                     if (Saeurerest is Oxid)
