@@ -1,9 +1,10 @@
-﻿namespace Salzbildungsreaktionen_Core.Stoffe.Homogene_Stoffe.Reine_Stoffe.Elemente
+﻿using Salzbildungsreaktionen_Core.Bindungen;
+
+namespace Salzbildungsreaktionen_Core.Stoffe.Homogene_Stoffe.Reine_Stoffe.Elemente
 {
-    public class Element : IStoff
+    public class Element : Stoff, IKovalenteBindung
     {
-        public string Name { get; set; }
-        public string Formel { get; set; }
+        public string Symol { get; set; }
 
         public string Wurzel { get; set; }
         public int Hauptgruppe { get; set; }
@@ -12,11 +13,28 @@
         public Element(string symbol, string name, string wurzel, int hauptgruppe, double elektronegativitaet)
         {
             Name = name;
-            Formel = symbol;
+
+            ChemischeFormel = symbol;
+            Symol = symbol;
 
             Wurzel = wurzel;
             Hauptgruppe = hauptgruppe;
             Elektronegativitaet = elektronegativitaet;
+        }
+
+        public string ErhalteFormel()
+        {
+            return Symol;
+        }
+
+        public string ErhalteName()
+        {
+            return Name;
+        }
+
+        public bool IstElementMolekuel()
+        {
+            return false;
         }
     }
 }

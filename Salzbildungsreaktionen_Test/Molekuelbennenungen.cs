@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using Salzbildungsreaktionen_Core.Stoffe.Verbindungen;
 using Salzbildungsreaktionen_Core.Teilchen.Molekuele;
 
 namespace Salzbildungsreaktionen_Test

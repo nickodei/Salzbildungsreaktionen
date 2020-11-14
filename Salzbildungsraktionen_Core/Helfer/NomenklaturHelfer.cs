@@ -1,11 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Salzbildungsreaktionen_Core.Stoffe.Homogene_Stoffe.Reine_Stoffe.Elemente;
+using System;
 
 namespace Salzbildungsreaktionen_Core.Helfer
 {
     public static class NomenklaturHelfer
     {
+        public static void GeneriereName(Nichtmetall nichtmetall1, Nichtmetall nichtmetall2)
+        {
+            
+        }
+
         public static string Praefix(int anzahl)
         {
             if (anzahl <= 0)
