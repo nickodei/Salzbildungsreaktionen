@@ -1,14 +1,13 @@
-﻿using Salzbildungsreaktionen_Core.Teilchen.Molekuel;
-using System;
+﻿using System;
 
 namespace Salzbildungsreaktionen_Core.Teilchen.Ionen
 {
     public abstract class Ion
     {
         public abstract int Ladung { get; }
-        public IMolekuel Molekuel { get; }
+        public Molekuel Molekuel { get; }
 
-        public Ion(IMolekuel molekuel)
+        public Ion(Molekuel molekuel)
         {
             Molekuel = molekuel;
         }

@@ -31,8 +31,8 @@ namespace Salzbildungsreaktionen_UWP.Ansichten.Seiten
         {
             this.InitializeComponent();
 
-            MetallAuswahlComboBox.ItemsSource = Periodensystem.Instance.Metalle.Select(x => new ComboBoxItem() { Content = $"{x.Formel} - {x.Name}", Tag = x.Formel });
-            SaeureAuswahlComboBox.ItemsSource = Periodensystem.Instance.Saeuren.Select(x => new ComboBoxItem() { Content = $"{x.Formel} - {x.Name}", Tag = x.Formel });
+            MetalloxidAuswahlComboBox.ItemsSource = Periodensystem.Instance.Metalloxide.Select(x => new ComboBoxItem() { Content = $"{x.ChemischeFormel} - {x.Name}", Tag = x.ChemischeFormel });
+            SaeureAuswahlComboBox.ItemsSource = Periodensystem.Instance.Saeuren.Select(x => new ComboBoxItem() { Content = $"{x.ChemischeFormel} - {x.Name}", Tag = x.ChemischeFormel });
         }
 
         private bool isSubscriptEnabled = false;
@@ -99,14 +99,14 @@ namespace Salzbildungsreaktionen_UWP.Ansichten.Seiten
 
         private void GeneriereGleichungen_Click(object sender, RoutedEventArgs e)
         {
-            MetallEingabeTextBox.TextDocument.GetText(Windows.UI.Text.TextGetOptions.UseObjectText, out string metallSymbol);
-            if (String.IsNullOrEmpty(metallSymbol))
+            MetalloxidEingabeTextBox.TextDocument.GetText(Windows.UI.Text.TextGetOptions.UseObjectText, out string metalloxidSymbol);
+            if (String.IsNullOrEmpty(metalloxidSymbol))
             {
                 // Suche nun in der DropDown
-                if (MetallAuswahlComboBox.SelectedIndex == -1)
+                if (MetalloxidAuswahlComboBox.SelectedIndex == -1)
                     return;
 
-                metallSymbol = (string)((ComboBoxItem)MetallAuswahlComboBox.SelectedValue).Tag;
+                metalloxidSymbol = (string)((ComboBoxItem)MetalloxidAuswahlComboBox.SelectedValue).Tag;
             }
 
             SaeureEingabeTextBox.TextDocument.GetText(Windows.UI.Text.TextGetOptions.UseObjectText, out string saeureFormel);
@@ -120,9 +120,7 @@ namespace Salzbildungsreaktionen_UWP.Ansichten.Seiten
             }
 
             Saeure säure = new Saeure(saeureFormel);
-
-            Metall metall = Periodensystem.Instance.FindeMetallNachAtomsymbol(metallSymbol);
-            Metalloxid metalloxid = new Metalloxid(metall);
+            Oxid metalloxid = new Oxid(metalloxidSymbol);
 
             MetalloxidSaeureReaktion reaktion = new MetalloxidSaeureReaktion(metalloxid, säure);
             reaktion.BeginneReaktion();

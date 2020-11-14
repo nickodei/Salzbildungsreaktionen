@@ -1,5 +1,7 @@
 ﻿using Salzbildungsreaktionen_Core.Stoffe.Homogene_Stoffe.Reine_Stoffe.Elemente;
+using Salzbildungsreaktionen_Core.Stoffe.Homogene_Stoffe.Reine_Stoffe.Verbindungen.Lauge;
 using Salzbildungsreaktionen_Core.Stoffe.Homogene_Stoffe.Reine_Stoffe.Verbindungen.Saeure;
+using Salzbildungsreaktionen_Core.Stoffe.Verbindungen;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,6 +54,35 @@ namespace Salzbildungsreaktionen_Core
             }
         }
 
+        private List<Lauge> _Laugen;
+        public List<Lauge> Laugen
+        {
+            get
+            {
+                if (_Laugen == null)
+                {
+                    ErstelleLaugen();
+                }
+
+                return _Laugen;
+            }
+        }
+
+        private List<Oxid> _Metalloxide;
+        public List<Oxid> Metalloxide
+        {
+            get
+            {
+                if (_Metalloxide == null)
+                {
+                    ErstelleMetalloxide();
+                }
+
+                return _Metalloxide;
+            }
+        }
+
+
         private Periodensystem()
         {
         }
@@ -60,12 +91,12 @@ namespace Salzbildungsreaktionen_Core
         {
             _Metall = new List<Metall>()
             {
-                new Metall(symbol:"Li", elementname:"Lithium",   wurzel:"lith",  hauptgruppe:1, elektronegativitaet:1.0),
-                new Metall(symbol:"Na", elementname:"Natrium",   wurzel:"natr",  hauptgruppe:1, elektronegativitaet:0.9),
-                new Metall(symbol:"K",  elementname:"Kalium",    wurzel:"kal",   hauptgruppe:1, elektronegativitaet:0.8),
-                new Metall(symbol:"Rb", elementname:"Rubidium",  wurzel:"rubid", hauptgruppe:1, elektronegativitaet:0.8),
-                new Metall(symbol:"Cs", elementname:"Caesium",   wurzel:"caes",  hauptgruppe:1, elektronegativitaet:0.7),
-                new Metall(symbol:"Fr", elementname:"Francium",  wurzel:"franc", hauptgruppe:1, elektronegativitaet:0.7),
+                new Metall(symbol:"Li", elementname:"Lithium",   wurzel:"Lith",  hauptgruppe:1, elektronegativitaet:1.0),
+                new Metall(symbol:"Na", elementname:"Natrium",   wurzel:"Natr",  hauptgruppe:1, elektronegativitaet:0.9),
+                new Metall(symbol:"K",  elementname:"Kalium",    wurzel:"Kal",   hauptgruppe:1, elektronegativitaet:0.8),
+                new Metall(symbol:"Rb", elementname:"Rubidium",  wurzel:"Rubid", hauptgruppe:1, elektronegativitaet:0.8),
+                new Metall(symbol:"Cs", elementname:"Caesium",   wurzel:"Caes",  hauptgruppe:1, elektronegativitaet:0.7),
+                new Metall(symbol:"Fr", elementname:"Francium",  wurzel:"Franc", hauptgruppe:1, elektronegativitaet:0.7),
                 new Metall(symbol:"Be", elementname:"Beryllium", wurzel:"",      hauptgruppe:2, elektronegativitaet:1.5),
                 new Metall(symbol:"Mg", elementname:"Magnesium", wurzel:"",      hauptgruppe:2, elektronegativitaet:1.2),
                 new Metall(symbol:"Ca", elementname:"Calcium",   wurzel:"",      hauptgruppe:2, elektronegativitaet:1.0),
@@ -78,47 +109,117 @@ namespace Salzbildungsreaktionen_Core
 
         public Metall FindeMetallNachAtomsymbol(string atomsymbol)
         {
-            return Metalle.Where(x => x.Formel.Equals(atomsymbol)).FirstOrDefault();
+            return Metalle.Where(x => x.Symol.Equals(atomsymbol)).FirstOrDefault();
         }
 
         private void ErstelleNichtmetalle()
         {
             _Nichtmetalle = new List<Nichtmetall>()
             {
-                new Nichtmetall(symbol:"H",  elementname:"Wasserstoff", wurzel:"hydr",   hauptgruppe:1, elektronegativitaet:2.1),
-                new Nichtmetall(symbol:"C",  elementname:"Kohlenstoff", wurzel:"carb",   hauptgruppe:4, elektronegativitaet:2.5),
-                new Nichtmetall(symbol:"N",  elementname:"Stickstoff",  wurzel:"nitr",   hauptgruppe:5, elektronegativitaet:3.5),
-                new Nichtmetall(symbol:"P",  elementname:"Phosphor",    wurzel:"phosph", hauptgruppe:5, elektronegativitaet:2.1),
-                new Nichtmetall(symbol:"O",  elementname:"Sauerstoff",  wurzel:"ox",     hauptgruppe:6, elektronegativitaet:3.5),
-                new Nichtmetall(symbol:"S",  elementname:"Schwefel",    wurzel:"sulf",   hauptgruppe:6, elektronegativitaet:2.5),
-                new Nichtmetall(symbol:"F",  elementname:"Flour",       wurzel:"fluor",  hauptgruppe:7, elektronegativitaet:4.0),
-                new Nichtmetall(symbol:"Cl", elementname:"Chlor",       wurzel:"chlor",  hauptgruppe:7, elektronegativitaet:3.0),
-                new Nichtmetall(symbol:"Br", elementname:"Brom",        wurzel:"brom",   hauptgruppe:7, elektronegativitaet:2.8),
-                new Nichtmetall(symbol:"I",  elementname:"Iod",         wurzel:"iod",    hauptgruppe:7, elektronegativitaet:2.5),
+                new Nichtmetall(symbol:"H",  elementname:"Wasserstoff", wurzel:"Hydr",   hauptgruppe:1, elektronegativitaet:2.1),
+                new Nichtmetall(symbol:"C",  elementname:"Kohlenstoff", wurzel:"Carb",   hauptgruppe:4, elektronegativitaet:2.5),
+                new Nichtmetall(symbol:"N",  elementname:"Stickstoff",  wurzel:"Nitr",   hauptgruppe:5, elektronegativitaet:3.5),
+                new Nichtmetall(symbol:"P",  elementname:"Phosphor",    wurzel:"Phosph", hauptgruppe:5, elektronegativitaet:2.1),
+                new Nichtmetall(symbol:"O",  elementname:"Sauerstoff",  wurzel:"Ox",     hauptgruppe:6, elektronegativitaet:3.5),
+                new Nichtmetall(symbol:"S",  elementname:"Schwefel",    wurzel:"Sulf",   hauptgruppe:6, elektronegativitaet:2.5),
+                new Nichtmetall(symbol:"F",  elementname:"Flour",       wurzel:"Fluor",  hauptgruppe:7, elektronegativitaet:4.0),
+                new Nichtmetall(symbol:"Cl", elementname:"Chlor",       wurzel:"Chlor",  hauptgruppe:7, elektronegativitaet:3.0),
+                new Nichtmetall(symbol:"Br", elementname:"Brom",        wurzel:"Brom",   hauptgruppe:7, elektronegativitaet:2.8),
+                new Nichtmetall(symbol:"I",  elementname:"Iod",         wurzel:"Iod",    hauptgruppe:7, elektronegativitaet:2.5),
             };
+        }
+
+        public bool UeberpruefeObMetall(string symbol)
+        {
+            if (symbol.Length > 2 || String.IsNullOrEmpty(symbol))
+            {
+                // Symbol kann nicht mehr als zwei Zeichen beinhalten oder leer sein
+                return false;
+            }
+            else if(symbol.Length == 2)
+            {
+                // Überprüfe, ob die zweite Stelle kleingeschrieben ist
+                if(Char.IsLower(symbol[1]) == false)
+                {
+                    return false;
+                }
+            }
+
+            if(FindeMetallNachAtomsymbol(symbol) == null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
         public Nichtmetall FindeNichtmetallNachAtomsymbol(string atomsymbol)
         {
-            return Nichtmetalle.Where(x => x.Formel.Equals(atomsymbol)).FirstOrDefault();
+            return Nichtmetalle.Where(x => x.Symol.Equals(atomsymbol)).FirstOrDefault();
+        }
+
+        public bool UeberpruefeObNichtmetall(string symbol)
+        {
+            if (symbol.Length > 2 || String.IsNullOrEmpty(symbol))
+            {
+                // Symbol kann nicht mehr als zwei Zeichen beinhalten oder leer sein
+                return false;
+            }
+            else if (symbol.Length == 2)
+            {
+                // Überprüfe, ob die zweite Stelle kleingeschrieben ist
+                if (Char.IsLower(symbol[1]) == false)
+                {
+                    return false;
+                }
+            }
+
+            if (FindeNichtmetallNachAtomsymbol(symbol) == null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
         public void ErstelleSaeuren()
         {
             _Saeuren = new List<Saeure>()
             {
+                new Saeure("HF"),
+                new Saeure("H₂S"),
                 new Saeure("HCl"),
+                new Saeure("HCN"),
+                new Saeure("HNO₂"),
+                new Saeure("HNO₃"),
                 new Saeure("H₂SO₄"),
                 new Saeure("H₂SO₃"),
                 new Saeure("H₃PO₄"),
                 new Saeure("H₃PO₃"),
-                new Saeure("H₂S"),
-                new Saeure("HNO₃"),
-                new Saeure("HNO₂"),
-                new Saeure("HCN"),
                 new Saeure("H₂CO₃"),
-                new Saeure("HF"),
             };
+        }
+
+        public void ErstelleMetalloxide()
+        {
+            _Metalloxide = new List<Oxid>();
+            foreach(Metall metall in Metalle)
+            {
+                _Metalloxide.Add(new Oxid(metall));
+            }
+        }
+
+        public void ErstelleLaugen()
+        {
+            _Laugen = new List<Lauge>();
+            foreach (Metall metall in Metalle)
+            {
+                _Laugen.Add(new Lauge(metall));
+            }
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using Salzbildungsreaktionen_Core.Stoffe.Homogene_Stoffe.Reine_Stoffe.Elemente;
-using Salzbildungsreaktionen_Core.Teilchen.Molekuele;
 
 namespace Salzbildungsreaktionen_Core.Teilchen.Ionen
 {
@@ -8,18 +7,18 @@ namespace Salzbildungsreaktionen_Core.Teilchen.Ionen
         private int _PositiveLadung;
         public override int Ladung => _PositiveLadung;
 
-        public Kation(ElementMolekuel molekuel) : base(molekuel)
+        public Kation(Molekuel molekuel) : base(molekuel)
         {
             // Ladung kann aus dem Element herausgelesen werden
-            if(molekuel.Atom.Element is Metall)
+            if(molekuel.Bindung is Metall)
             {
-                Metall metall = molekuel.Atom.Element as Metall;
+                Metall metall = molekuel.Bindung as Metall;
                 _PositiveLadung = metall.Hauptgruppe;
             }
             else
             {
-                Nichtmetall nichtmetall = molekuel.Atom.Element as Nichtmetall;
-                if(nichtmetall.Formel.Equals("H"))
+                Nichtmetall nichtmetall = molekuel.Bindung as Nichtmetall;
+                if(nichtmetall.Symol.Equals("H"))
                 {
                     _PositiveLadung = 1;
                 }
@@ -30,7 +29,7 @@ namespace Salzbildungsreaktionen_Core.Teilchen.Ionen
             }
         }
 
-        public Kation(VerbindungsMolekuel molekuel, int ladung) : base(molekuel)
+        public Kation(Molekuel molekuel, int ladung) : base(molekuel)
         {
             // Ladung muss mit übergeben werden, da ein Molekül immer neutral geladen ist
             _PositiveLadung = ladung;
