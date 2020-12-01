@@ -117,7 +117,7 @@ namespace Salzbildungsreaktionen_Core
             _Nichtmetalle = new List<Nichtmetall>()
             {
                 new Nichtmetall(symbol:"H",  elementname:"Wasserstoff", wurzel:"Hydr",   hauptgruppe:1, elektronegativitaet:2.1),
-                new Nichtmetall(symbol:"C",  elementname:"Kohlenstoff", wurzel:"Carbon",   hauptgruppe:4, elektronegativitaet:2.5),
+                new Nichtmetall(symbol:"C",  elementname:"Kohlenstoff", wurzel:"Carbon", hauptgruppe:4, elektronegativitaet:2.5),
                 new Nichtmetall(symbol:"N",  elementname:"Stickstoff",  wurzel:"Nitr",   hauptgruppe:5, elektronegativitaet:3.5),
                 new Nichtmetall(symbol:"P",  elementname:"Phosphor",    wurzel:"Phosph", hauptgruppe:5, elektronegativitaet:2.1),
                 new Nichtmetall(symbol:"O",  elementname:"Sauerstoff",  wurzel:"Ox",     hauptgruppe:6, elektronegativitaet:3.5),

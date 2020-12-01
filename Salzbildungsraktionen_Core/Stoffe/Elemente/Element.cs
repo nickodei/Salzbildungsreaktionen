@@ -1,4 +1,5 @@
 ﻿using Salzbildungsreaktionen_Core.Bindungen;
+using System;
 
 namespace Salzbildungsreaktionen_Core.Stoffe.Homogene_Stoffe.Reine_Stoffe.Elemente
 {
@@ -32,6 +33,11 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Homogene_Stoffe.Reine_Stoffe.Elemen
         public bool IstElementMolekuel()
         {
             return false;
+        }
+
+        public override string ErhalteAnionName(int ladung)
+        {
+            return (String.IsNullOrEmpty(Wurzel)) ? $"{Name}id" : $"{Wurzel}id";
         }
     }
 }

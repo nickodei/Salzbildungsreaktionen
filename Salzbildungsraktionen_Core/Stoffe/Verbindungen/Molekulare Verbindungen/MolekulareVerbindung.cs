@@ -273,5 +273,15 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Verbindungen.Molekulare_Verbindunge
         {
             return ChemischeFormel;
         }
+
+        public override string ErhalteAnionName(int molekuelLadung)
+        {
+            if(Anion == null)
+            {
+                return ErhalteName();
+            }
+
+            return GeneriereAnionenname(Anion);
+        }
     }
 }
