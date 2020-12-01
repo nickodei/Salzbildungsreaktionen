@@ -28,15 +28,7 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Homogene_Stoffe.Reine_Stoffe.Verbin
         {
             if(String.IsNullOrEmpty(Name))
             {
-                if (Anion.Molekuel.Bindung is Oxid)
-                {
-                    Oxid oxid = Anion.Molekuel.Bindung as Oxid;
-                    Name = Kation.Molekuel.Bindung.ErhalteName() + oxid.ErhalteAnionenName(Anion.Ladung).ToLower();
-                }
-                else
-                {
-                    Name = Kation.Molekuel.Bindung.ErhalteName() + Anion.Molekuel.Bindung.ErhalteName().ToLower();
-                }
+                Name = Kation.Molekuel.Bindung.ErhalteName() + Anion.ErhalteAnionName().ToLower();
             }
 
             return Name;
@@ -73,6 +65,11 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Homogene_Stoffe.Reine_Stoffe.Verbin
             }
 
             return ChemischeFormel;
+        }
+
+        public override string ErhalteAnionName(int molekuelLadung)
+        {
+            return ErhalteName();
         }
     }
 }

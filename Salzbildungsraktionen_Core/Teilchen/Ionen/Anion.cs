@@ -34,5 +34,10 @@ namespace Salzbildungsreaktionen_Core.Teilchen.Ionen
             // Ladung muss mit übergeben werden, da ein Molekül immer neutral geladen ist
             _NegativeLadung = ladung;
         }
+
+        public string ErhalteAnionName()
+        {
+            return Molekuel.Bindung.ErhalteAnionName(Ladung);
+        }
     }
 }
