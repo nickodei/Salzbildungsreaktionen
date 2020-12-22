@@ -1,6 +1,7 @@
 ﻿using Salzbildungsreaktionen_Core.Stoffe.Homogene_Stoffe.Reine_Stoffe.Elemente;
 using Salzbildungsreaktionen_Core.Stoffe.Homogene_Stoffe.Reine_Stoffe.Verbindungen;
 using Salzbildungsreaktionen_Core.Stoffe.Homogene_Stoffe.Reine_Stoffe.Verbindungen.Saeure;
+using Salzbildungsreaktionen_Core.Stoffe.Verbindungen.Elementare_Verbindungen;
 using Salzbildungsreaktionen_Core.Stoffe.Verbindungen.Molekulare_Verbindungen;
 using Salzbildungsreaktionen_Core.Teilchen;
 using Salzbildungsreaktionen_Core.Teilchen.Ionen;
@@ -30,7 +31,7 @@ namespace Salzbildungsreaktionen_Core.Reaktionen.Salzreaktionen.MetallSaeure
             foreach ((Kation wasserstoffIon, Anion saeurerestIon) saeureVariation in saeureVariationen)
             {
                 // Ionisiere das Metall
-                Kation metallIon = new Kation(new Molekuel(ReagierendesMetall, 1));
+                Kation metallIon = new Kation(new ElementMolekuel(new Elementarverbindung(ReagierendesMetall, 1)));
 
                 // Generie das Salz aus den Ionen
                 Salz salz = new Salz(metallIon, saeureVariation.saeurerestIon);
@@ -50,12 +51,12 @@ namespace Salzbildungsreaktionen_Core.Reaktionen.Salzreaktionen.MetallSaeure
                 salzKomponente.Anzahl = 1;
 
                 // Erstelle das Wasserstoff
-                MolekulareVerbindung wasserstoffMolekuel = new MolekulareVerbindung("H₂", "Wasserstoff");
+                Molekularverbindung wasserstoffMolekuel = new Molekularverbindung("H₂", "Wasserstoff");
                 Reaktionsstoff wasserstoffKomponente = new Reaktionsstoff(wasserstoffMolekuel);
 
                 // Gleiche den Wasserstoff aus
-                double maximaleWasserstoffAtome = saeureKomponente.Anzahl * ReagierendeSaeure.ErhalteWasserstoffMolekuel().Anzahl;
-                double restlicheWasserstoffAtome = maximaleWasserstoffAtome - (salzKomponente.Anzahl * salz.AnzahlAnionen * (ReagierendeSaeure.ErhalteWasserstoffMolekuel().Anzahl - saeureVariation.wasserstoffIon.Molekuel.Anzahl));
+                double maximaleWasserstoffAtome = saeureKomponente.Anzahl * ReagierendeSaeure.Wasserstoffverbindung.AnzahlBindungspartner;
+                double restlicheWasserstoffAtome = maximaleWasserstoffAtome - (salzKomponente.Anzahl * salz.AnzahlAnionen * (ReagierendeSaeure.Wasserstoffverbindung.AnzahlBindungspartner - saeureVariation.wasserstoffIon.Molekuel.Anzahl));
 
 
 

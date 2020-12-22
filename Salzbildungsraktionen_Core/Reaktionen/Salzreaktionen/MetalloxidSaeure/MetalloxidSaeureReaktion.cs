@@ -27,7 +27,7 @@ namespace Salzbildungsreaktionen_Core.Reaktionen.Salzreaktionen.MetalloxidSaeure
             foreach ((Kation wasserstoffIon, Anion saeurerestIon) saeureVariation in saeureVariationen)
             {
                 // Ionisiere das Metall
-                Kation metallIon = new Kation(new Molekuel(ReagierendesMetalloxid.Bindungselement, 1));
+                Kation metallIon = new Kation(ReagierendesMetalloxid.Bindungselement);
 
                 // Generie das Salz aus den Ionen
                 Salz salz = new Salz(metallIon, saeureVariation.saeurerestIon);
@@ -38,14 +38,14 @@ namespace Salzbildungsreaktionen_Core.Reaktionen.Salzreaktionen.MetalloxidSaeure
                 Reaktionsstoff salzKomponente = new Reaktionsstoff(salz);
 
                 // Wenn das Metalloxid mehr Metall Atome besitze als das Salz
-                if (ReagierendesMetalloxid.ErhalteBindungselementMolekuel().Anzahl > salz.AnzahlKationen)
+                if (ReagierendesMetalloxid.Bindungselement.Anzahl > salz.AnzahlKationen)
                 {
                     // Somit wissen wir, das es nur ein Metalloxdi Molekühl gibt
                     metalloxidKomponente.Anzahl = 1;
 
                     // Die Anzahl des Salzes muss so angepasst werden
                     // sodass die Metallatom Anzahl übereinstimmt
-                    salzKomponente.Anzahl = ReagierendesMetalloxid.ErhalteBindungselementMolekuel().Anzahl;
+                    salzKomponente.Anzahl = ReagierendesMetalloxid.Bindungselement.Anzahl;
                 }
                 // Ansonsten
                 else
@@ -55,7 +55,7 @@ namespace Salzbildungsreaktionen_Core.Reaktionen.Salzreaktionen.MetalloxidSaeure
 
                     // Die Anzahl des Metalloxides muss so angepasst werden
                     // sodass die Metallatom Anzahl übereinstimmt
-                    metalloxidKomponente.Anzahl = (salzKomponente.Anzahl * salz.AnzahlKationen) / ReagierendesMetalloxid.ErhalteBindungselementMolekuel().Anzahl;
+                    metalloxidKomponente.Anzahl = (salzKomponente.Anzahl * salz.AnzahlKationen) / ReagierendesMetalloxid.Bindungselement.Anzahl;
                 }
 
                 // Die Anzahl der Säure entspricht die Anzahl des Säurerestions
@@ -63,12 +63,12 @@ namespace Salzbildungsreaktionen_Core.Reaktionen.Salzreaktionen.MetalloxidSaeure
                 saeureKomponente.Anzahl = salzKomponente.Anzahl * salz.AnzahlAnionen;
 
 
-                MolekulareVerbindung wasser = new MolekulareVerbindung("H₂O", "Wasser");
+                Molekularverbindung wasser = new Molekularverbindung("H₂O", "Wasser");
                 Reaktionsstoff wasserKomponente = new Reaktionsstoff(wasser);
                 // Berechne die Anzahl des Wasserstoffes um die Anzahl der 
                 // Wasser Molekühle zu bekommen
-                double maximaleWasserstoffAtome = saeureKomponente.Anzahl * ReagierendeSaeure.ErhalteWasserstoffMolekuel().Anzahl;
-                double restlicheWasserstoffAtome = maximaleWasserstoffAtome - (salzKomponente.Anzahl * salz.AnzahlAnionen * (ReagierendeSaeure.ErhalteWasserstoffMolekuel().Anzahl - saeureVariation.wasserstoffIon.Molekuel.Anzahl));
+                double maximaleWasserstoffAtome = saeureKomponente.Anzahl * ReagierendeSaeure.Wasserstoffverbindung.AnzahlBindungspartner;
+                double restlicheWasserstoffAtome = maximaleWasserstoffAtome - (salzKomponente.Anzahl * salz.AnzahlAnionen * (ReagierendeSaeure.Wasserstoffverbindung.AnzahlBindungspartner - saeureVariation.wasserstoffIon.Molekuel.Anzahl));
 
                 wasserKomponente.Anzahl = restlicheWasserstoffAtome / 2;
 

@@ -1,24 +1,38 @@
-﻿using Salzbildungsreaktionen_Core.Bindungen;
-using Salzbildungsreaktionen_Core.Helfer;
+﻿using Salzbildungsreaktionen_Core.Helfer;
 using Salzbildungsreaktionen_Core.Stoffe.Homogene_Stoffe.Reine_Stoffe.Elemente;
 using Salzbildungsreaktionen_Core.Stoffe.Verbindungen;
+using Salzbildungsreaktionen_Core.Stoffe.Verbindungen.Elementare_Verbindungen;
 using Salzbildungsreaktionen_Core.Stoffe.Verbindungen.Molekulare_Verbindungen;
 using Salzbildungsreaktionen_Core.Teilchen;
 using Salzbildungsreaktionen_Core.Teilchen.Ionen;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Salzbildungsreaktionen_Core.Stoffe.Homogene_Stoffe.Reine_Stoffe.Verbindungen.Saeure
 {
-    public class Saeure : MolekulareVerbindung
+    public class Saeure : Molekularverbindung
     {
-        public Element Wasserstoff { get; set; }
-        public IKovalenteBindung Saeurerest { get; set; }
+        public Elementarverbindung Wasserstoffverbindung { get; }
+        public Verbindung Saeurerestverbindung { get; set; }
+
+        protected string _NameSaeurerest;
+        public string NameSaeurerest
+        {
+            get
+            {
+                if (String.IsNullOrEmpty(_NameSaeurerest))
+                {
+                    GeneriereName();
+                }
+
+                return _NameSaeurerest;
+            }
+        }
+
 
         public Saeure(string chemischeFormel)
         {
-            ChemischeFormel = chemischeFormel;
+            _ChemischeFormel = chemischeFormel;
 
             // Überprüfe, ob die Formel mit einem Wasserstoffatom beginnt
             if (chemischeFormel[0].Equals('H') == false)
@@ -33,9 +47,6 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Homogene_Stoffe.Reine_Stoffe.Verbin
                 throw new Exception("Wasserstoff konnte im Periodensystem nicht gefunden werden");
             }
 
-            // Setze den Wasserstoff
-            Wasserstoff = wasserstoff;
-
             // Überprüfe, ob die Anzahl der Wasserstoffatome angegeben ist
             int anzahlProtonen;
             if (UnicodeHelfer.GetNumberOfSubscript(chemischeFormel[1]) != -1)
@@ -47,79 +58,67 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Homogene_Stoffe.Reine_Stoffe.Verbin
                 anzahlProtonen = 1;
             }
 
+            // Setze die Wasserstoffverbindung
+            Wasserstoffverbindung = new Elementarverbindung(wasserstoff, anzahlProtonen);
+
             // Erhalte die Säurerest-Formel aus der Säure-Formel
             string saeureRestFormel = (anzahlProtonen > 1) ? chemischeFormel.Substring(2) : chemischeFormel.Substring(1);
 
             // Überprüfe, ob das Säurerest ein Nichtmetall oder ein Molekuel ist
             if(Periodensystem.Instance.UeberpruefeObNichtmetall(saeureRestFormel))
             {
-                Saeurerest = Periodensystem.Instance.FindeNichtmetallNachAtomsymbol(saeureRestFormel);
+                // Aufgrund dessen, dass Wasserstoff nur 1 Proton abgeben kann, muss nicht darauf geachtet werden
+                // ob das Säurerest mehrmals vorhanden ist
+                Saeurerestverbindung = new Elementarverbindung(Periodensystem.Instance.FindeNichtmetallNachAtomsymbol(saeureRestFormel), 1);
             }
             else
             {
                 // Überprüfe, ob die Verbindung ein Oxid ist
                 if(saeureRestFormel.Contains("O"))
                 {
-                    Saeurerest = new Oxid(saeureRestFormel);
+                    Saeurerestverbindung = new Oxid(saeureRestFormel);
                 }
                 else
                 {
-                    Saeurerest = new MolekulareVerbindung(saeureRestFormel);
+
+
+                    Saeurerestverbindung = new Molekularverbindung(saeureRestFormel);
                 }
             }
 
-            Name = GeneriereSaeurename();
+            GeneriereName();
         }
 
-        public Molekuel ErhalteWasserstoffMolekuel()
+        protected override string GeneriereName()
         {
-            List<Molekuel> bestandteile = GeneriereMolekuele();
-            return bestandteile.Where(x => x.Bindung.ErhalteFormel().Equals("H") == true).FirstOrDefault();
-        }
-
-        public Molekuel ErhalteSaeurerestMolekuel()
-        {
-            List<Molekuel> bestandteile = GeneriereMolekuele();
-            return bestandteile.Where(x => x.Bindung.ErhalteFormel().Equals("H") == false).FirstOrDefault();
-        }
-
-        /// <summary>
-        /// Generiert den Namen des Salzes
-        /// </summary>
-        /// <returns></returns>
-        public string GeneriereSaeurename()
-        {
-            Molekuel wasserstoff = ErhalteWasserstoffMolekuel();
-
-            if (Saeurerest is Oxid)
+            if (Saeurerestverbindung is Oxid)
             {
-                Oxid oxid = Saeurerest as Oxid;
+                Oxid oxid = Saeurerestverbindung as Oxid;
 
-                string oxidName = oxid.ErhalteAnionenName(-wasserstoff.Anzahl);
-                if (oxidName.Substring(oxidName.Length - 2).Equals("at"))
-                {
-                    return oxid.Bindungselement.Name + "säure";
-                }
-                else if(oxidName.Substring(oxidName.Length - 2).Equals("it"))
-                {
-                    return oxid.Bindungselement.Name + "ige Säure";
-                }
+                (string saurename, string oxidname) = GeneriereNameElementsauerstoffsaeure(Wasserstoffverbindung.AnzahlBindungspartner, oxid);
+
+                _NameSaeurerest = oxidname;
+
+                return saurename;
             }
-            else if(Saeurerest is Molekuel)
+            else if (Saeurerestverbindung is Elementarverbindung)
             {
-                Molekuel molekuel = Saeurerest as Molekuel;
-                if(molekuel.Bindung.IstElementMolekuel())
-                {
-                    return molekuel.Bindung.ErhalteName() + "wasserstoffsäure";
-                }
+                Elementarverbindung verbindung = Saeurerestverbindung as Elementarverbindung;
+                _NameSaeurerest = verbindung.Name;
             }
-            else if(Saeurerest is Element)
+            else
             {
-                Element element = Saeurerest as Element;
-                return element.Name + "wasserstoffsäure";
+                if (NomenklaturHelfer.UberpruefeObTrivialnameVorhanden(Saeurerestverbindung.ChemischeFormel))
+                {
+                    _NameSaeurerest = NomenklaturHelfer.ErhalteTrivialname(Saeurerestverbindung.ChemischeFormel);
+                }
+                else
+                {
+                    _NameSaeurerest = Saeurerestverbindung.Name;
+                }               
             }
 
-            return "?";
+            return _NameSaeurerest + "wasserstoffsäure";
         }
 
         public List<(Kation wasserstoffIon, Anion saeurerestIon)> ErhalteIonisierteSaeurevarianten()
@@ -132,38 +131,50 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Homogene_Stoffe.Reine_Stoffe.Verbin
                 throw new Exception("Wasserstoff konnte im Periodensystem nicht gefunden werden");
             }
 
-            Molekuel wasserstoffMolekuel = ErhalteWasserstoffMolekuel();
-            for (int wasserstoffAtomeInEster = wasserstoffMolekuel.Anzahl - 1; wasserstoffAtomeInEster >= 0; wasserstoffAtomeInEster--)
+            for (int wasserstoffAtomeInEster = Wasserstoffverbindung.AnzahlBindungspartner - 1; wasserstoffAtomeInEster >= 0; wasserstoffAtomeInEster--)
             {
-                Kation wasserstoffIon = new Kation(new Molekuel(wasserstoff, wasserstoffMolekuel.Anzahl - wasserstoffAtomeInEster));
-                
-                Anion saeurerestIon = null;
-                if(wasserstoffAtomeInEster == 0)
-                {
-                    saeurerestIon = new Anion(new Molekuel(Saeurerest, 1), -(wasserstoffMolekuel.Anzahl - wasserstoffAtomeInEster));                  
-                }
-                else
-                {
-                    string wasserstoffFormel = (wasserstoffAtomeInEster == 1) ? wasserstoff.Symol : wasserstoff.Symol + UnicodeHelfer.GetSubscriptOfNumber(wasserstoffAtomeInEster);
-                    string saeurerestFormel = wasserstoffFormel + Saeurerest.ErhalteFormel();
+                // Kation
+                Elementarverbindung wasserstoffverbindung = new Elementarverbindung(wasserstoff, Wasserstoffverbindung.AnzahlBindungspartner - wasserstoffAtomeInEster);
+                Kation wasserstoffIon = new Kation(new ElementMolekuel(wasserstoffverbindung));
 
-                    MolekulareVerbindung verbindung = null;
-                    if (Saeurerest is Oxid)
+                // Anion
+                Molekuel saeurerestmolekuel = null;
+                if (wasserstoffAtomeInEster == 0)
+                {
+                    if (Saeurerestverbindung is Elementarverbindung)
                     {
-                        Oxid oxid = Saeurerest as Oxid;
-                        string oxidName = oxid.ErhalteAnionenName(-wasserstoffMolekuel.Anzahl).ToLower();
+                        var sauererestverbindung = Saeurerestverbindung as Elementarverbindung;
+                        sauererestverbindung.SetzteTrivialname(NameSaeurerest);
 
-                        string trivialname = (wasserstoffAtomeInEster == 1) ? $"hydrogen{oxidName}" : $"{NomenklaturHelfer.Praefix(wasserstoffAtomeInEster)}hydrogen{oxidName}";
-                        verbindung = new MolekulareVerbindung(saeurerestFormel, trivialname);
+                        saeurerestmolekuel = new ElementMolekuel(sauererestverbindung);
                     }
                     else
                     {
-                        verbindung = new MolekulareVerbindung(saeurerestFormel, wasserstoff, Saeurerest);
+                        var sauererestverbindung = Saeurerestverbindung as Molekularverbindung;
+                        sauererestverbindung.SetzteTrivialname(NameSaeurerest);
+
+                        saeurerestmolekuel = new MultiElementMolekuel(sauererestverbindung);
+                    }
+                }
+                else
+                {
+                    Elementarverbindung wasserstoffInSaeurerest = new Elementarverbindung(wasserstoff, wasserstoffAtomeInEster);
+
+                    string saeurerestName = null;
+                    if(wasserstoffAtomeInEster > 1)
+                    {
+                        saeurerestName = NomenklaturHelfer.Praefix(wasserstoffAtomeInEster) + "hydrogen" + NameSaeurerest;
+                    }
+                    else
+                    {
+                        saeurerestName = "Hydrogen" + NameSaeurerest;
                     }
 
-                    saeurerestIon = new Anion(new Molekuel(verbindung, 1), -(wasserstoffMolekuel.Anzahl - wasserstoffAtomeInEster));
+                    Molekularverbindung saeurerest = new Molekularverbindung(wasserstoffInSaeurerest.ChemischeFormel + Saeurerestverbindung.ChemischeFormel, saeurerestName);
+                    saeurerestmolekuel = new MultiElementMolekuel(saeurerest);
                 }
 
+                Anion saeurerestIon = new Anion(saeurerestmolekuel, -(Wasserstoffverbindung.AnzahlBindungspartner - wasserstoffAtomeInEster));
                 ionisierteSaeurevarianten.Add((wasserstoffIon, saeurerestIon));
             }
 

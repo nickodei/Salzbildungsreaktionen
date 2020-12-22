@@ -31,8 +31,8 @@ namespace Salzbildungsreaktionen_UWP.Ansichten.Seiten
         {
             this.InitializeComponent();
 
-            MetallAuswahlComboBox.ItemsSource = Periodensystem.Instance.Metalle.Select(x => new ComboBoxItem() { Content = $"{x.ErhalteFormel()} - {x.ErhalteName()}", Tag = x.ErhalteFormel() });
-            SaeureAuswahlComboBox.ItemsSource = Periodensystem.Instance.Saeuren.Select(x => new ComboBoxItem() { Content = $"{x.ErhalteFormel()} - {x.ErhalteName()}", Tag = x.ErhalteFormel() });
+            MetallAuswahlComboBox.ItemsSource = Periodensystem.Instance.Metalle.Select(x => new ComboBoxItem() { Content = $"{x.ChemischeFormel} - {x.Name}", Tag = x.ChemischeFormel });
+            SaeureAuswahlComboBox.ItemsSource = Periodensystem.Instance.Saeuren.Select(x => new ComboBoxItem() { Content = $"{x.ChemischeFormel} - {x.Name}", Tag = x.ChemischeFormel });
         }
 
         List<MetallSaeureReaktionsResultat> metallSäureReaktionResultate = new List<MetallSaeureReaktionsResultat>();

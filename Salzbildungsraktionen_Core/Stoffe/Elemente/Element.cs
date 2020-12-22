@@ -1,43 +1,35 @@
-﻿using Salzbildungsreaktionen_Core.Bindungen;
+﻿using Salzbildungsreaktionen_Core.Teilchen.Ionen;
 using System;
 
 namespace Salzbildungsreaktionen_Core.Stoffe.Homogene_Stoffe.Reine_Stoffe.Elemente
 {
-    public class Element : Stoff, IKovalenteBindung
+    public class Element : Stoff
     {
-        public string Name { get; set; }
-        public string Symol { get; set; }
+        public string Symol => ChemischeFormel;
         public string Wurzel { get; set; }
         public int Hauptgruppe { get; set; }
         public double Elektronegativitaet { get; set; }
 
         public Element(string symbol, string name, string wurzel, int hauptgruppe, double elektronegativitaet)
         {
-            Name = name;
-            Symol = symbol;
+            _Name = name;
+            _ChemischeFormel = symbol;
+
             Wurzel = wurzel;
             Hauptgruppe = hauptgruppe;
             Elektronegativitaet = elektronegativitaet;
         }
 
-        public override string ErhalteName()
+        protected override string GeneriereName()
         {
-            return Name;
+            // Wird im Konstuktor gesetzt und sollte nie aufgerufen werden
+            throw new NotImplementedException("Der Name des Elementes wurde nie initialisiert.");
         }
 
-        public override string ErhalteFormel()
+        protected override string GeneriereChemischeFormel()
         {
-            return Symol;
-        }
-
-        public bool IstElementMolekuel()
-        {
-            return false;
-        }
-
-        public override string ErhalteAnionName(int ladung)
-        {
-            return (String.IsNullOrEmpty(Wurzel)) ? $"{Name}id" : $"{Wurzel}id";
+            // Wird im Konstuktor gesetzt und sollte nie aufgerufen werden
+            throw new NotImplementedException("Die Formel des Elementes wurde nie initialisiert.");
         }
     }
 }

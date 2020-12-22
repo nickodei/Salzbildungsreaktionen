@@ -5,11 +5,6 @@ namespace Salzbildungsreaktionen_Core.Helfer
 {
     public static class NomenklaturHelfer
     {
-        public static void GeneriereName(Nichtmetall nichtmetall1, Nichtmetall nichtmetall2)
-        {
-            
-        }
-
         public static string Praefix(int anzahl)
         {
             if (anzahl <= 0)
@@ -27,6 +22,24 @@ namespace Salzbildungsreaktionen_Core.Helfer
                     return "Tetra";
                 default:
                     return "Poly";
+            }
+        }
+
+        public static bool UberpruefeObTrivialnameVorhanden(string chemischeFormel)
+        {
+            return !String.IsNullOrEmpty(ErhalteTrivialname(chemischeFormel));
+        }
+
+        public static string ErhalteTrivialname(string chemischeFormel)
+        {
+            switch (chemischeFormel)
+            {
+                case "CN":
+                    return "Cyanid";
+                case "H₂O":
+                    return "Wasser";
+                default:
+                    return null;
             }
         }
     }

@@ -1,0 +1,228 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="Salzbildungsreaktionen_Core.Helfer.MolekuelHelfer" Collapsed="true">
+    <Position X="29.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAgQAAA=</HashCode>
+      <FileName>Helfer\MolekuelHelfer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Salzbildungsreaktionen_Core.Helfer.NomenklaturHelfer" Collapsed="true">
+    <Position X="31.25" Y="4" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAACAAACA=</HashCode>
+      <FileName>Helfer\NomenklaturHelfer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Salzbildungsreaktionen_Core.Helfer.UnicodeHelfer" Collapsed="true">
+    <Position X="33.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Helfer\UnicodeHelfer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Salzbildungsreaktionen_Core.Reaktionen.Salzreaktionen.MetalloxidSaeure.MetalloxidSaeureReaktion" Collapsed="true">
+    <Position X="26.25" Y="8" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAIAAAAAAAAAAAAAABAgAEAAAAAAAA=</HashCode>
+      <FileName>Reaktionen\Salzreaktionen\MetalloxidSaeure\MetalloxidSaeureReaktion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Salzbildungsreaktionen_Core.Reaktionen.Salzreaktionen.MetalloxidSaeure.MetalloxidSaeureReaktionsResultat" Collapsed="true">
+    <Position X="29.5" Y="7" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>QAACAAEgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Reaktionen\Salzreaktionen\MetalloxidSaeure\MetalloxidSaeureReaktionsResultat.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Salzbildungsreaktionen_Core.Reaktionen.Salzreaktionen.MetallSaeure.MetallSaeureReaktion" Collapsed="true">
+    <Position X="21.75" Y="8" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAIAAAAAAAAAAAAAABAAAEAAAAAQAA=</HashCode>
+      <FileName>Reaktionen\Salzreaktionen\MetallSaeure\MetallSaeureReaktion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Salzbildungsreaktionen_Core.Reaktionen.Salzreaktionen.MetallSaeure.MetallSaeureReaktionsResultat" Collapsed="true">
+    <Position X="32" Y="6.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAEgAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Reaktionen\Salzreaktionen\MetallSaeure\MetallSaeureReaktionsResultat.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Salzbildungsreaktionen_Core.Reaktionen.Salzreaktionen.SaeureLauge.SaeureLaugeReaktion" Collapsed="true">
+    <Position X="24" Y="8" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAIAAAAAAAAAAAAAARAAAEAAAAAAAA=</HashCode>
+      <FileName>Reaktionen\Salzreaktionen\SaeureLauge\SaeureLaugeReaktion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Salzbildungsreaktionen_Core.Reaktionen.Salzreaktionen.SaeureLauge.SaeureLaugeReaktionsResultat" Collapsed="true">
+    <Position X="29.5" Y="6.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAACAAEAAAAAAAAAAAAAAAAgAAAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>Reaktionen\Salzreaktionen\SaeureLauge\SaeureLaugeReaktionsResultat.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Salzbildungsreaktionen_Core.Reaktionen.Reaktion" Collapsed="true">
+    <Position X="24" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Reaktionen\Reaktion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Salzbildungsreaktionen_Core.Reaktionen.Reaktionsstoff" Collapsed="true">
+    <Position X="33" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAAAAAAAAAAQAgAAAAAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>Reaktionen\Reaktionsstoff.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Salzbildungsreaktionen_Core.Stoffe.Homogene_Stoffe.Reine_Stoffe.Elemente.Element" Collapsed="true">
+    <Position X="14" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAIAAgAAgAAAAAEAAAAAAAAAAAAIAAABAAAA=</HashCode>
+      <FileName>Stoffe\Elemente\Element.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Salzbildungsreaktionen_Core.Stoffe.Homogene_Stoffe.Reine_Stoffe.Elemente.Metall" Collapsed="true">
+    <Position X="12.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Stoffe\Elemente\Metall.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Salzbildungsreaktionen_Core.Stoffe.Homogene_Stoffe.Reine_Stoffe.Elemente.Nichtmetall" Collapsed="true">
+    <Position X="15" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Stoffe\Elemente\Nichtmetall.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Salzbildungsreaktionen_Core.Stoffe.Verbindungen.Ionische_Verbindungen.IonischeVerbindung" Collapsed="true">
+    <Position X="26.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Stoffe\Verbindungen\Ionische Verbindungen\IonischeVerbindung.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Salzbildungsreaktionen_Core.Stoffe.Homogene_Stoffe.Reine_Stoffe.Verbindungen.Salz" Collapsed="true">
+    <Position X="26.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAACAEAAQAAAAAAAAAEAAAAAAAABAAAAAAABAAAA=</HashCode>
+      <FileName>Stoffe\Verbindungen\Ionische Verbindungen\Salz.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Salzbildungsreaktionen_Core.Stoffe.Verbindungen.Elementare_Verbindungen.Elementarverbindung" Collapsed="true">
+    <Position X="17.25" Y="3.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAAAAAAAgAAEAAAAAAQAAAAAAAAABAAAA=</HashCode>
+      <FileName>Stoffe\Verbindungen\Molekulare Verbindungen\Elementarverbindung.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Salzbildungsreaktionen_Core.Stoffe.Homogene_Stoffe.Reine_Stoffe.Verbindungen.Lauge.Lauge" Collapsed="true">
+    <Position X="19.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAAAAAAAAAAAAgAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Stoffe\Verbindungen\Molekulare Verbindungen\Lauge.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Salzbildungsreaktionen_Core.Stoffe.Verbindungen.Molekulare_Verbindungen.Molekularverbindung" Collapsed="true">
+    <Position X="21.75" Y="3.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAIIAAAAAAgAAAAAAAAAEAAAAAAAAAAAACAAABAAAA=</HashCode>
+      <FileName>Stoffe\Verbindungen\Molekulare Verbindungen\Molekularverbindung.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Salzbildungsreaktionen_Core.Stoffe.Verbindungen.Oxid" Collapsed="true">
+    <Position X="21.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Stoffe\Verbindungen\Molekulare Verbindungen\Oxid.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Salzbildungsreaktionen_Core.Stoffe.Verbindungen.Verbindung" Collapsed="true">
+    <Position X="21.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAEAQAAAAAAAAAAAAABAQAAAAAAAAAA=</HashCode>
+      <FileName>Stoffe\Verbindungen\Verbindung.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Salzbildungsreaktionen_Core.Stoffe.Homogene_Stoffe.Reine_Stoffe.Verbindungen.Saeure.Saeure" Collapsed="true">
+    <Position X="24" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAEAAAABAAAQAAAAAAAAABIAAA=</HashCode>
+      <FileName>Stoffe\Verbindungen\Molekulare Verbindungen\Saeure.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Salzbildungsreaktionen_Core.Stoffe.Stoff" Collapsed="true">
+    <Position X="19.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAIAAgAAAAAAAAAAAAAIEQAAAAAAAAAQAAAAABAAAA=</HashCode>
+      <FileName>Stoffe\Stoff.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Salzbildungsreaktionen_Core.Teilchen.Ionen.Anion" Collapsed="true">
+    <Position X="17.25" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAA=</HashCode>
+      <FileName>Teilchen\Ionen\Anion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Salzbildungsreaktionen_Core.Teilchen.Ionen.Ion" Collapsed="true">
+    <Position X="18.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAgQBAA=</HashCode>
+      <FileName>Teilchen\Ionen\Ion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Salzbildungsreaktionen_Core.Teilchen.Ionen.Kation" Collapsed="true">
+    <Position X="19.5" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAABAA=</HashCode>
+      <FileName>Teilchen\Ionen\Kation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Salzbildungsreaktionen_Core.Teilchen.ElementMolekuel" Collapsed="true">
+    <Position X="14.5" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Teilchen\ElementMolekuel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Salzbildungsreaktionen_Core.Teilchen.Molekuel" Collapsed="true">
+    <Position X="13.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAQAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Teilchen\Molekuel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Salzbildungsreaktionen_Core.Teilchen.MultiElementMolekuel" Collapsed="true">
+    <Position X="12.25" Y="8" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Teilchen\MultiElementMolekuel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Salzbildungsreaktionen_Core.Periodensystem" Collapsed="true">
+    <Position X="29.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAACAAABgBBAAAAAAAgAgiGQACIQAAAABABIAA=</HashCode>
+      <FileName>Periodensystem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Salzbildungsreaktionen_Core.Bindungen.IKovalenteBindung" Collapsed="true">
+    <Position X="29.5" Y="2" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAACAAAAAAAAQAAAAAAAAAQAIAAAAAA=</HashCode>
+      <FileName>Bindungen\IKovalenteBindung.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Salzbildungsreaktionen_Core.Reaktionen.IReaktionsstoff" Collapsed="true">
+    <Position X="31.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Reaktionen\IReaktionsstoff.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
