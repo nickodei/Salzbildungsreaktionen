@@ -1,4 +1,5 @@
 ﻿using Salzbildungsreaktionen_Core.Stoffe.Homogene_Stoffe.Reine_Stoffe.Elemente;
+using Salzbildungsreaktionen_Core.Stoffe.Verbindungen;
 
 namespace Salzbildungsreaktionen_Core.Teilchen.Ionen
 {
@@ -10,14 +11,14 @@ namespace Salzbildungsreaktionen_Core.Teilchen.Ionen
         public Anion(Molekuel molekuel) : base(molekuel)
         {
             // Ladung kann aus dem Element herausgelesen werden
-            if (molekuel.Bindung is Metall)
+            if (molekuel.Stoff is Metall)
             {
-                Metall metall = molekuel.Bindung as Metall;
+                Metall metall = molekuel.Stoff as Metall;
                 _NegativeLadung = -metall.Hauptgruppe;
             }
             else
             {
-                Nichtmetall nichtmetall = molekuel.Bindung as Nichtmetall;
+                Nichtmetall nichtmetall = molekuel.Stoff as Nichtmetall;
                 if (nichtmetall.Symol.Equals("H"))
                 {
                     _NegativeLadung = -1;
@@ -33,11 +34,6 @@ namespace Salzbildungsreaktionen_Core.Teilchen.Ionen
         {
             // Ladung muss mit übergeben werden, da ein Molekül immer neutral geladen ist
             _NegativeLadung = ladung;
-        }
-
-        public string ErhalteAnionName()
-        {
-            return Molekuel.Bindung.ErhalteAnionName(Ladung);
         }
     }
 }

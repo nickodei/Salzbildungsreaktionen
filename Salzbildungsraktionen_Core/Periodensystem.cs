@@ -103,7 +103,8 @@ namespace Salzbildungsreaktionen_Core
                 new Metall(symbol:"Sr", elementname:"Strontium", wurzel:"",      hauptgruppe:2, elektronegativitaet:1.0),
                 new Metall(symbol:"Ba", elementname:"Barium",    wurzel:"",      hauptgruppe:2, elektronegativitaet:0.9),
                 new Metall(symbol:"Ra", elementname:"Radium",    wurzel:"",      hauptgruppe:2, elektronegativitaet:0.9),
-                new Metall(symbol:"Al", elementname:"Aluminium", wurzel:"",      hauptgruppe:3, elektronegativitaet:1.61)
+                new Metall(symbol:"Al", elementname:"Aluminium", wurzel:"",      hauptgruppe:3, elektronegativitaet:1.61),
+                new Metall(symbol:"Ti", elementname:"Titan",     wurzel:"",      hauptgruppe:3, elektronegativitaet:1.8)
             };                                                                       
         }
 

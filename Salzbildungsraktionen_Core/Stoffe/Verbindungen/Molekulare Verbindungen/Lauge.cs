@@ -1,60 +1,51 @@
 ﻿using Salzbildungsreaktionen_Core.Helfer;
 using Salzbildungsreaktionen_Core.Stoffe.Homogene_Stoffe.Reine_Stoffe.Elemente;
 using Salzbildungsreaktionen_Core.Stoffe.Verbindungen;
+using Salzbildungsreaktionen_Core.Stoffe.Verbindungen.Elementare_Verbindungen;
 using Salzbildungsreaktionen_Core.Stoffe.Verbindungen.Molekulare_Verbindungen;
 using Salzbildungsreaktionen_Core.Teilchen;
 using System;
-using System.Linq;
 
 namespace Salzbildungsreaktionen_Core.Stoffe.Homogene_Stoffe.Reine_Stoffe.Verbindungen.Lauge
 {
-    public class Lauge : MolekulareVerbindung
+    public class Lauge : Molekularverbindung
     {
-        public Metall Metall { get; set; }
-        public Oxid Hydroxid { get; set; }
+        public ElementMolekuel Metall { get; set; }
+        public MultiElementMolekuel Hydroxid { get; set; }
 
         public Lauge(Metall metall)
         {
-            Metall = metall;
+            Metall = new ElementMolekuel(new Elementarverbindung(metall, 1));
 
             // Erhalte das nichtmetall Saeuerstoff
-            Hydroxid = new Oxid("OH");
+            Hydroxid = new MultiElementMolekuel(new Oxid("OH"));
 
             // Erstelle die chemische Formel
-            ChemischeFormel = (Metall.Hauptgruppe == 1) ? Metall.Symol + Hydroxid.ChemischeFormel : $"{Metall.Symol}({Hydroxid.ChemischeFormel}){UnicodeHelfer.GetSubscriptOfNumber(Metall.Hauptgruppe)}";
+            _ChemischeFormel = (metall.Hauptgruppe == 1) ? metall.Symol + Hydroxid.Verbindung.ChemischeFormel : $"{metall.Symol}({Hydroxid.Verbindung.ChemischeFormel}){UnicodeHelfer.GetSubscriptOfNumber(metall.Hauptgruppe)}";
         }
 
         public Lauge(string chemischeFormel)
         {
-            ChemischeFormel = chemischeFormel;
+            _ChemischeFormel = chemischeFormel;
 
             // Erhalte das Metall aus der Formel
-            Metall = Periodensystem.Instance.FindeMetallNachAtomsymbol(chemischeFormel[0].ToString());
-            if(Metall == null)
+            Metall metall = Periodensystem.Instance.FindeMetallNachAtomsymbol(chemischeFormel[0].ToString());
+            if(metall == null)
             {
-                Metall = Periodensystem.Instance.FindeMetallNachAtomsymbol(chemischeFormel[0].ToString() + chemischeFormel[1].ToString());
-                if(Metall == null)
+                metall = Periodensystem.Instance.FindeMetallNachAtomsymbol(chemischeFormel[0].ToString() + chemischeFormel[1].ToString());
+                if(metall == null)
                 {
                     throw new Exception("Metall konnte in der Lauge nicht ermittelt werden");
                 }
             }
 
-            Hydroxid = new Oxid("OH");
+            Metall = new ElementMolekuel(new Elementarverbindung(metall, 1));
+            Hydroxid = new MultiElementMolekuel(new Oxid("OH"));
         }
 
-        public Molekuel ErhalteMetallMolekuel()
+        protected override string GeneriereName()
         {
-            return GeneriereMolekuele(Metall).FirstOrDefault();
-        }
-
-        public Molekuel ErhalteHydroxidMolekuel()
-        {
-            return GeneriereMolekuele(Hydroxid).FirstOrDefault();
-        }
-
-        public override string ErhalteName()
-        {
-            return Metall.ErhalteName() + Hydroxid.ErhalteName().ToLower();
+            return Metall.Verbindung.Name + Hydroxid.Verbindung.Name.ToLower();
         }
     }
 }

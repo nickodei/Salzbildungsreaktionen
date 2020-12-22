@@ -1,17 +1,17 @@
 ﻿using Salzbildungsreaktionen_Core.Bindungen;
-using Salzbildungsreaktionen_Core.Stoffe.Verbindungen.Molekulare_Verbindungen;
+using Salzbildungsreaktionen_Core.Stoffe;
 
 namespace Salzbildungsreaktionen_Core.Teilchen
 {
     public class Molekuel
     {
-        public int Anzahl { get; set; }
-        public IKovalenteBindung Bindung { get; set; }
+        public int Anzahl { get; }
+        public Stoff Stoff { get; }
 
-        public Molekuel(IKovalenteBindung bindung, int anzahl)
+        public Molekuel(Stoff stoff, int anzahl)
         {
+            Stoff = stoff;
             Anzahl = anzahl;
-            Bindung = bindung;
         }
     }
 }
