@@ -191,7 +191,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\Salzbildungsraktionen_Core\Salzbildungsreaktionen_Core.csproj">
+    <ProjectReference Include="..\Salzbildungsreaktionen_Core\Salzbildungsreaktionen_Core.csproj">
       <Project>{281ccb79-ac0a-4804-b7f7-a985e5ce126c}</Project>
       <Name>Salzbildungsreaktionen_Core</Name>
     </ProjectReference>

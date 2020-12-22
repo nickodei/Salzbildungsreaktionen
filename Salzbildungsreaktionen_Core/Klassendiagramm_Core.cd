@@ -80,7 +80,7 @@
   <Class Name="Salzbildungsreaktionen_Core.Stoffe.Homogene_Stoffe.Reine_Stoffe.Elemente.Element" Collapsed="true">
     <Position X="14" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAIAAAAAIAAgAAgAAAAAEAAAAAAAAAAAAIAAABAAAA=</HashCode>
+      <HashCode>AAAIAAAAAIAAgAAgAAAAAAAAAAAAAAAAAAIAAABAAAA=</HashCode>
       <FileName>Stoffe\Elemente\Element.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -108,14 +108,14 @@
   <Class Name="Salzbildungsreaktionen_Core.Stoffe.Homogene_Stoffe.Reine_Stoffe.Verbindungen.Salz" Collapsed="true">
     <Position X="26.25" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAIAACAEAAQAAAAAAAAAEAAAAAAAABAAAAAAABAAAA=</HashCode>
+      <HashCode>AAAIAACAEAAQAAAAAAAAAAAAAAAAAABAAAAAAABAAAA=</HashCode>
       <FileName>Stoffe\Verbindungen\Ionische Verbindungen\Salz.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Salzbildungsreaktionen_Core.Stoffe.Verbindungen.Elementare_Verbindungen.Elementarverbindung" Collapsed="true">
     <Position X="17.25" Y="3.25" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAIAAAAAAAAAAAAAAgAAEAAAAAAQAAAAAAAAABAAAA=</HashCode>
+      <HashCode>AAAIAAAAAAAAAAAAAAgAAAAAAAAAQAAAAAAAAABAAAA=</HashCode>
       <FileName>Stoffe\Verbindungen\Molekulare Verbindungen\Elementarverbindung.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -129,7 +129,7 @@
   <Class Name="Salzbildungsreaktionen_Core.Stoffe.Verbindungen.Molekulare_Verbindungen.Molekularverbindung" Collapsed="true">
     <Position X="21.75" Y="3.25" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAIIAAAAAAgAAAAAAAAAEAAAAAAAAAAAACAAABAAAA=</HashCode>
+      <HashCode>AAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAA=</HashCode>
       <FileName>Stoffe\Verbindungen\Molekulare Verbindungen\Molekularverbindung.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -143,7 +143,7 @@
   <Class Name="Salzbildungsreaktionen_Core.Stoffe.Verbindungen.Verbindung" Collapsed="true">
     <Position X="21.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAEAQAAAAAAAAAAAAABAQAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAIAAAAAAgAAEAQAAAAAAAAAAAAABAQAAAAAAAAAA=</HashCode>
       <FileName>Stoffe\Verbindungen\Verbindung.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -157,7 +157,7 @@
   <Class Name="Salzbildungsreaktionen_Core.Stoffe.Stoff" Collapsed="true">
     <Position X="19.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AgAIAAgAAAAAAAAAAAAAIEQAAAAAAAAAQAAAAABAAAA=</HashCode>
+      <HashCode>AgAIAAgAAAAAAAAAAAAAIAQAAAAAAAAAQAAAAABAAAA=</HashCode>
       <FileName>Stoffe\Stoff.cs</FileName>
     </TypeIdentifier>
   </Class>

@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30517.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Salzbildungsreaktionen_Core", "Salzbildungsraktionen_Core\Salzbildungsreaktionen_Core.csproj", "{281CCB79-AC0A-4804-B7F7-A985E5CE126C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Salzbildungsreaktionen_Core", "Salzbildungsreaktionen_Core\Salzbildungsreaktionen_Core.csproj", "{281CCB79-AC0A-4804-B7F7-A985E5CE126C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Salzbildungsreaktionen_Test", "Salzbildungsreaktionen_Test\Salzbildungsreaktionen_Test.csproj", "{D007E30E-76C9-4211-9124-BA5437681DBE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Salzbildungsreaktionen_UWP", "Formelkreator Salzbildungsreaktionen\Salzbildungsreaktionen_UWP.csproj", "{3637F178-A3DC-4FAD-9CAA-3EDE7E13B38E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Salzbildungsreaktionen_UWP", "Salzbildungsreaktionen_UWP\Salzbildungsreaktionen_UWP.csproj", "{3637F178-A3DC-4FAD-9CAA-3EDE7E13B38E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
