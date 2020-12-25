@@ -13,7 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Salzbildungsraktionen_Core\Salzbildungsreaktionen_Core.csproj" />
     <ProjectReference Include="..\Salzbildungsreaktionen_Core\Salzbildungsreaktionen_Core.csproj" />
   </ItemGroup>
 
