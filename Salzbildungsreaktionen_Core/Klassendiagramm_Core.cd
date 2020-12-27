@@ -98,17 +98,17 @@
       <FileName>Stoffe\Elemente\Nichtmetall.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Salzbildungsreaktionen_Core.Stoffe.Verbindungen.Ionische_Verbindungen.IonischeVerbindung" Collapsed="true">
+  <Class Name="Salzbildungsreaktionen_Core.Stoffe.Verbindungen.Ionische_Verbindungen.Ionenbindung" Collapsed="true">
     <Position X="26.25" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Stoffe\Verbindungen\Ionische Verbindungen\IonischeVerbindung.cs</FileName>
+      <HashCode>AAAAIAAAAAAQAAAAAAAAAAAAAAAAAABAAAAAAAAAAAA=</HashCode>
+      <FileName>Stoffe\Verbindungen\Ionische Verbindungen\Ionenbindung.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Salzbildungsreaktionen_Core.Stoffe.Homogene_Stoffe.Reine_Stoffe.Verbindungen.Salz" Collapsed="true">
     <Position X="26.25" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAIAACAEAAQAAAAAAAAAAAAAAAAAABAAAAAAABAAAA=</HashCode>
+      <HashCode>AAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAA=</HashCode>
       <FileName>Stoffe\Verbindungen\Ionische Verbindungen\Salz.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -140,17 +140,10 @@
       <FileName>Stoffe\Verbindungen\Molekulare Verbindungen\Oxid.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Salzbildungsreaktionen_Core.Stoffe.Verbindungen.Verbindung" Collapsed="true">
-    <Position X="21.75" Y="1.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAIAAAAAAgAAEAQAAAAAAAAAAAAABAQAAAAAAAAAA=</HashCode>
-      <FileName>Stoffe\Verbindungen\Verbindung.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="Salzbildungsreaktionen_Core.Stoffe.Homogene_Stoffe.Reine_Stoffe.Verbindungen.Saeure.Saeure" Collapsed="true">
     <Position X="24" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAIAEAAAABAAAQAAAAAAAAABIAAA=</HashCode>
+      <HashCode>AAAAAAAgAAAAAAAAAIAAAAAAAAAAQABAAAAAAAAAABA=</HashCode>
       <FileName>Stoffe\Verbindungen\Molekulare Verbindungen\Saeure.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -161,24 +154,24 @@
       <FileName>Stoffe\Stoff.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Salzbildungsreaktionen_Core.Teilchen.Ionen.Anion" Collapsed="true">
-    <Position X="17.25" Y="8" Width="1.5" />
+  <Class Name="Salzbildungsreaktionen_Core.Teilchen.Ionen.Anion">
+    <Position X="1.25" Y="7.75" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAA=</HashCode>
       <FileName>Teilchen\Ionen\Anion.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Salzbildungsreaktionen_Core.Teilchen.Ionen.Ion" Collapsed="true">
-    <Position X="18.5" Y="6.75" Width="1.5" />
+  <Class Name="Salzbildungsreaktionen_Core.Teilchen.Ionen.Ion">
+    <Position X="3" Y="5" Width="4" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAgQBAA=</HashCode>
+      <HashCode>AAAQAAAAgAAAAAAAAAAAAAAAAEAAAABAAAAAAAAABAA=</HashCode>
       <FileName>Teilchen\Ionen\Ion.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Salzbildungsreaktionen_Core.Teilchen.Ionen.Kation" Collapsed="true">
-    <Position X="19.5" Y="8" Width="1.5" />
+  <Class Name="Salzbildungsreaktionen_Core.Teilchen.Ionen.Kation">
+    <Position X="6.25" Y="7.75" Width="2.75" />
     <TypeIdentifier>
-      <HashCode>AAAEAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAABAA=</HashCode>
+      <HashCode>AAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAA=</HashCode>
       <FileName>Teilchen\Ionen\Kation.cs</FileName>
     </TypeIdentifier>
   </Class>

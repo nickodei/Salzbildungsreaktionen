@@ -3,6 +3,7 @@ using Salzbildungsreaktionen_Core.Reaktionen;
 using Salzbildungsreaktionen_Core.Reaktionen.Salzreaktionen.MetallSaeure;
 using Salzbildungsreaktionen_Core.Stoffe.Homogene_Stoffe.Reine_Stoffe.Elemente;
 using Salzbildungsreaktionen_Core.Stoffe.Homogene_Stoffe.Reine_Stoffe.Verbindungen.Saeure;
+using Salzbildungsreaktionen_Core.Stoffe.Verbindungen;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -123,7 +124,9 @@ namespace Salzbildungsreaktionen_UWP.Ansichten.Seiten
 
             metallSäureReaktionResultate.Clear();
 
-            Saeure säure = new Saeure(saeureFormel);
+            VerbindungFactory factory = new VerbindungFactory();
+            Saeure säure = factory.ErstelleSaeure(saeureFormel);
+
             Metall metall = Periodensystem.Instance.FindeMetallNachAtomsymbol(metallSymbol);
 
             MetallSaeureReaktion reaktion = new MetallSaeureReaktion(metall, säure);

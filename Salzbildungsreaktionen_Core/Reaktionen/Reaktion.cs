@@ -10,5 +10,7 @@ namespace Salzbildungsreaktionen_Core.Reaktionen
         /// Startet die Reaktion
         /// </summary>
         public abstract void BeginneReaktion();
+
+
     }
 }

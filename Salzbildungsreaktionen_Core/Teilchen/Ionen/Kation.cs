@@ -40,9 +40,6 @@ namespace Salzbildungsreaktionen_Core.Teilchen.Ionen
             _PositiveLadung = ladung;
         }
 
-        public string Name()
-        {
-            return Molekuel.Stoff.Name;
-        }
+
     }
 }

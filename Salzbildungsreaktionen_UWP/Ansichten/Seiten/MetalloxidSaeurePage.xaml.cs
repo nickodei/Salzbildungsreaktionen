@@ -119,7 +119,9 @@ namespace Salzbildungsreaktionen_UWP.Ansichten.Seiten
                 saeureFormel = (string)((ComboBoxItem)SaeureAuswahlComboBox.SelectedValue).Tag;
             }
 
-            Saeure säure = new Saeure(saeureFormel);
+            VerbindungFactory factory = new VerbindungFactory();
+            Saeure säure = factory.ErstelleSaeure(saeureFormel);
+
             Oxid metalloxid = new Oxid(metalloxidSymbol);
 
             MetalloxidSaeureReaktion reaktion = new MetalloxidSaeureReaktion(metalloxid, säure);

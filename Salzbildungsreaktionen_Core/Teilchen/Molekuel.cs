@@ -5,7 +5,7 @@ namespace Salzbildungsreaktionen_Core.Teilchen
 {
     public class Molekuel
     {
-        public int Anzahl { get; }
+        public int Anzahl { get; set; }
         public Stoff Stoff { get; }
 
         public Molekuel(Stoff stoff, int anzahl)

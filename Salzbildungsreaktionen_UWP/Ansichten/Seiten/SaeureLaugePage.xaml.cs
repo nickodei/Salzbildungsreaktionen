@@ -2,6 +2,7 @@
 using Salzbildungsreaktionen_Core.Reaktionen.Salzreaktionen.SaeureLauge;
 using Salzbildungsreaktionen_Core.Stoffe.Homogene_Stoffe.Reine_Stoffe.Verbindungen.Lauge;
 using Salzbildungsreaktionen_Core.Stoffe.Homogene_Stoffe.Reine_Stoffe.Verbindungen.Saeure;
+using Salzbildungsreaktionen_Core.Stoffe.Verbindungen;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -122,8 +123,10 @@ namespace Salzbildungsreaktionen_UWP.Ansichten.Seiten
 
             saeureLaugeReaktionsResultat.Clear();
 
-            Lauge lauge = new Lauge(laugeFormel);
-            Saeure saeure = new Saeure(saeureFormel);
+            VerbindungFactory factory = new VerbindungFactory();
+            
+            Lauge lauge = factory.ErstelleLauge(laugeFormel);
+            Saeure saeure = factory.ErstelleSaeure(saeureFormel);
 
             SaeureLaugeReaktion reaktion = new SaeureLaugeReaktion(saeure, lauge);
             reaktion.BeginneReaktion();

@@ -36,31 +36,26 @@ namespace Salzbildungsreaktionen_Core.Reaktionen.Salzreaktionen.MetallSaeure
                 // Generie das Salz aus den Ionen
                 Salz salz = new Salz(metallIon, saeureVariation.saeurerestIon);
 
-                // Erstelle die Reaktionsstoffe
+                // Erstelle die Reaktionsstoffe                
+                Reaktionsstoff wasserstoffKomponente = new Reaktionsstoff(new Molekularverbindung("H₂", "Wasserstoff"));
                 Reaktionsstoff metallKomponente = new Reaktionsstoff(ReagierendesMetall);
                 Reaktionsstoff saeureKomponente = new Reaktionsstoff(ReagierendeSaeure);
                 Reaktionsstoff salzKomponente = new Reaktionsstoff(salz);
 
                 // Metall ausgleichen
-                metallKomponente.Anzahl = salz.AnzahlKationen;
+                metallKomponente.Anzahl = salz.Kation.Molekuel.Anzahl;
 
                 // Säure ausgleichen
-                saeureKomponente.Anzahl = salz.AnzahlAnionen;
+                saeureKomponente.Anzahl = salz.Anion.Molekuel.Anzahl;
 
                 // Salz ausgleichen
                 salzKomponente.Anzahl = 1;
 
-                // Erstelle das Wasserstoff
-                Molekularverbindung wasserstoffMolekuel = new Molekularverbindung("H₂", "Wasserstoff");
-                Reaktionsstoff wasserstoffKomponente = new Reaktionsstoff(wasserstoffMolekuel);
-
                 // Gleiche den Wasserstoff aus
-                double maximaleWasserstoffAtome = saeureKomponente.Anzahl * ReagierendeSaeure.Wasserstoffverbindung.AnzahlBindungspartner;
-                double restlicheWasserstoffAtome = maximaleWasserstoffAtome - (salzKomponente.Anzahl * salz.AnzahlAnionen * (ReagierendeSaeure.Wasserstoffverbindung.AnzahlBindungspartner - saeureVariation.wasserstoffIon.Molekuel.Anzahl));
-
-
-
+                double maximaleWasserstoffAtome = saeureKomponente.Anzahl * ReagierendeSaeure.Wasserstoff.Ladung;
+                double restlicheWasserstoffAtome = maximaleWasserstoffAtome - (salzKomponente.Anzahl * salz.Anion.Molekuel.Anzahl * (ReagierendeSaeure.Wasserstoff.Ladung - saeureVariation.wasserstoffIon.Molekuel.Anzahl));
                 wasserstoffKomponente.Anzahl = restlicheWasserstoffAtome / 2;
+
                 ReaktionsResultate.Add(new MetallSaeureReaktionsResultat(metallKomponente, saeureKomponente, salzKomponente, wasserstoffKomponente));                
             }
         }

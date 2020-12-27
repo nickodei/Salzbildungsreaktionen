@@ -189,19 +189,20 @@ namespace Salzbildungsreaktionen_Core
 
         public void ErstelleSaeuren()
         {
+            VerbindungFactory factory = new VerbindungFactory();
             _Saeuren = new List<Saeure>()
             {
-                new Saeure("HF"),
-                new Saeure("H₂S"),
-                new Saeure("HCl"),
-                new Saeure("HCN"),
-                new Saeure("HNO₂"),
-                new Saeure("HNO₃"),
-                new Saeure("H₂SO₄"),
-                new Saeure("H₂SO₃"),
-                new Saeure("H₃PO₄"),
-                new Saeure("H₃PO₃"),
-                new Saeure("H₂CO₃"),
+                factory.ErstelleSaeure("HF"),
+                factory.ErstelleSaeure("H₂S"),
+                factory.ErstelleSaeure("HCl"),
+                factory.ErstelleSaeure("HCN"),
+                factory.ErstelleSaeure("HNO₂"),
+                factory.ErstelleSaeure("HNO₃"),
+                factory.ErstelleSaeure("H₂SO₄"),
+                factory.ErstelleSaeure("H₂SO₃"),
+                factory.ErstelleSaeure("H₃PO₄"),
+                factory.ErstelleSaeure("H₃PO₃"),
+                factory.ErstelleSaeure("H₂CO₃"),
             };
         }
 

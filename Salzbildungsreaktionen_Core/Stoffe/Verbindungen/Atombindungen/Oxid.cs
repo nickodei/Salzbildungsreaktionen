@@ -12,7 +12,7 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Verbindungen
     public class Oxid : Molekularverbindung
     {
         public ElementMolekuel Sauerstoff { get; set; }
-        public ElementMolekuel Bindungselement { get; set; }
+        public ElementMolekuel Bindungsmolekuel { get; set; }
 
         /// <summary>
         ///  Erstellt ein standart Metalloxid
@@ -32,7 +32,7 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Verbindungen
 
             // Setze die Eigenschaften des Oxids
             Sauerstoff = new ElementMolekuel(new Elementarverbindung(sauerstoff, anzahlNichtmetall));
-            Bindungselement = new ElementMolekuel(new Elementarverbindung(metall, anzahlMetall));
+            Bindungsmolekuel = new ElementMolekuel(new Elementarverbindung(metall, anzahlMetall));
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Verbindungen
                 }
                 else
                 {
-                    Bindungselement = molekuele;
+                    Bindungsmolekuel = molekuele;
                 }
             }
         }     
@@ -72,7 +72,7 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Verbindungen
             int oxidationsstufeSauerstoff = -2;
 
             // Berechnung der Oxidationsstufe vom Restelement
-            return -((Sauerstoff.Verbindung.AnzahlBindungspartner * oxidationsstufeSauerstoff - molekuelLadung) / Bindungselement.Verbindung.AnzahlBindungspartner);
-        }      
+            return -((Sauerstoff.Verbindung.AnzahlBindungspartner * oxidationsstufeSauerstoff - molekuelLadung) / Bindungsmolekuel.Verbindung.AnzahlBindungspartner);
+        }   
     }
 }
