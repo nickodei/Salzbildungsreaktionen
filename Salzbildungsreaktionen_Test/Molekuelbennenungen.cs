@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-using Salzbildungsreaktionen_Core.Stoffe.Verbindungen.Molekulare_Verbindungen;
+using Salzbildungsreaktionen_Core.Stoffe.Verbindungen.Atombindungen;
 
 namespace Salzbildungsreaktionen_Test
 {
@@ -8,84 +8,84 @@ namespace Salzbildungsreaktionen_Test
         [Test]
         public void Dihydrogenoxid()
         {
-            Molekularverbindung verbindung = new Molekularverbindung("H₂O");
+            Salzbildungsreaktionen_Core.Stoffe.Verbindungen.Atombindungen.Atombindung verbindung = new Salzbildungsreaktionen_Core.Stoffe.Verbindungen.Atombindungen.Atombindung("H₂O");
             Assert.AreEqual("Dihydrogenoxid", verbindung.GeneriereNameErsterOrdnung());
         }
 
         [Test]
         public void Stickstofftrihydrid()
         {
-            Molekularverbindung verbindung = new Molekularverbindung("NH₃");
+            Salzbildungsreaktionen_Core.Stoffe.Verbindungen.Atombindungen.Atombindung verbindung = new Salzbildungsreaktionen_Core.Stoffe.Verbindungen.Atombindungen.Atombindung("NH₃");
             Assert.AreEqual("Stickstofftrihydrid", verbindung.GeneriereNameErsterOrdnung());
         }
 
         [Test]
         public void Distickstoffoxid()
         {
-            Molekularverbindung verbindung = new Molekularverbindung("N₂O");
+            Salzbildungsreaktionen_Core.Stoffe.Verbindungen.Atombindungen.Atombindung verbindung = new Salzbildungsreaktionen_Core.Stoffe.Verbindungen.Atombindungen.Atombindung("N₂O");
             Assert.AreEqual("Distickstoffoxid", verbindung.GeneriereNameErsterOrdnung());
         }
 
         [Test]
         public void Kohlenstoffdisulfid()
         {
-            Molekularverbindung verbindung = new Molekularverbindung("CS₂");
+            Salzbildungsreaktionen_Core.Stoffe.Verbindungen.Atombindungen.Atombindung verbindung = new Salzbildungsreaktionen_Core.Stoffe.Verbindungen.Atombindungen.Atombindung("CS₂");
             Assert.AreEqual("Kohlenstoffdisulfid", verbindung.GeneriereNameErsterOrdnung());
         }
 
         [Test]
         public void Sauerstoffdifluorid()
         {
-            Molekularverbindung verbindung = new Molekularverbindung("OF₂");
+            Salzbildungsreaktionen_Core.Stoffe.Verbindungen.Atombindungen.Atombindung verbindung = new Salzbildungsreaktionen_Core.Stoffe.Verbindungen.Atombindungen.Atombindung("OF₂");
             Assert.AreEqual("Sauerstoffdifluorid", verbindung.GeneriereNameErsterOrdnung());
         }
 
         [Test]
         public void Natriumchlorid()
         {
-            Molekularverbindung verbindung = new Molekularverbindung("NaCl");
+            Salzbildungsreaktionen_Core.Stoffe.Verbindungen.Atombindungen.Atombindung verbindung = new Salzbildungsreaktionen_Core.Stoffe.Verbindungen.Atombindungen.Atombindung("NaCl");
             Assert.AreEqual("Natriumchlorid", verbindung.GeneriereNameErsterOrdnung());
         }
 
         [Test]
         public void Dialuminiumtrioxid()
         {
-            Molekularverbindung verbindung = new Molekularverbindung("Al₂O₃");
+            Salzbildungsreaktionen_Core.Stoffe.Verbindungen.Atombindungen.Atombindung verbindung = new Salzbildungsreaktionen_Core.Stoffe.Verbindungen.Atombindungen.Atombindung("Al₂O₃");
             Assert.AreEqual("Dialuminiumtrioxid", verbindung.GeneriereNameErsterOrdnung());
         }
 
         [Test]
         public void Kaliummagnesiumtrifluorid()
         {
-            Molekularverbindung verbindung = new Molekularverbindung("KMgF₃");
+            Salzbildungsreaktionen_Core.Stoffe.Verbindungen.Atombindungen.Atombindung verbindung = new Salzbildungsreaktionen_Core.Stoffe.Verbindungen.Atombindungen.Atombindung("KMgF₃");
             Assert.AreEqual("Kaliummagnesiumtrifluorid", verbindung.GeneriereNameErsterOrdnung());
         }
 
         [Test]
         public void Magnesiumtitantrioxid()
         {
-            Molekularverbindung verbindung = new Molekularverbindung("MgTiO₃");
+            Salzbildungsreaktionen_Core.Stoffe.Verbindungen.Atombindungen.Atombindung verbindung = new Salzbildungsreaktionen_Core.Stoffe.Verbindungen.Atombindungen.Atombindung("MgTiO₃");
             Assert.AreEqual("Magnesiumtitantrioxid", verbindung.GeneriereNameErsterOrdnung());
         }
 
         [Test]
         public void Lithiumhydrogensulfid()
         {
-            Molekularverbindung verbindung = new Molekularverbindung("LiHS");
+            Salzbildungsreaktionen_Core.Stoffe.Verbindungen.Atombindungen.Atombindung verbindung = new Salzbildungsreaktionen_Core.Stoffe.Verbindungen.Atombindungen.Atombindung("LiHS");
             Assert.AreEqual("Lithiumhydrogensulfid", verbindung.GeneriereNameErsterOrdnung());
         }
 
         [Test]
         public void Schwefeldichloridoxid()
         {
-            Molekularverbindung verbindung = new Molekularverbindung("SOCl₂");
+            Salzbildungsreaktionen_Core.Stoffe.Verbindungen.Atombindungen.Atombindung verbindung = new Salzbildungsreaktionen_Core.Stoffe.Verbindungen.Atombindungen.Atombindung("SOCl₂");
             Assert.AreEqual("Schwefeldichloridoxid", verbindung.GeneriereNameErsterOrdnung());
         }
 
         [Test]
         public void Phosphorbromidchloridfluorid()
         {
-            Molekularverbindung verbindung = new Molekularverbindung("PBrClF");
+            Salzbildungsreaktionen_Core.Stoffe.Verbindungen.Atombindungen.Atombindung verbindung = new Salzbildungsreaktionen_Core.Stoffe.Verbindungen.Atombindungen.Atombindung("PBrClF");
             Assert.AreEqual("Phosphorbromidchloridfluorid", verbindung.GeneriereNameErsterOrdnung());
         }
     }

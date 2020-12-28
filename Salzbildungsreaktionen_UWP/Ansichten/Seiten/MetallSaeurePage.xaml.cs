@@ -32,8 +32,8 @@ namespace Salzbildungsreaktionen_UWP.Ansichten.Seiten
         {
             this.InitializeComponent();
 
-            MetallAuswahlComboBox.ItemsSource = Periodensystem.Instance.Metalle.Select(x => new ComboBoxItem() { Content = $"{x.ChemischeFormel} - {x.Name}", Tag = x.ChemischeFormel });
-            SaeureAuswahlComboBox.ItemsSource = Periodensystem.Instance.Saeuren.Select(x => new ComboBoxItem() { Content = $"{x.ChemischeFormel} - {x.Name}", Tag = x.ChemischeFormel });
+            MetallAuswahlComboBox.ItemsSource = Periodensystem.Instance.Metalle.Select(x => new ComboBoxItem() { Content = $"{x.AnzuzeigendeChemischeFormel()} - {x.Name}", Tag = x.ChemischeFormel });
+            SaeureAuswahlComboBox.ItemsSource = Periodensystem.Instance.Saeuren.Select(x => new ComboBoxItem() { Content = $"{x.AnzuzeigendeChemischeFormel()} - {x.Name}", Tag = x.ChemischeFormel });
         }
 
         List<MetallSaeureReaktionsResultat> metallSäureReaktionResultate = new List<MetallSaeureReaktionsResultat>();
@@ -124,9 +124,7 @@ namespace Salzbildungsreaktionen_UWP.Ansichten.Seiten
 
             metallSäureReaktionResultate.Clear();
 
-            VerbindungFactory factory = new VerbindungFactory();
-            Saeure säure = factory.ErstelleSaeure(saeureFormel);
-
+            Saeure säure = new Saeure(saeureFormel);
             Metall metall = Periodensystem.Instance.FindeMetallNachAtomsymbol(metallSymbol);
 
             MetallSaeureReaktion reaktion = new MetallSaeureReaktion(metall, säure);

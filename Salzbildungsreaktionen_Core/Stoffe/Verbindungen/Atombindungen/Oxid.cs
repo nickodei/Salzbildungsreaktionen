@@ -1,18 +1,16 @@
 ﻿using Salzbildungsreaktionen_Core.Helfer;
 using Salzbildungsreaktionen_Core.Stoffe.Homogene_Stoffe.Reine_Stoffe.Elemente;
-using Salzbildungsreaktionen_Core.Stoffe.Verbindungen.Elementare_Verbindungen;
-using Salzbildungsreaktionen_Core.Stoffe.Verbindungen.Molekulare_Verbindungen;
+using Salzbildungsreaktionen_Core.Stoffe.Verbindungen.Atombindungen;
 using Salzbildungsreaktionen_Core.Teilchen;
-using Salzbildungsreaktionen_Core.Teilchen.Ionen;
 using System;
 using System.Collections.Generic;
 
 namespace Salzbildungsreaktionen_Core.Stoffe.Verbindungen
 {
-    public class Oxid : Molekularverbindung
+    public class Oxid : Atombindung
     {
-        public ElementMolekuel Sauerstoff { get; set; }
-        public ElementMolekuel Bindungsmolekuel { get; set; }
+        public Molekuel Sauerstoff { get; set; }
+        public Molekuel Bindungspartner { get; set; }
 
         /// <summary>
         ///  Erstellt ein standart Metalloxid
@@ -20,19 +18,20 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Verbindungen
         /// <param name="metall"></param>
         public Oxid(Metall metall)
         {
-            // Erhalte das nichtmetall Saeuerstoff
+            // Erhalte das Nichtmetall-Saeuerstoff
             Nichtmetall sauerstoff = Periodensystem.Instance.FindeNichtmetallNachAtomsymbol("O");
+            if(sauerstoff != null)
+            {
+                // Berechne die Anzahl der benötigen Atome
+                (int anzahlMetall, int anzahlSauerstoff) = MolekuelHelfer.BerechneAnzahlDerMolekuele(metall, sauerstoff);
 
-            // Berechne die Anzahl der benötigen Atome
-            (int anzahlMetall, int anzahlNichtmetall) = MolekuelHelfer.BerechneAnzahlDerMolekuele(metall, sauerstoff);
+                // Füge die Elemente den Bestandteilen hinzu
+                AddBestandteil(metall, anzahlMetall);
+                AddBestandteil(sauerstoff, anzahlSauerstoff);
+            }
 
-            // Erstelle die chemische Formel
-            _ChemischeFormel += (anzahlMetall == 1) ? metall.Symol : metall.Symol + UnicodeHelfer.GetSubscriptOfNumber(anzahlMetall);
-            _ChemischeFormel += (anzahlNichtmetall == 1) ? sauerstoff.Symol : sauerstoff.Symol + UnicodeHelfer.GetSubscriptOfNumber(anzahlNichtmetall);
-
-            // Setze die Eigenschaften des Oxids
-            Sauerstoff = new ElementMolekuel(new Elementarverbindung(sauerstoff, anzahlNichtmetall));
-            Bindungsmolekuel = new ElementMolekuel(new Elementarverbindung(metall, anzahlMetall));
+            Sauerstoff = ErhalteMolekuel(sauerstoff);
+            Bindungspartner = ErhalteMolekuel(metall);
         }
 
         /// <summary>
@@ -42,26 +41,29 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Verbindungen
         public Oxid(string chemischeFormel)
         {
             // Setze die chemische Formel
-            _ChemischeFormel = chemischeFormel;
+            ChemischeFormel = chemischeFormel;
 
-            // Erhalte die Bestandteile aus der chemischen Formel
-            List<ElementMolekuel> bestandteile = ErhalteElementMolekueleAusFormel();
+            // Generiert die Bestandteile aus der chemischen Formel
+            Bestandteile = GeneriereBestandteileAusChemischerFormel();
 
-            // Das Molekuel darf aktuell nur aus zwei Bestandteile bestehen
-            if (bestandteile.Count != 2)
+            //// Das Molekuel darf aktuell nur aus zwei Bestandteile bestehen
+            //if (Bestandteile.Count != 2)
+            //{
+            //    throw new Exception("Das Oxid darf aktuell nur aus zwei Bestandteilen bestehen");
+            //}
+
+            Nichtmetall sauerstoff = Periodensystem.Instance.FindeNichtmetallNachAtomsymbol("O");
+            if(sauerstoff != null)
             {
-                throw new Exception("Das Oxid darf aktuell nur aus zwei Bestandteilen bestehen");
+                Sauerstoff = ErhalteMolekuel(sauerstoff);
             }
 
-            foreach (ElementMolekuel molekuele in bestandteile)
+            foreach(Element[] bestandteil in Bestandteile)
             {
-                if (molekuele.Stoff.ChemischeFormel.Contains("O"))
+                if(bestandteil[0].Symol.Equals("O") == false)
                 {
-                    Sauerstoff = molekuele;
-                }
-                else
-                {
-                    Bindungsmolekuel = molekuele;
+                    Bindungspartner = ErhalteMolekuel(bestandteil[0]);
+                    break;
                 }
             }
         }     
@@ -72,7 +74,7 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Verbindungen
             int oxidationsstufeSauerstoff = -2;
 
             // Berechnung der Oxidationsstufe vom Restelement
-            return -((Sauerstoff.Verbindung.AnzahlBindungspartner * oxidationsstufeSauerstoff - molekuelLadung) / Bindungsmolekuel.Verbindung.AnzahlBindungspartner);
+            return -((Sauerstoff.Atombindung.AnzahlAtome * oxidationsstufeSauerstoff - molekuelLadung) / Bindungspartner.Atombindung.AnzahlAtome);
         }   
     }
 }

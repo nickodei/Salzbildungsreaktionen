@@ -11,21 +11,25 @@ namespace Salzbildungsreaktionen_Core.Teilchen.Ionen
         public Anion(Molekuel molekuel) : base(molekuel)
         {
             // Ladung kann aus dem Element herausgelesen werden
-            if (molekuel.Stoff is Metall)
+            if (molekuel.Atombindung.IstElementbindung())
             {
-                Metall metall = molekuel.Stoff as Metall;
-                _NegativeLadung = -metall.Hauptgruppe;
-            }
-            else
-            {
-                Nichtmetall nichtmetall = molekuel.Stoff as Nichtmetall;
-                if (nichtmetall.Symol.Equals("H"))
+                Element element = molekuel.Atombindung.ErhalteElement();
+                if (element is Metall)
                 {
-                    _NegativeLadung = -1;
+                    Metall metall = element as Metall;
+                    _NegativeLadung = -metall.Hauptgruppe;
                 }
                 else
                 {
-                    _NegativeLadung = -(8 - nichtmetall.Hauptgruppe);
+                    Nichtmetall nichtmetall = element as Nichtmetall;
+                    if (nichtmetall.Symol.Equals("H"))
+                    {
+                        _NegativeLadung = -1;
+                    }
+                    else
+                    {
+                        _NegativeLadung = -(8 - nichtmetall.Hauptgruppe);
+                    }
                 }
             }
         }

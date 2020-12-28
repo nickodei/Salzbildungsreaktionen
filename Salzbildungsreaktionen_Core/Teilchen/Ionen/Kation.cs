@@ -1,5 +1,4 @@
 ﻿using Salzbildungsreaktionen_Core.Stoffe.Homogene_Stoffe.Reine_Stoffe.Elemente;
-using Salzbildungsreaktionen_Core.Stoffe.Verbindungen.Elementare_Verbindungen;
 
 namespace Salzbildungsreaktionen_Core.Teilchen.Ionen
 {
@@ -11,17 +10,17 @@ namespace Salzbildungsreaktionen_Core.Teilchen.Ionen
         public Kation(Molekuel molekuel) : base(molekuel)
         {
             // Ladung kann aus dem Element herausgelesen werden
-            if(molekuel.Stoff is Elementarverbindung)
+            if(molekuel.Atombindung.IstElementbindung())
             {
-                Elementarverbindung verbindung = molekuel.Stoff as Elementarverbindung;
-                if(verbindung.Element is Metall)
+                Element element = molekuel.Atombindung.ErhalteElement();
+                if(element is Metall)
                 {
-                    Metall metall = verbindung.Element as Metall;
+                    Metall metall = element as Metall;
                     _PositiveLadung = metall.Hauptgruppe;
                 }
                 else
                 {
-                    Nichtmetall nichtmetall = verbindung.Element as Nichtmetall;
+                    Nichtmetall nichtmetall = element as Nichtmetall;
                     if(nichtmetall.Symol.Equals("H"))
                     {
                         _PositiveLadung = 1;

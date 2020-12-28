@@ -31,8 +31,8 @@ namespace Salzbildungsreaktionen_UWP.Ansichten.Seiten
         {
             this.InitializeComponent();
 
-            MetalloxidAuswahlComboBox.ItemsSource = Periodensystem.Instance.Metalloxide.Select(x => new ComboBoxItem() { Content = $"{x.ChemischeFormel} - {x.Name}", Tag = x.ChemischeFormel });
-            SaeureAuswahlComboBox.ItemsSource = Periodensystem.Instance.Saeuren.Select(x => new ComboBoxItem() { Content = $"{x.ChemischeFormel} - {x.Name}", Tag = x.ChemischeFormel });
+            MetalloxidAuswahlComboBox.ItemsSource = Periodensystem.Instance.Metalloxide.Select(x => new ComboBoxItem() { Content = $"{x.AnzuzeigendeChemischeFormel()} - {x.Name}", Tag = x.ChemischeFormel });
+            SaeureAuswahlComboBox.ItemsSource = Periodensystem.Instance.Saeuren.Select(x => new ComboBoxItem() { Content = $"{x.AnzuzeigendeChemischeFormel()} - {x.Name}", Tag = x.ChemischeFormel });
         }
 
         private bool isSubscriptEnabled = false;
@@ -119,9 +119,7 @@ namespace Salzbildungsreaktionen_UWP.Ansichten.Seiten
                 saeureFormel = (string)((ComboBoxItem)SaeureAuswahlComboBox.SelectedValue).Tag;
             }
 
-            VerbindungFactory factory = new VerbindungFactory();
-            Saeure säure = factory.ErstelleSaeure(saeureFormel);
-
+            Saeure säure = new Saeure(saeureFormel);
             Oxid metalloxid = new Oxid(metalloxidSymbol);
 
             MetalloxidSaeureReaktion reaktion = new MetalloxidSaeureReaktion(metalloxid, säure);

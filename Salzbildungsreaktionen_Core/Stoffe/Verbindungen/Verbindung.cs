@@ -1,8 +1,7 @@
 ﻿using Salzbildungsreaktionen_Core.Helfer;
 using Salzbildungsreaktionen_Core.Stoffe.Homogene_Stoffe.Reine_Stoffe.Elemente;
-using Salzbildungsreaktionen_Core.Stoffe.Verbindungen.Elementare_Verbindungen;
+using Salzbildungsreaktionen_Core.Stoffe.Verbindungen.Atombindungen;
 using Salzbildungsreaktionen_Core.Teilchen;
-using Salzbildungsreaktionen_Core.Teilchen.Ionen;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,31 +14,17 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Verbindungen
         { 
             "Rn", "Xe", "Kr", "B", "Si", "C", "Sb", "As", "P", "N", "H", "Te", "Se", "S", "At", "I", "Br", "Cl", "O", "F"
         };
-
-        protected List<ElementMolekuel> _Bestandteile = new List<ElementMolekuel>();
-        public List<ElementMolekuel> Bestandteile
-        {
-            get
-            {
-                if (_Bestandteile == null)
-                {
-                    _Bestandteile = ErhalteElementMolekueleAusFormel();
-                }
-
-                return _Bestandteile;
-            }
-        }
-
+       
         public Verbindung()
         {
 
         }
 
-        public List<ElementMolekuel> ErhalteElementMolekueleAusFormel(string chemischeFormel = null)
+        public List<Element[]> ErhalteBestandteileSequentiell(string chemischeFormel = null)
         {
-            List<ElementMolekuel> elementMolekuele = new List<ElementMolekuel>();
+            List<Element[]> bestandteile = new List<Element[]>();
 
-            if(chemischeFormel == null)
+            if (chemischeFormel == null)
             {
                 chemischeFormel = ChemischeFormel;
             }
@@ -47,7 +32,7 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Verbindungen
             if (chemischeFormel.Contains("("))
             {
                 string molekuelFormel = chemischeFormel.Substring(chemischeFormel.IndexOf("(") + 1, chemischeFormel.IndexOf(")") - (chemischeFormel.IndexOf("(") + 1));
-                elementMolekuele.AddRange(ErhalteElementMolekueleAusFormel(molekuelFormel));
+                bestandteile.AddRange(ErhalteBestandteileSequentiell(molekuelFormel));
 
                 chemischeFormel = chemischeFormel.Substring(0, chemischeFormel.IndexOf("("));
             }
@@ -93,16 +78,19 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Verbindungen
                             int atomAnzahl = UnicodeHelfer.GetNumberOfSubscript(formelzeichen[position]);
 
                             // Ersetlle das Molekuel
-                            elementMolekuele.Add(new ElementMolekuel(new Elementarverbindung(element, atomAnzahl)));
+                            for(int cnt = 0; cnt < atomAnzahl; cnt++)
+                            {
+                                bestandteile.Add(new Element[] { element });
+                            }
                         }
                         else
                         {
-                            elementMolekuele.Add(new ElementMolekuel(new Elementarverbindung(element, 1)));
+                            bestandteile.Add(new Element[] { element });
                         }
                     }
                     else
                     {
-                        elementMolekuele.Add(new ElementMolekuel(new Elementarverbindung(element, 1)));
+                        bestandteile.Add(new Element[] { element });
                     }
                 }
                 else
@@ -117,88 +105,11 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Verbindungen
                         }
                     }
 
-                    elementMolekuele.Add(new ElementMolekuel(new Elementarverbindung(element, 1)));
+                    bestandteile.Add(new Element[] { element });
                 }
             }
 
-            return elementMolekuele;
-        }
-
-        public string GeneriereNameErsterOrdnung()
-        {
-            // Erhalte die einzelnen Molekuelbestandteile
-            List<ElementMolekuel> elemente = ErhalteElementMolekueleAusFormel();
-
-            // Sortiere die Liste nach Mtall/Nichtmetall, dann nach Elektronegativitaet
-            elemente = elemente.OrderByDescending(element => element.Verbindung.Element is Metall) 
-                               .ThenBy(element => Array.IndexOf(SortierungNichtmetalle, element.Verbindung.Element.Symol))
-                               .ToList();
-
-            string name = null;
-            for(int zaehler = 0; zaehler < elemente.Count; zaehler++)
-            {
-                ElementMolekuel element = elemente[zaehler];
-
-                if(element.Verbindung.Element is Metall)
-                {
-                    if (element.Verbindung.AnzahlBindungspartner > 1)
-                    {
-                        name += NomenklaturHelfer.Praefix(element.Verbindung.AnzahlBindungspartner) + element.Verbindung.Element.Name;
-                    }
-                    else
-                    {
-                        name += element.Verbindung.Element.Name;
-                    }                  
-                }
-                else
-                {
-                    // !Ausnahme: Wasserstoff nicht an letzer Stelle
-                    if(element.Verbindung.Element.Symol.Equals("H"))
-                    {
-                        if(zaehler != elemente.Count - 1)
-                        {
-                            if(element.Verbindung.AnzahlBindungspartner > 1)
-                            {
-                                name += NomenklaturHelfer.Praefix(element.Verbindung.AnzahlBindungspartner) + "hydrogen";
-                            }
-                            else
-                            {
-                                name += "hydrogen";
-                            }
-
-                            continue;
-                        }
-                    }
-
-                    if (zaehler == 0)
-                    {
-                        if (element.Verbindung.AnzahlBindungspartner > 1)
-                        {
-                            name += NomenklaturHelfer.Praefix(element.Verbindung.AnzahlBindungspartner) + element.Verbindung.Element.Name;
-                        }
-                        else
-                        {
-                            name += element.Verbindung.Element.Name;
-                        }                       
-                    }
-                    else
-                    {
-                        if (element.Verbindung.AnzahlBindungspartner > 1)
-                        {
-                            name += NomenklaturHelfer.Praefix(element.Verbindung.AnzahlBindungspartner) + element.Verbindung.Element.Wurzel + "id";
-                        }
-                        else
-                        {
-                            name += element.Verbindung.Element.Wurzel + "id";
-                        }                       
-                    }                    
-                }               
-            }
-
-            name = name.ToLower();
-            name = char.ToUpper(name[0]) + name.Substring(1);
-
-            return name;
-        }
+            return bestandteile;
+        }              
     }
 }

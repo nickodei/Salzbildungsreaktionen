@@ -31,8 +31,8 @@ namespace Salzbildungsreaktionen_UWP.Ansichten.Seiten
         {
             this.InitializeComponent();
 
-            LaugeAuswahlComboBox.ItemsSource = Periodensystem.Instance.Laugen.Select(x => new ComboBoxItem() { Content = $"{x.ChemischeFormel} - {x.Name}", Tag = x.ChemischeFormel });
-            SaeureAuswahlComboBox.ItemsSource = Periodensystem.Instance.Saeuren.Select(x => new ComboBoxItem() { Content = $"{x.ChemischeFormel} - {x.Name}", Tag = x.ChemischeFormel });
+            LaugeAuswahlComboBox.ItemsSource = Periodensystem.Instance.Laugen.Select(x => new ComboBoxItem() { Content = $"{x.AnzuzeigendeChemischeFormel()} - {x.Name}", Tag = x.ChemischeFormel });
+            SaeureAuswahlComboBox.ItemsSource = Periodensystem.Instance.Saeuren.Select(x => new ComboBoxItem() { Content = $"{x.AnzuzeigendeChemischeFormel()} - {x.Name}", Tag = x.ChemischeFormel });
         }
 
         List<SaeureLaugeReaktionsResultat> saeureLaugeReaktionsResultat = new List<SaeureLaugeReaktionsResultat>();
@@ -123,10 +123,8 @@ namespace Salzbildungsreaktionen_UWP.Ansichten.Seiten
 
             saeureLaugeReaktionsResultat.Clear();
 
-            VerbindungFactory factory = new VerbindungFactory();
-            
-            Lauge lauge = factory.ErstelleLauge(laugeFormel);
-            Saeure saeure = factory.ErstelleSaeure(saeureFormel);
+            Lauge lauge = new Lauge(laugeFormel);
+            Saeure saeure = new Saeure(saeureFormel);
 
             SaeureLaugeReaktion reaktion = new SaeureLaugeReaktion(saeure, lauge);
             reaktion.BeginneReaktion();

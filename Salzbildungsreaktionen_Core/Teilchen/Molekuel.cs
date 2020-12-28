@@ -1,17 +1,21 @@
-﻿using Salzbildungsreaktionen_Core.Bindungen;
-using Salzbildungsreaktionen_Core.Stoffe;
+﻿using Salzbildungsreaktionen_Core.Stoffe.Verbindungen.Atombindungen;
 
 namespace Salzbildungsreaktionen_Core.Teilchen
 {
     public class Molekuel
     {
         public int Anzahl { get; set; }
-        public Stoff Stoff { get; }
+        public Atombindung Atombindung { get; }
 
-        public Molekuel(Stoff stoff, int anzahl)
+        public Molekuel(Atombindung atombindung, int anzahl)
         {
-            Stoff = stoff;
+            Atombindung = atombindung;
             Anzahl = anzahl;
+        }
+
+        public int AnzahlAtomeInMolekuel()
+        {
+            return Atombindung.AnzahlAtome * Anzahl;
         }
     }
 }

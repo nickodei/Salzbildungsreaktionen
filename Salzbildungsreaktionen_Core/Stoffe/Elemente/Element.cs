@@ -12,24 +12,12 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Homogene_Stoffe.Reine_Stoffe.Elemen
 
         public Element(string symbol, string name, string wurzel, int hauptgruppe, double elektronegativitaet)
         {
-            _Name = name;
-            _ChemischeFormel = symbol;
+            Name = name;
+            ChemischeFormel = symbol;
 
             Wurzel = wurzel;
             Hauptgruppe = hauptgruppe;
             Elektronegativitaet = elektronegativitaet;
-        }
-
-        protected override string GeneriereName()
-        {
-            // Wird im Konstuktor gesetzt und sollte nie aufgerufen werden
-            throw new NotImplementedException("Der Name des Elementes wurde nie initialisiert.");
-        }
-
-        protected override string GeneriereChemischeFormel()
-        {
-            // Wird im Konstuktor gesetzt und sollte nie aufgerufen werden
-            throw new NotImplementedException("Die Formel des Elementes wurde nie initialisiert.");
         }
     }
 }

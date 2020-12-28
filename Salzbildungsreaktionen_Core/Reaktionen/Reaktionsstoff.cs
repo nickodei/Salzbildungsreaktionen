@@ -15,12 +15,12 @@ namespace Salzbildungsreaktionen_Core.Reaktionen
 
         public string ErhalteAnzeigeformel()
         {
-            return (Anzahl != 1) ? $"{Anzahl} {Molekuel.ChemischeFormel}" : Molekuel.ChemischeFormel;
+            return (Anzahl != 1) ? $"{Anzahl} {Molekuel.AnzuzeigendeChemischeFormel()}" : Molekuel.AnzuzeigendeChemischeFormel();
         }
 
         public string ErhalteAnzeigename()
         {
-            return Molekuel.Name;
+            return Molekuel.AnzuzeigenderName();
         }
     }
 }

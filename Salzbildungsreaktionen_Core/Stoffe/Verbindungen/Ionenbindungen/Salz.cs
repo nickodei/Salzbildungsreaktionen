@@ -15,43 +15,33 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Homogene_Stoffe.Reine_Stoffe.Verbin
             (int anzahlKation, int anzahlAnionen) benoetigeMolekuehle = Ion.BerechneAnzahlMolekuele(kation, anion);
             Kation.Molekuel.Anzahl = benoetigeMolekuehle.anzahlKation;
             Anion.Molekuel.Anzahl = benoetigeMolekuehle.anzahlAnionen;
-        }     
 
-        protected override string GeneriereName()
-        {
-            return Kation.Molekuel.Stoff.Name + Anion.Molekuel.Stoff.Name.ToLower();
-        }
-
-        protected override string GeneriereChemischeFormel()
-        {
-            string chemischeFormel = "";
+            Name = Kation.Molekuel.Atombindung.Name + Anion.Molekuel.Atombindung.Name.ToLower();
 
             if (Kation.Molekuel.Anzahl > 1)
             {
-                chemischeFormel += $"{Kation.Molekuel.Stoff.ChemischeFormel}{UnicodeHelfer.GetSubscriptOfNumber(Kation.Molekuel.Anzahl)}";
+                ChemischeFormel += $"{Kation.Molekuel.Atombindung.ChemischeFormel}{UnicodeHelfer.GetSubscriptOfNumber(Kation.Molekuel.Anzahl)}";
             }
             else
             {
-                chemischeFormel += $"{Kation.Molekuel.Stoff.ChemischeFormel}";
+                ChemischeFormel += $"{Kation.Molekuel.Atombindung.ChemischeFormel}";
             }
 
             if (Anion.Molekuel.Anzahl > 1)
             {
-                if (UnicodeHelfer.GetNumberOfSubscript(Anion.Molekuel.Stoff.ChemischeFormel.Last()) != -1)
+                if (UnicodeHelfer.GetNumberOfSubscript(Anion.Molekuel.Atombindung.ChemischeFormel.Last()) != -1)
                 {
-                    chemischeFormel += $"({Anion.Molekuel.Stoff.ChemischeFormel}){UnicodeHelfer.GetSubscriptOfNumber(Anion.Molekuel.Anzahl)}";
+                    ChemischeFormel += $"({Anion.Molekuel.Atombindung.ChemischeFormel}){UnicodeHelfer.GetSubscriptOfNumber(Anion.Molekuel.Anzahl)}";
                 }
                 else
                 {
-                    chemischeFormel += $"{Anion.Molekuel.Stoff.ChemischeFormel}{UnicodeHelfer.GetSubscriptOfNumber(Anion.Molekuel.Anzahl)}";
+                    ChemischeFormel += $"{Anion.Molekuel.Atombindung.ChemischeFormel}{UnicodeHelfer.GetSubscriptOfNumber(Anion.Molekuel.Anzahl)}";
                 }
             }
             else
             {
-                chemischeFormel += $"{Anion.Molekuel.Stoff.ChemischeFormel}";
+                ChemischeFormel += $"{Anion.Molekuel.Atombindung.ChemischeFormel}";
             }
-
-            return chemischeFormel;
-        }
+        }     
     }
 }
