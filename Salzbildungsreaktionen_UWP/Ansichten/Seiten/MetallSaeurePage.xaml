@@ -9,6 +9,7 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+    <ScrollViewer>
     <Grid>
         <StackPanel Padding="12">
             <TextBlock Margin="0,12" Text="Reaktion von Metall und Säure" Style="{StaticResource TitleTextBlockStyle}"/>
@@ -41,4 +42,5 @@
             </Grid>
         </StackPanel>
     </Grid>
+        </ScrollViewer>
 </Page>
