@@ -31,8 +31,8 @@ namespace Salzbildungsreaktionen_UWP.Ansichten.Seiten
         {
             this.InitializeComponent();
 
-            MetalloxidAuswahlComboBox.ItemsSource = Periodensystem.Instance.Metalloxide.Select(x => new ComboBoxItem() { Content = $"{x.AnzuzeigendeChemischeFormel()} - {x.Name}", Tag = x.ChemischeFormel });
-            SaeureAuswahlComboBox.ItemsSource = Periodensystem.Instance.Saeuren.Select(x => new ComboBoxItem() { Content = $"{x.AnzuzeigendeChemischeFormel()} - {x.Name}", Tag = x.ChemischeFormel });
+            MetalloxidAuswahlComboBox.ItemsSource = Periodensystem.Instance.Metalloxide.Select(x => new ComboBoxItem() { Content = $"{x.AnzuzeigendeChemischeFormel()} - {x.AnzuzeigenderName()}", Tag = x.ChemischeFormel });
+            SaeureAuswahlComboBox.ItemsSource = Periodensystem.Instance.Saeuren.Select(x => new ComboBoxItem() { Content = $"{x.AnzuzeigendeChemischeFormel()} - {x.AnzuzeigenderName()}", Tag = x.ChemischeFormel });
         }
 
         private bool isSubscriptEnabled = false;

@@ -483,5 +483,17 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Verbindungen.Atombindungen
         {
             return GeneriereChemischeFormelAusBestandteilen(fuerAnzeige: true);
         }
+
+        public override string AnzuzeigenderName()
+        {
+            if(String.IsNullOrEmpty(Name))
+            {
+                return GeneriereNameErsterOrdnung();
+            }
+            else
+            {
+                return Name;
+            }
+        }
     }
 }

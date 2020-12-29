@@ -32,6 +32,9 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Verbindungen
 
             Sauerstoff = ErhalteMolekuel(sauerstoff);
             Bindungspartner = ErhalteMolekuel(metall);
+
+            Name = GeneriereNameErsterOrdnung();
+            ChemischeFormel = GeneriereChemischeFormelAusBestandteilen();
         }
 
         /// <summary>
@@ -45,6 +48,9 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Verbindungen
 
             // Generiert die Bestandteile aus der chemischen Formel
             Bestandteile = GeneriereBestandteileAusChemischerFormel();
+
+            // Generiere den Namen aus den Bestandteilen
+            Name = GeneriereNameErsterOrdnung();
 
             //// Das Molekuel darf aktuell nur aus zwei Bestandteile bestehen
             //if (Bestandteile.Count != 2)
