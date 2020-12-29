@@ -8,7 +8,7 @@
 
   <Identity
     Name="5e4b0627-705b-4a9d-a711-4bfaa4c6a477"
-    Publisher="CN=Nick"
+    Publisher="CN=Deibus Niek"
     Version="1.0.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="5e4b0627-705b-4a9d-a711-4bfaa4c6a477" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
