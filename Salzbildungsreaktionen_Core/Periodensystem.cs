@@ -2,6 +2,7 @@
 using Salzbildungsreaktionen_Core.Stoffe.Homogene_Stoffe.Reine_Stoffe.Verbindungen.Lauge;
 using Salzbildungsreaktionen_Core.Stoffe.Homogene_Stoffe.Reine_Stoffe.Verbindungen.Saeure;
 using Salzbildungsreaktionen_Core.Stoffe.Verbindungen;
+using Salzbildungsreaktionen_Core.Stoffe.Verbindungen.Atombindungen;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -226,6 +227,9 @@ namespace Salzbildungsreaktionen_Core
             {
                 _Laugen.Add(new Lauge(metall));
             }
+
+            // Füge den Ammoniak hinzu
+            _Laugen.Add(new Ammoniak());
         }
     }
 }

@@ -12,6 +12,13 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Homogene_Stoffe.Reine_Stoffe.Verbin
         public Molekuel Metall { get; set; }
         public Molekuel Hydroxid { get; set; }
 
+        /// <summary>
+        /// Protected Konstruktor für das Ammoniak
+        /// </summary>
+        protected Lauge()
+        {
+        }
+
         public Lauge(string chemischeFormel)
         {
             // Präperier die chemische Formel so, dass sie korrekt geparsed werden kann

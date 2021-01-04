@@ -20,7 +20,14 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Homogene_Stoffe.Reine_Stoffe.Verbin
 
             if (Kation.Molekuel.Anzahl > 1)
             {
-                ChemischeFormel += $"{Kation.Molekuel.Atombindung.ChemischeFormel}{UnicodeHelfer.GetSubscriptOfNumber(Kation.Molekuel.Anzahl)}";
+                if (Kation.Molekuel.Atombindung.IstElementbindung())
+                {
+                    ChemischeFormel += $"{Kation.Molekuel.Atombindung.ChemischeFormel}{UnicodeHelfer.GetSubscriptOfNumber(Kation.Molekuel.Anzahl)}";
+                }
+                else
+                {
+                    ChemischeFormel += $"({Kation.Molekuel.Atombindung.ChemischeFormel}){UnicodeHelfer.GetSubscriptOfNumber(Kation.Molekuel.Anzahl)}";
+                }
             }
             else
             {

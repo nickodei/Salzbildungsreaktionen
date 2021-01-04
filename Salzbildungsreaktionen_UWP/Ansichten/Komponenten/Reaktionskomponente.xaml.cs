@@ -41,7 +41,11 @@ namespace Salzbildungsreaktionen_UWP.Ansichten.Komponenten
         public Reaktionsstoff Resultat2
         {
             get { return (Reaktionsstoff)GetValue(Resultat2Property); }
-            set { SetValue(Resultat2Property, value); }
+            set 
+            {
+                this.AddProducts.Visibility = (value != null && value.Molekuel != null) ? Visibility.Visible : Visibility.Collapsed;
+                SetValue(Resultat2Property, value); 
+            }
         }
 
         // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...

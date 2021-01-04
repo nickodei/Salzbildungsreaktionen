@@ -22,5 +22,10 @@ namespace Salzbildungsreaktionen_Core.Reaktionen
         {
             return Molekuel.AnzuzeigenderName();
         }
+
+        public bool IsVisible()
+        {
+            return Molekuel != null;
+        }
     }
 }
