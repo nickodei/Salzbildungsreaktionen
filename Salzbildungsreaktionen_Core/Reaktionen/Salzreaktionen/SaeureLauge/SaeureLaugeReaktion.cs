@@ -37,7 +37,7 @@ public override void BeginneReaktion()
         Reaktionsstoff saeureKomponente = new Reaktionsstoff(ReagierendeSaeure);
 
         Salz salz = null;
-        // Überprüfe, ob es sich bei der Lauge um Ammoniak handelt
+        // UeberprUefe, ob es sich bei der Lauge um Ammoniak handelt
         if (ReagierendeLauge is Ammoniak)
         {
             // Es handelt sich bei der Lauge um Ammoniak
@@ -80,32 +80,32 @@ public override void BeginneReaktion()
             Reaktionsstoff wasserKomponente = new Reaktionsstoff(wasser);
             Reaktionsstoff salzKomponente = new Reaktionsstoff(salz);
 
-            //Falls die Anzahl der Metallatome in der Lauge gleich dem im Salz sind
+            //Falls die Anzahl der Metall-Atome in der Lauge gleich dem im Salz sind
             if (ReagierendeLauge.Metall.AnzahlAtomeInMolekuel() == salz.Kation.Molekuel.AnzahlAtomeInMolekuel())
             {
-                // Die Anzahl der Metallatome in der Lauge, sowie im Salz sind identisch
+                // Die Anzahl der Metall-Atome in der Lauge, sowie im Salz sind identisch
                 // => Anzahl Lauge und Salz auf 1 setzen
                 laugeKomponente.Anzahl = 1;
                 salzKomponente.Anzahl = 1;
             }
-            //Falls die Anzahl der Metallatome in der Lauge groeßer dem im Salz sind
+            //Falls die Anzahl der Metall-Atome in der Lauge groeßer dem im Salz sind
             else if (ReagierendeLauge.Metall.AnzahlAtomeInMolekuel() > salz.Kation.Molekuel.AnzahlAtomeInMolekuel())
             {
-                // Die Anzahl der Metallatome in der Lauge sind groeßer als die im Salz
+                // Die Anzahl der Metall-Atome in der Lauge sind groeßer als die im Salz
                 // => Anzahl Lauge auf 1 setzen und die Anzahl des Salzes berechnen
                 laugeKomponente.Anzahl = 1;
                 salzKomponente.Anzahl = ReagierendeLauge.Metall.AnzahlAtomeInMolekuel() / salz.Kation.Molekuel.AnzahlAtomeInMolekuel();
             }
-            //Falls die Anzahl der Metallatome in der Lauge kleiner dem im Salz sind
+            //Falls die Anzahl der Metall-Atome in der Lauge kleiner dem im Salz sind
             else
             {
-                // Die Anzahl der Metallatome in der Lauge sind geringer als die im Salz
+                // Die Anzahl der Metall-Atome in der Lauge sind geringer als die im Salz
                 // => Anzahl Lauge berechnen und die Anzahl des Salzes auf 1 setzen
                 laugeKomponente.Anzahl = salz.Kation.Molekuel.AnzahlAtomeInMolekuel() / ReagierendeLauge.Metall.AnzahlAtomeInMolekuel();
                 salzKomponente.Anzahl = 1;
             }
 
-            // Die Anzahl der Saeure entspricht die Anzahl des Saeurerestions
+            // Die Anzahl der Saeure entspricht die Anzahl des Saeurerest-Ions
             // => Saeure um die Anzahl des Saeurerestions multiplizieren
             saeureKomponente.Anzahl = salzKomponente.Anzahl * salz.Anion.Molekuel.Anzahl;
 

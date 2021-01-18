@@ -10,9 +10,9 @@
     <Grid>
         <NavigationView x:Name="NavigationViewControl" PaneDisplayMode="Top" ItemInvoked="NavigationViewControl_ItemInvoked">
             <NavigationView.MenuItems>
-                <NavigationViewItem Content="Metall + Säure" x:Name="metallSaeureNavigation" />
-                <NavigationViewItem Content="Metalloxid + Säure" x:Name="metalloxdiSaeureNavigation" />
-                <NavigationViewItem Content="Säure + Lauge" x:Name="saeureLaugeNavigation" />
+                <NavigationViewItem FontSize="18" Content="Metall + Säure" x:Name="metallSaeureNavigation" />
+                <NavigationViewItem FontSize="18" Content="Metalloxid + Säure" x:Name="metalloxdiSaeureNavigation" />
+                <NavigationViewItem FontSize="18" Content="Säure + Lauge" x:Name="saeureLaugeNavigation" />
             </NavigationView.MenuItems>
             <Frame x:Name="contentFrame"/>
         </NavigationView>

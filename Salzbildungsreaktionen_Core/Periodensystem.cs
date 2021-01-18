@@ -92,6 +92,7 @@ namespace Salzbildungsreaktionen_Core
         {
             _Metall = new List<Metall>()
             {
+                // Für die Wurzelformen siehe: https://www.chemie.de/lexikon/Nomenklatur_%28Chemie%29.html
                 new Metall(symbol:"Li", elementname:"Lithium",   wurzel:"Lith",  hauptgruppe:1, elektronegativitaet:1.0),
                 new Metall(symbol:"Na", elementname:"Natrium",   wurzel:"Natr",  hauptgruppe:1, elektronegativitaet:0.9),
                 new Metall(symbol:"K",  elementname:"Kalium",    wurzel:"Kal",   hauptgruppe:1, elektronegativitaet:0.8),
@@ -104,8 +105,15 @@ namespace Salzbildungsreaktionen_Core
                 new Metall(symbol:"Sr", elementname:"Strontium", wurzel:"",      hauptgruppe:2, elektronegativitaet:1.0),
                 new Metall(symbol:"Ba", elementname:"Barium",    wurzel:"",      hauptgruppe:2, elektronegativitaet:0.9),
                 new Metall(symbol:"Ra", elementname:"Radium",    wurzel:"",      hauptgruppe:2, elektronegativitaet:0.9),
-                new Metall(symbol:"Al", elementname:"Aluminium", wurzel:"",      hauptgruppe:3, elektronegativitaet:1.61),
-                new Metall(symbol:"Ti", elementname:"Titan",     wurzel:"",      hauptgruppe:3, elektronegativitaet:1.8)
+                new Metall(symbol:"B",  elementname:"Bor",       wurzel:"Bor",   hauptgruppe:3, elektronegativitaet:1.61),
+                new Metall(symbol:"Al", elementname:"Aluminium", wurzel:"Alumin",hauptgruppe:3, elektronegativitaet:1.61),
+                new Metall(symbol:"Ga", elementname:"Gallium",   wurzel:"Gall",  hauptgruppe:3, elektronegativitaet:1.61),
+                new Metall(symbol:"In", elementname:"Indium",    wurzel:"ind",   hauptgruppe:3, elektronegativitaet:1.61),
+                new Metall(symbol:"Tl", elementname:"Thallium",  wurzel:"thall", hauptgruppe:3, elektronegativitaet:1.8),
+                new Metall(symbol:"Si", elementname:"Silicium",  wurzel:"silic", hauptgruppe:4, elektronegativitaet:1.8),
+                new Metall(symbol:"Ge", elementname:"Germanium", wurzel:"german",hauptgruppe:4, elektronegativitaet:1.8),
+                new Metall(symbol:"Sn", elementname:"Zinn",      wurzel:"stann", hauptgruppe:4, elektronegativitaet:1.8),
+                new Metall(symbol:"Pb", elementname:"Blei",      wurzel:"plumb", hauptgruppe:4, elektronegativitaet:1.8),
             };                                                                       
         }
 

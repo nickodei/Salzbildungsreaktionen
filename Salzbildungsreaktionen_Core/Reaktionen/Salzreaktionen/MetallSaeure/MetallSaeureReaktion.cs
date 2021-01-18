@@ -44,7 +44,7 @@ public override void BeginneReaktion()
         // Erstelle die Wasserstoffbindung
         Atombindung wasserstoff = new Atombindung("H₂", "Wasserstoff");
 
-        // Erstelle die Reaktionsstoffe mit den vorhandenen Bindungen
+        // Erstelle die Reaktionsstoffe mit den vorhandenen Bindungen.
         // Diese Klasse merkt sich zu den Bindungen auch die Anzahl 
         // der Molekuele nach dem ausgleichen
         Reaktionsstoff wasserstoffKomponente = new Reaktionsstoff(wasserstoff);
@@ -53,13 +53,13 @@ public override void BeginneReaktion()
         Reaktionsstoff salzKomponente = new Reaktionsstoff(salz);
 
         // Die Anzahl der Metallkomponente entspricht der Anzahl der Metallatome 
-        // im Salz bei der Salzkreierung werden die Metallatome so gesetzt, dass 
+        // im Salz bei der Salzkreierung werden die Metall-Atome so gesetzt, dass 
         // sie mit der Ladung des Saeurerestes uebereinstimmt
         metallKomponente.Anzahl = salz.Kation.Molekuel.AnzahlAtomeInMolekuel();
 
         // Die Anzahl der Saeurekomponente entspricht der Anzahl des 
-        // Saeurerestmolekuels im Salz bei der Salzkreierung werden 
-        // die Saeurerestmoleküle so gesetzt, dass sie mit der Ladung
+        // Saeurerest-Molekuels im Salz bei der Salzkreierung werden 
+        // die Saeurerest-Molekuele so gesetzt, dass sie mit der Ladung
         // des Metalls übereinstimmt
         saeureKomponente.Anzahl = salz.Anion.Molekuel.Anzahl;
 

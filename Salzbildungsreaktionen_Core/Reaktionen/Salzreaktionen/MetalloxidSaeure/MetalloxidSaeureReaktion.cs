@@ -29,7 +29,7 @@ public override void BeginneReaktion()
     // Saeurerest sich anlagern koennen
     List<(Kation wasserstoffIon, Anion saeurerestIon)> saeureVariationen = ReagierendeSaeure.ErhalteIonisierteSaeurevarianten();
 
-    // Generiere für jede Saerevariante eine Reaktionsgleichung
+    // Generiere fuer jede Saerevariante eine Reaktionsgleichung
     foreach ((Kation wasserstoffIon, Anion saeurerestIon) saeureVariation in saeureVariationen)
     {
         // Erhalte das Metallelement aus dem Oxid und ionisiere es
@@ -42,23 +42,23 @@ public override void BeginneReaktion()
         // Erstelle die Wasserstoffbindung
         Atombindung wasser = new Atombindung("H₂O", "Wasser");
 
-        // Erstelle die Reaktionsstoffe mit den vorhandenen Bindungen
+        // Erstelle die Reaktionsstoffe mit den vorhandenen Bindungen.
         // Diese Klasse merkt sich zu den Bindungen auch die Anzahl 
-        // der Molekuele nach dem ausgleichen
+        // der Molekuele nach dem Ausgleichen
         Reaktionsstoff metalloxidKomponente = new Reaktionsstoff(ReagierendesMetalloxid);
         Reaktionsstoff saeureKomponente = new Reaktionsstoff(ReagierendeSaeure);
         Reaktionsstoff wasserKomponente = new Reaktionsstoff(wasser);
         Reaktionsstoff salzKomponente = new Reaktionsstoff(salz);
 
-        //Falls die Anzahl der Metallatome im Oxid gleich dem im Salz sind
-        if(ReagierendesMetalloxid.Bindungspartner.AnzahlAtomeInMolekuel() == salz.Kation.Molekuel.AnzahlAtomeInMolekuel())
+        //Falls die Anzahl der Metall-Atome im Oxid gleich dem im Salz sind
+        if (ReagierendesMetalloxid.Bindungspartner.AnzahlAtomeInMolekuel() == salz.Kation.Molekuel.AnzahlAtomeInMolekuel())
         {
             // Die Anzahl der Metall-Atome im Oxid, sowie im Salz sind identisch,
             // => Anzahl des Metalloxids und des Salzes auf 1 setzen
             metalloxidKomponente.Anzahl = 1;
             salzKomponente.Anzahl = 1;
         }
-        //Falls die Anzahl der Metallatome im Oxid groeßer dem im Salz sind
+        //Falls die Anzahl der Metall-Atome im Oxid groeßer dem im Salz sind
         else if (ReagierendesMetalloxid.Bindungspartner.AnzahlAtomeInMolekuel() > salz.Kation.Molekuel.AnzahlAtomeInMolekuel())
         {
             // Die Anzahl der Metall-Atome im Oxid sind groeßer als die im Salz
@@ -66,10 +66,10 @@ public override void BeginneReaktion()
             metalloxidKomponente.Anzahl = 1;
             salzKomponente.Anzahl = ReagierendesMetalloxid.Bindungspartner.AnzahlAtomeInMolekuel() / salz.Kation.Molekuel.AnzahlAtomeInMolekuel();
         }
-        //Falls die Anzahl der Metallatome im Oxid kleiner dem im Salz sind
+        //Falls die Anzahl der Metall-Atome im Oxid kleiner dem im Salz sind
         else
         {
-            // Die Anzahl der Metallatome im Oxid sind geringer als die im Salz
+            // Die Anzahl der Metall-Atome im Oxid sind geringer als die im Salz
             // => Anzahl des Metalloxids berechnen und die Anzahl des Salzes auf 1 setzen
             metalloxidKomponente.Anzahl = salz.Kation.Molekuel.AnzahlAtomeInMolekuel() / ReagierendesMetalloxid.Bindungspartner.AnzahlAtomeInMolekuel();
             salzKomponente.Anzahl = 1;

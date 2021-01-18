@@ -3,4 +3,26 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Formelkreator_Salzbildungsreaktionen">
+    <Application.Resources>
+        <!-- Style definition -->
+        <Style x:Key="TitleTextBlockStyle" TargetType="TextBlock" 
+       BasedOn="{StaticResource BaseTextBlockStyle}">
+            <Setter Property="FontWeight" Value="SemiLight"/>
+            <Setter Property="FontSize" Value="28"/>
+            <Setter Property="OpticalMarginAlignment" Value="TrimSideBearings"/>
+        </Style>
+        <!-- Style definition -->
+        <Style x:Key="SubtitleTextBlockStyle" TargetType="TextBlock" 
+       BasedOn="{StaticResource BaseTextBlockStyle}">
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="OpticalMarginAlignment" Value="TrimSideBearings"/>
+        </Style>
+        <!-- Style definition -->
+        <Style x:Key="BodyTextBlockStyle" TargetType="TextBlock" 
+       BasedOn="{StaticResource BaseTextBlockStyle}">
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="FontSize" Value="18"/>
+        </Style>
+    </Application.Resources>
 </Application>

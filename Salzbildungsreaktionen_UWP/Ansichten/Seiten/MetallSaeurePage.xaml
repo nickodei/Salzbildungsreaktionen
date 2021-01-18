@@ -15,17 +15,17 @@
             <TextBlock Margin="0,12" Text="Reaktion von Metall und Säure" Style="{StaticResource TitleTextBlockStyle}"/>
             <TextBlock Margin="0,12" Text="Metall"  Style="{StaticResource SubtitleTextBlockStyle}"/>
             <StackPanel Orientation="Horizontal">
-                <RichEditBox x:Name="MetallEingabeTextBox" Header="Metall eingeben" Margin="0,0,0,0" MaxLength="32" Width="300" HorizontalAlignment="Left" KeyDown="RichEditBox_KeyDown" TextChanging="RichEditBox_TextChanging"></RichEditBox>
-                <TextBlock Text="oder" VerticalAlignment="Center" Margin="24, 16, 24, 0" />
-                <ComboBox x:Name="MetallAuswahlComboBox" Header="Metall auswählen" Width="300"></ComboBox>
+                    <RichEditBox x:Name="MetallEingabeTextBox" FontSize="18" Header="Metall eingeben" Margin="0,0,0,0" MaxLength="32" Width="300" HorizontalAlignment="Left" KeyDown="RichEditBox_KeyDown" TextChanging="RichEditBox_TextChanging"></RichEditBox>
+                    <TextBlock Text="oder" Style="{StaticResource BodyTextBlockStyle}" VerticalAlignment="Center" Margin="24, 16, 24, 0" />
+                    <ComboBox x:Name="MetallAuswahlComboBox" FontSize="18" Header="Metall auswählen" Width="300"></ComboBox>
             </StackPanel>
             <TextBlock Margin="0,12" Text="Säure"  Style="{StaticResource SubtitleTextBlockStyle}"/>
             <StackPanel Orientation="Horizontal">
-                <RichEditBox x:Name="SaeureEingabeTextBox" Header="Säure eingeben" Margin="0,0,0,0" MaxLength="32" Width="300" HorizontalAlignment="Left" KeyDown="RichEditBox_KeyDown" TextChanging="RichEditBox_TextChanging"></RichEditBox>
-                <TextBlock Text="oder" VerticalAlignment="Center" Margin="24, 16, 24, 0" />
-                <ComboBox x:Name="SaeureAuswahlComboBox" Header="Säure auswählen" Width="300"></ComboBox>
+                <RichEditBox x:Name="SaeureEingabeTextBox" FontSize="18" Header="Säure eingeben" Margin="0,0,0,0" MaxLength="32" Width="300" HorizontalAlignment="Left" KeyDown="RichEditBox_KeyDown" TextChanging="RichEditBox_TextChanging"></RichEditBox>
+                    <TextBlock Text="oder" Style="{StaticResource BodyTextBlockStyle}" VerticalAlignment="Center" Margin="24, 16, 24, 0" />
+                    <ComboBox x:Name="SaeureAuswahlComboBox" FontSize="18" Header="Säure auswählen" Width="300"></ComboBox>
             </StackPanel>
-            <Button Content="Generiere Gleichungen" Margin="0,12" Click="GeneriereGleichungen_Click"/>
+                <Button Content="Generiere Gleichungen" FontSize="18" Margin="0,12" Click="GeneriereGleichungen_Click"/>
             <TextBlock Margin="0,12" Text="Reaktionsgleichungen" Style="{StaticResource SubtitleTextBlockStyle}"/>
             <Grid Margin="10" HorizontalAlignment="Stretch" RowSpacing="20">
                 <ItemsControl x:Name="ReaktionsgleichungenControl">
