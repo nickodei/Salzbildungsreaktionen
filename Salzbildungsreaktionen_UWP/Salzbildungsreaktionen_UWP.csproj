@@ -22,12 +22,12 @@
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
     <GenerateTestArtifacts>True</GenerateTestArtifacts>
     <AppxBundle>Always</AppxBundle>
-    <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
+    <AppxBundlePlatforms>x86|x64</AppxBundlePlatforms>
     <AppInstallerUri>C:\Users\den\Desktop\Seminar\Programm\Salzbildungsreaktionen\Salzbildungsreaktionen_UWP\Versionen</AppInstallerUri>
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
     <PackageCertificateThumbprint>A0A93BAE0BB36AAD7ECB9D64D899839AE91C096A</PackageCertificateThumbprint>
     <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
-    <AppxPackageDir>C:\Users\den\Desktop\Seminar\Programm\Salzbildungsreaktionen\Salzbildungsreaktionen_UWP\Versionen\</AppxPackageDir>
+    <AppxPackageDir>C:\Users\Niek\OneDrive\Desktop\Seminar\Salzbildungsreaktionen\Salzbildungsreaktionen_UWP\Versionen\</AppxPackageDir>
     <PackageCertificateKeyFile />
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
