@@ -1,6 +1,8 @@
 ﻿using Salzbildungsreaktionen_Core.Helfer;
+using Salzbildungsreaktionen_Core.Stoffe.Homogene_Stoffe.Reine_Stoffe.Elemente;
 using Salzbildungsreaktionen_Core.Stoffe.Verbindungen.Ionische_Verbindungen;
 using Salzbildungsreaktionen_Core.Teilchen.Ionen;
+using System;
 using System.Linq;
 
 namespace Salzbildungsreaktionen_Core.Stoffe.Homogene_Stoffe.Reine_Stoffe.Verbindungen
@@ -16,7 +18,21 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Homogene_Stoffe.Reine_Stoffe.Verbin
             Kation.Molekuel.Anzahl = benoetigeMolekuehle.anzahlKation;
             Anion.Molekuel.Anzahl = benoetigeMolekuehle.anzahlAnionen;
 
-            Name = Kation.Molekuel.Atombindung.Name + Anion.Molekuel.Atombindung.Name.ToLower();
+            if (Anion.Molekuel.Atombindung.IstElementbindung())
+            {
+                if(!String.IsNullOrEmpty(Anion.Molekuel.Atombindung.ErhalteElement().Wurzel))
+                {
+                    Name = Kation.Molekuel.Atombindung.Name + Anion.Molekuel.Atombindung.ErhalteElement().Wurzel.ToLower() + "id";
+                }
+                else
+                {
+                    Name = Kation.Molekuel.Atombindung.Name + Anion.Molekuel.Atombindung.ErhalteElement().Name.ToLower() + "id";
+                }
+            }
+            else
+            {
+                Name = Kation.Molekuel.Atombindung.Name + Anion.Molekuel.Atombindung.Name.ToLower();
+            }
 
             if (Kation.Molekuel.Anzahl > 1)
             {

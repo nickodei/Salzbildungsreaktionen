@@ -254,8 +254,15 @@ namespace Salzbildungsreaktionen_Core.Stoffe.Homogene_Stoffe.Reine_Stoffe.Verbin
                 // Normale Benennung der Säure
                 if (Saeurerest.Atombindung.IstElementbindung())
                 {
-                    // Nimm den Namen des erstel Bestandteiles
-                    NameSaurerestAnion = Saeurerest.Atombindung.ErhalteElement().Name;
+                    if(!String.IsNullOrEmpty(Saeurerest.Atombindung.ErhalteElement().Wurzel))
+                    {
+                        NameSaurerestAnion = Saeurerest.Atombindung.ErhalteElement().Wurzel + "id";
+                    }
+                    else
+                    {
+                        // Nimm den Namen des erstel Bestandteiles
+                        NameSaurerestAnion = Saeurerest.Atombindung.ErhalteElement().Name + "id";
+                    }
                 }
                 else
                 {
